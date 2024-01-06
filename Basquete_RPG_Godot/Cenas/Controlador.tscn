@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://bfymvsxinjbns"]
+
+[ext_resource type="Script" path="res://Scripts/controlador.gd" id="1_0xusn"]
+[ext_resource type="Script" path="res://Scripts/Estados/maquina_estados.gd" id="2_1oy8w"]
+[ext_resource type="Script" path="res://Scripts/Estados/estado_seleciona_jogador.gd" id="3_1q2ex"]
+[ext_resource type="Script" path="res://Scripts/Estados/estado_escolhe_acao.gd" id="4_3sx0l"]
+[ext_resource type="Script" path="res://Scripts/Estados/estado_mover_jogador.gd" id="5_fcnjn"]
+[ext_resource type="Script" path="res://Scripts/Estados/estado_fazendo_acao.gd" id="6_b0dy8"]
+
+[node name="Controlador" type="Node2D"]
+script = ExtResource("1_0xusn")
+
+[node name="MaquinaEstados" type="Node" parent="." node_paths=PackedStringArray("primeiro_estado")]
+script = ExtResource("2_1oy8w")
+primeiro_estado = NodePath("SelecionaJogador")
+
+[node name="SelecionaJogador" type="Node" parent="MaquinaEstados"]
+script = ExtResource("3_1q2ex")
+
+[node name="EscolheAcao" type="Node" parent="MaquinaEstados"]
+script = ExtResource("4_3sx0l")
+
+[node name="MoverJogador" type="Node" parent="MaquinaEstados"]
+script = ExtResource("5_fcnjn")
+
+[node name="FazendoAcao" type="Node" parent="MaquinaEstados"]
+script = ExtResource("6_b0dy8")

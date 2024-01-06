@@ -1,25 +1,19 @@
+# -<ucontrolador>--------------------------------------------------------------------------------- #
+# Gerencia os estados do jogo e trata os inputs do usuario.
+# ------------------------------------------------------------------------------------------------ #
 extends Node2D
 
-var estado_atual : int
+@onready var maquina_estados = $MaquinaEstados
+
 var jogador_selecionado = null
 
-enum estados{SELECIONAR_JOGADOR, ESCOLHE_ACAO, MOVER_JOGADOR, ESPERA_ACAO}
+signal acabou_acao
 
 func _ready():
 	Global.controlador = self
-	estado_atual = estados.SELECIONAR_JOGADOR
+	maquina_estados.executar_controlador_pronto()
 
-func _physics_process(_delta):
-	match estado_atual:
-		estados.SELECIONAR_JOGADOR:
-			estado_seleciona_jogador()
-		estados.ESCOLHE_ACAO:
-			estado_escolhe_acao()
-		estados.MOVER_JOGADOR:
-			estado_mover_jogador()
-		estados.ESPERA_ACAO:
-			pass
-
+# Verifica se em um ponto/cordenada especifica tem algum corpo, o retornando se sim.
 func verifica_ponto(ponto : Vector2):
 	var space = get_world_2d().direct_space_state
 	var ponto_fisico : PhysicsPointQueryParameters2D = PhysicsPointQueryParameters2D.new()
@@ -31,25 +25,16 @@ func verifica_ponto(ponto : Vector2):
 	else:
 		return null
 
-func estado_seleciona_jogador():
-	if Input.is_action_just_pressed("mouse_esq"):
-		var posicao_mouse = get_global_mouse_position()
-		jogador_selecionado = verifica_ponto(posicao_mouse)
-		if jogador_selecionado != null:
-			estado_atual = estados.ESCOLHE_ACAO
+func set_jogador_selecionado(jogador : Jogador):
+	jogador_selecionado = jogador
 
-func estado_escolhe_acao():
-	Global.ui.visible = true
+func get_jogador_selecionado():
+	return jogador_selecionado
 
-func estado_mover_jogador():
-	Global.ui.visible = false
-	if Input.is_action_just_pressed("mouse_esq"):
-		var posicao_mouse = get_global_mouse_position()
-		var caminho = Global.quadra.cria_caminho(jogador_selecionado.global_position, posicao_mouse)
-		jogador_selecionado.acao_fim.connect(on_acao_fim)
-		jogador_selecionado.comeca_mover(caminho)
-		estado_atual = estados.ESPERA_ACAO
+func conectar_acao_fim():
+	jogador_selecionado.acao_fim.connect(on_acao_fim)
 
+# Quando receber um sinal de que a ação acabou: desconecta o sinal e muda o estado atual.
 func on_acao_fim():
 	jogador_selecionado.acao_fim.disconnect(on_acao_fim)
-	estado_atual = estados.SELECIONAR_JOGADOR
+	acabou_acao.emit()

@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://brudnwsbxiwbb"]
+[gd_scene load_steps=7 format=3 uid="uid://brudnwsbxiwbb"]
 
 [ext_resource type="Texture2D" uid="uid://kvxxsjm5j4jb" path="res://Assets/PNG/Blue/characterBlue (8).png" id="1_5q6r0"]
 [ext_resource type="Script" path="res://Scripts/jogador.gd" id="1_8s316"]
-[ext_resource type="Script" path="res://Scripts/acao_mover.gd" id="3_bopac"]
+[ext_resource type="Script" path="res://Scripts/Acoes/acoes.gd" id="3_b3cyp"]
+[ext_resource type="Script" path="res://Scripts/Acoes/acao.gd" id="4_p5qyd"]
+[ext_resource type="Script" path="res://Scripts/Acoes/acao_mover.gd" id="5_a256m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_laouc"]
 size = Vector2(64, 64)
@@ -17,7 +19,14 @@ shape = SubResource("RectangleShape2D_laouc")
 scale = Vector2(2, 2)
 texture = ExtResource("1_5q6r0")
 
-[node name="Mover" type="Node" parent="." node_paths=PackedStringArray("corpo")]
-script = ExtResource("3_bopac")
-corpo = NodePath("..")
+[node name="Acoes" type="Node" parent="." node_paths=PackedStringArray("primeira_acao")]
+script = ExtResource("3_b3cyp")
+primeira_acao = NodePath("Parado")
+
+[node name="Parado" type="Node" parent="Acoes"]
+script = ExtResource("4_p5qyd")
+
+[node name="Mover" type="Node" parent="Acoes" node_paths=PackedStringArray("corpo")]
+script = ExtResource("5_a256m")
+corpo = NodePath("../..")
 velocidade = 150.0

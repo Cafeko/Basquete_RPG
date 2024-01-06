@@ -1,16 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dovcj2aiyhwuk"]
+[gd_scene load_steps=5 format=3 uid="uid://dovcj2aiyhwuk"]
 
 [ext_resource type="PackedScene" uid="uid://mjyhv5fjm7fc" path="res://Cenas/Quadra.tscn" id="1_8wqro"]
-[ext_resource type="Script" path="res://Scripts/main.gd" id="1_abvwx"]
-[ext_resource type="Script" path="res://Scripts/controlador.gd" id="2_xs6dn"]
+[ext_resource type="PackedScene" uid="uid://bfymvsxinjbns" path="res://Cenas/Controlador.tscn" id="1_wjbi7"]
 [ext_resource type="PackedScene" uid="uid://brudnwsbxiwbb" path="res://Cenas/jogador.tscn" id="3_s0nbf"]
 [ext_resource type="PackedScene" uid="uid://cwfuoqq5vmp0g" path="res://Cenas/UI.tscn" id="5_en28u"]
 
 [node name="Main" type="Node"]
-script = ExtResource("1_abvwx")
 
-[node name="Controlador" type="Node2D" parent="."]
-script = ExtResource("2_xs6dn")
+[node name="Controlador" parent="." instance=ExtResource("1_wjbi7")]
 
 [node name="Quadra" parent="." instance=ExtResource("1_8wqro")]
 
