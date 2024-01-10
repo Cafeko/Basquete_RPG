@@ -7,6 +7,11 @@ func _ready():
 	Global.ui = self
 	visible = false
 
-# Quando o botão for precionado muda o estado para a ação relacionada a esse botão.
-func on_button_up():
+func on_botao_mover():
 	Global.acao_escolhida.emit("Mover")
+
+func on_botao_pegar_bola():
+	Global.acao_escolhida.emit("PegarBola")
+
+func on_botao_passar_bola():
+	Global.acao_escolhida.emit("PassarBola")

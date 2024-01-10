@@ -4,8 +4,13 @@
 extends CharacterBody2D
 class_name Jogador
 
+@onready var ponto_bola = $PontoBola
+
+#Ações
 var acoes : Dictionary
 var acao_atual : Acao = null
+
+var com_bola : bool = false
 
 signal acao_fim
 
@@ -20,11 +25,15 @@ func _ready():
 	acoes = get_node("Acoes").get_acoes_dict()
 	# Conecta o sinal de fim.
 	acoes["Mover"].fim.connect(fim_mover)
+	acoes["PegarBola"].fim.connect(fim_pegar_bola)
+	acoes["PassarBola"].fim.connect(fim_passar_bola)
 
 func _physics_process(delta):
 	# Fica executando constantemente a ação atual.
 	acao_atual.executando(delta)
 
+# Ações:
+# - Mover
 # Começa a ação de Mover.
 func comeca_mover(caminho : Array[Vector2i]):
 	# Deixa o tile em que está no inicio do movimento como navegavel.
@@ -43,4 +52,30 @@ func fim_mover():
 	acao_atual.finalizacao()
 	acao_atual = acoes["Parado"]
 	# Emite um sinal informando que a ação acabou.
-	acao_fim.emit()
+	Global.acao_acabou.emit()
+
+# - PegarBola
+# Começa a ação de PegarBola.
+func comeca_pegar_bola(bola : Bola):
+	acao_atual = acoes["PegarBola"]
+	acao_atual.faze_de_preparacao([bola])
+
+# Dá um fim a ação de PegarBola.
+func fim_pegar_bola():
+	acao_atual.finalizacao()
+	acao_atual = acoes["Parado"]
+	Global.acao_acabou.emit()
+
+# - PassarBola
+# Começa a ação de PassarBola.
+func comeca_passar_bola(bola : Bola, alvo, tile_alvo : Vector2i):
+	# Prepara a acao_atual para ser a ação de "PassarBola".
+	acao_atual = acoes["PassarBola"]
+	acao_atual.faze_de_preparacao([bola, alvo, tile_alvo])
+
+# Muda para o estado Parado após fazer o passe (jogar a bola) para outro jogador.
+func fim_passar_bola():
+	com_bola = false
+	# Finaliza a acao_atual e muda ela para a ação "Parado".
+	acao_atual.finalizacao()
+	acao_atual = acoes["Parado"]

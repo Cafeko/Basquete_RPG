@@ -15,5 +15,5 @@ func executando(_delta):
 	pass
 
 # Usado pra após o fim da ação para resetar as variaveis.
-func Finalizacao():
+func finalizacao():
 	pass

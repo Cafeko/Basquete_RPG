@@ -19,7 +19,7 @@ func _ready():
 
 func _process(delta):
 	# Fica executando o estado atual.
-	estado_atual.executando()
+	estado_atual.executando(delta)
 
 # Muda o estado atual para um novo estado.
 func on_muda_estado(estado_nome : String, novo_estado_nome : String):
@@ -35,7 +35,7 @@ func on_muda_estado(estado_nome : String, novo_estado_nome : String):
 	novo_estado.entrando()
 	estado_atual = novo_estado
 
-# Executa a função controlador pronto para todos os estados.
-func executar_controlador_pronto():
+# Executa a função tudo_pronto para todos os estados.
+func executar_tudo_pronto():
 	for estado in estados_dict.values():
-		estado.controlador_pronto()
+		estado.tudo_pronto()

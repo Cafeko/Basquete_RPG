@@ -76,7 +76,6 @@ func cord_para_tile(cord : Vector2):
 func cordenada_centralizada(cord : Vector2):
 	var tile = cord_para_tile(cord)
 	return tile_para_cord(tile)
-	pass
 
 # Cria o caminho de tiles a ser percorido para ir de uma cordenada a outra.
 func cria_caminho(de : Vector2, para : Vector2):

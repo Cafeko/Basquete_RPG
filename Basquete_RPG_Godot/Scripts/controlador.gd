@@ -3,15 +3,16 @@
 # ------------------------------------------------------------------------------------------------ #
 extends Node2D
 
+@export var bola : CharacterBody2D
+
 @onready var maquina_estados = $MaquinaEstados
 
 var jogador_selecionado = null
-
-signal acabou_acao
+var jogador_selecionado2 = null
 
 func _ready():
 	Global.controlador = self
-	maquina_estados.executar_controlador_pronto()
+	maquina_estados.executar_tudo_pronto()
 
 # Verifica se em um ponto/cordenada especifica tem algum corpo, o retornando se sim.
 func verifica_ponto(ponto : Vector2):
@@ -31,10 +32,8 @@ func set_jogador_selecionado(jogador : Jogador):
 func get_jogador_selecionado():
 	return jogador_selecionado
 
-func conectar_acao_fim():
-	jogador_selecionado.acao_fim.connect(on_acao_fim)
+func set_jogador_selecionado2(jogador : Jogador):
+	jogador_selecionado2 = jogador
 
-# Quando receber um sinal de que a ação acabou: desconecta o sinal e muda o estado atual.
-func on_acao_fim():
-	jogador_selecionado.acao_fim.disconnect(on_acao_fim)
-	acabou_acao.emit()
+func get_jogador_selecionado2():
+	return jogador_selecionado2

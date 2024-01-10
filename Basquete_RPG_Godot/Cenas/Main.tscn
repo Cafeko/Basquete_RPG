@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dovcj2aiyhwuk"]
+[gd_scene load_steps=6 format=3 uid="uid://dovcj2aiyhwuk"]
 
 [ext_resource type="PackedScene" uid="uid://mjyhv5fjm7fc" path="res://Cenas/Quadra.tscn" id="1_8wqro"]
 [ext_resource type="PackedScene" uid="uid://bfymvsxinjbns" path="res://Cenas/Controlador.tscn" id="1_wjbi7"]
-[ext_resource type="PackedScene" uid="uid://brudnwsbxiwbb" path="res://Cenas/jogador.tscn" id="3_s0nbf"]
+[ext_resource type="PackedScene" uid="uid://brudnwsbxiwbb" path="res://Cenas/Jogador.tscn" id="3_s0nbf"]
 [ext_resource type="PackedScene" uid="uid://cwfuoqq5vmp0g" path="res://Cenas/UI.tscn" id="5_en28u"]
+[ext_resource type="PackedScene" uid="uid://coy7olt5nnj62" path="res://Cenas/Bola.tscn" id="5_sxtxk"]
 
 [node name="Main" type="Node"]
 
@@ -20,3 +21,6 @@ position = Vector2(380, 209)
 position = Vector2(555, 225)
 
 [node name="UI" parent="." instance=ExtResource("5_en28u")]
+
+[node name="Bola" parent="." instance=ExtResource("5_sxtxk")]
+position = Vector2(544, 302)
