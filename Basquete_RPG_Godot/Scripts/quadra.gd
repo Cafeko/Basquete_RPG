@@ -77,6 +77,11 @@ func cordenada_centralizada(cord : Vector2):
 	var tile = cord_para_tile(cord)
 	return tile_para_cord(tile)
 
+# Retorna se o tile é navegavel ou não.
+func tile_navegavel(tile : Vector2i):
+	var tile_data = tilemap.get_cell_tile_data(layers_id["Navegacao"], tile)
+	return tile_data != null
+
 # Cria o caminho de tiles a ser percorido para ir de uma cordenada a outra.
 func cria_caminho(de : Vector2, para : Vector2):
 	var inicio = cord_para_tile(de)

@@ -8,6 +8,7 @@ var controlador
 var quadra : Quadra
 var ui
 var bola : Bola
+var visual
 
 # Sinais:
 signal acao_escolhida

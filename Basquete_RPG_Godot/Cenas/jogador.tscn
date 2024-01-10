@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://brudnwsbxiwbb"]
+[gd_scene load_steps=10 format=3 uid="uid://brudnwsbxiwbb"]
 
 [ext_resource type="Texture2D" uid="uid://kvxxsjm5j4jb" path="res://Assets/PNG/Blue/characterBlue (8).png" id="1_5q6r0"]
 [ext_resource type="Script" path="res://Scripts/jogador.gd" id="1_8s316"]
+[ext_resource type="Script" path="res://Scripts/status_jogador.gd" id="2_hlyrr"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acoes.gd" id="3_b3cyp"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acao.gd" id="4_p5qyd"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_mover.gd" id="5_a256m"]
@@ -13,6 +14,9 @@ size = Vector2(64, 64)
 
 [node name="Jogador" type="CharacterBody2D"]
 script = ExtResource("1_8s316")
+
+[node name="Status" type="Node" parent="."]
+script = ExtResource("2_hlyrr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_laouc")

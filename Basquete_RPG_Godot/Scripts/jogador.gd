@@ -5,6 +5,7 @@ extends CharacterBody2D
 class_name Jogador
 
 @onready var ponto_bola = $PontoBola
+@onready var status = $Status
 
 #Ações
 var acoes : Dictionary
