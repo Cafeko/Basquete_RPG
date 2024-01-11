@@ -15,3 +15,6 @@ func on_botao_pegar_bola():
 
 func on_botao_passar_bola():
 	Global.acao_escolhida.emit("PassarBola")
+
+func on_botao_arremessar_bola():
+	Global.acao_escolhida.emit("ArremessarBola")

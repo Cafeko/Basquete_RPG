@@ -28,6 +28,7 @@ func _ready():
 	acoes["Mover"].fim.connect(fim_mover)
 	acoes["PegarBola"].fim.connect(fim_pegar_bola)
 	acoes["PassarBola"].fim.connect(fim_passar_bola)
+	acoes["ArremessarBola"].fim.connect(fim_arremessar_bola)
 
 func _physics_process(delta):
 	# Fica executando constantemente a ação atual.
@@ -74,8 +75,22 @@ func comeca_passar_bola(bola : Bola, alvo, tile_alvo : Vector2i):
 	acao_atual = acoes["PassarBola"]
 	acao_atual.faze_de_preparacao([bola, alvo, tile_alvo])
 
-# Muda para o estado Parado após fazer o passe (jogar a bola) para outro jogador.
+# Muda para o estado Parado após fazer o passe.
 func fim_passar_bola():
+	com_bola = false
+	# Finaliza a acao_atual e muda ela para a ação "Parado".
+	acao_atual.finalizacao()
+	acao_atual = acoes["Parado"]
+
+# - ArremessarBola
+# Começa a ação de ArremessarBola.
+func comeca_arremessar_bola(bola : Bola, alvo, tile_alvo : Vector2i):
+	# Prepara a acao_atual para ser a ação de "ArremessarBola".
+	acao_atual = acoes["ArremessarBola"]
+	acao_atual.faze_de_preparacao([bola, alvo, tile_alvo])
+
+# Muda para o estado Parado após o jogador arremessar a bola.
+func fim_arremessar_bola():
 	com_bola = false
 	# Finaliza a acao_atual e muda ela para a ação "Parado".
 	acao_atual.finalizacao()

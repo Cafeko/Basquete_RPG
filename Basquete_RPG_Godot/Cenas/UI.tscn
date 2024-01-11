@@ -64,6 +64,12 @@ layout_direction = 1
 layout_mode = 2
 text = "Passar Bola"
 
+[node name="BotaoArremessarBola" type="Button" parent="Control/ColorRect/Botoes"]
+layout_direction = 1
+layout_mode = 2
+text = "Arremessar Bola"
+
 [connection signal="button_up" from="Control/ColorRect/Botoes/BotaoPegarBola" to="." method="on_botao_pegar_bola"]
 [connection signal="button_up" from="Control/ColorRect/Botoes/BotaoMover" to="." method="on_botao_mover"]
 [connection signal="button_up" from="Control/ColorRect/Botoes/BotaoPassarBola" to="." method="on_botao_passar_bola"]
+[connection signal="button_up" from="Control/ColorRect/Botoes/BotaoArremessarBola" to="." method="on_botao_arremessar_bola"]

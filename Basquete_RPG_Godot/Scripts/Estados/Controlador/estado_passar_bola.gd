@@ -14,7 +14,7 @@ func entrando():
 	tile_jogador = Global.quadra.cord_para_tile(jogador.global_position)
 	alcance_passe = jogador.status.get_passe_numero_tiles()
 	tiles_passe = Global.quadra.area_circular(tile_jogador, alcance_passe)
-	remove_tiles_passe_invalidos()
+	remove_tiles_invalidos()
 	tiles_passe.erase(tile_jogador)
 	Global.visual.desenha_area(tiles_passe)
 
@@ -23,7 +23,7 @@ func executando(_delta):
 	if Input.is_action_just_pressed("mouse_esq"):
 		# Se o jogador selecionado estiver com a bola:
 		if jogador.com_bola:
-			# Verific o que tem onde o mouse estava no click.
+			# Verifica o que tem onde o mouse estava no click.
 			var posicao_mouse = Global.controlador.get_global_mouse_position()
 			var tile = Global.quadra.cord_para_tile(posicao_mouse)
 			if tile in tiles_passe:
@@ -32,7 +32,8 @@ func executando(_delta):
 				# Se não tinha nada alvo é nulo e bola vai parar no tile;
 				# Se tinha um jogador vai passar a bola para ele.
 				if alvo == null or alvo is Jogador:
-					Global.controlador.set_jogador_selecionado2(alvo)
+					if alvo is Jogador:
+						Global.controlador.set_jogador_selecionado2(alvo)
 					jogador.comeca_passar_bola(Global.bola, alvo, tile)
 					muda_estado.emit(self.name, "FazendoAcao")
 		else:
@@ -43,7 +44,7 @@ func saindo():
 	Global.visual.limpa_area()
 
 # Remove os tiles fora da quadra dos tiles_passe.
-func remove_tiles_passe_invalidos():
+func remove_tiles_invalidos():
 	var tiles_validos : Array[Vector2i] = []
 	for i in range(len(tiles_passe)):
 		if Global.quadra.tile_em_quadra(tiles_passe[i]):

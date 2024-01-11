@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://coy7olt5nnj62"]
+[gd_scene load_steps=9 format=3 uid="uid://coy7olt5nnj62"]
 
 [ext_resource type="Texture2D" uid="uid://bnm3q4oxyrkab" path="res://Assets/PNG/Equipment/ball_basket4.png" id="1_x0jql"]
 [ext_resource type="Script" path="res://Scripts/bola.gd" id="1_ymnmx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_parada.gd" id="4_u7nr7"]
 [ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_com_jogador.gd" id="5_oqfx1"]
 [ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_em_passe.gd" id="6_1ukt3"]
+[ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_em_arremesso.gd" id="7_1icqr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_slpnv"]
 
@@ -34,3 +35,8 @@ bola = NodePath("../..")
 script = ExtResource("6_1ukt3")
 bola = NodePath("../..")
 velocidade_passe = 700.0
+
+[node name="EmArremesso" type="Node" parent="MaquinaEstados" node_paths=PackedStringArray("bola")]
+script = ExtResource("7_1icqr")
+bola = NodePath("../..")
+velocidade_arremesso = 1200.0

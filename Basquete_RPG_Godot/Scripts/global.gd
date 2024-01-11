@@ -15,3 +15,4 @@ signal acao_escolhida
 signal acao_acabou
 signal pegou_bola
 signal passou_bola
+signal arremessou_bola

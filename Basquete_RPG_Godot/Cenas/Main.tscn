@@ -23,6 +23,7 @@ position = Vector2(380, 209)
 [node name="Status" parent="Jogadores/Jogador" index="0"]
 movimento_alcance = 4
 passe_alcance = 6
+arremesso_alcance = 12
 
 [node name="Jogador2" parent="Jogadores" instance=ExtResource("3_s0nbf")]
 position = Vector2(553, 208)
@@ -30,6 +31,7 @@ position = Vector2(553, 208)
 [node name="Status" parent="Jogadores/Jogador2" index="0"]
 movimento_alcance = 3
 passe_alcance = 6
+arremesso_alcance = 12
 
 [node name="Jogador3" parent="Jogadores" instance=ExtResource("3_s0nbf")]
 position = Vector2(716, 211)
@@ -37,6 +39,7 @@ position = Vector2(716, 211)
 [node name="Status" parent="Jogadores/Jogador3" index="0"]
 movimento_alcance = 5
 passe_alcance = 6
+arremesso_alcance = 10
 
 [node name="UI" parent="." instance=ExtResource("5_en28u")]
 

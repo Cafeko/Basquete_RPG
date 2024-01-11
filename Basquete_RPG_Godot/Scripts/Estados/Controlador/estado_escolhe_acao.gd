@@ -13,7 +13,7 @@ func entrando():
 	# Deixa o menu de escolher ação visivel.
 	Global.ui.visible = true
 
-# Executado ao sair do estado
+# Executado ao sair do estado.
 func saindo():
 	# Deixa o menu de escolher ação invisivel.
 	Global.ui.visible = false
@@ -26,3 +26,5 @@ func on_acao_escolhida(acao : String):
 		muda_estado.emit(self.name, "PegarBola")
 	elif acao == "PassarBola":
 		muda_estado.emit(self.name, "PassarBola")
+	elif acao == "ArremessarBola":
+		muda_estado.emit(self.name, "ArremessarBola")

@@ -10,6 +10,7 @@ var jogador : Jogador
 # Executada quando os nós estiverem prontos.
 func tudo_pronto():
 	Global.passou_bola.connect(on_passou_bola)
+	Global.arremessou_bola.connect(on_arremessou_bola)
 
 # Executado quando entra no estado.
 func entrando():
@@ -26,3 +27,6 @@ func saindo():
 
 func on_passou_bola():
 	muda_estado.emit(self.name, "EmPasse")
+
+func on_arremessou_bola():
+	muda_estado.emit(self.name, "EmArremesso")

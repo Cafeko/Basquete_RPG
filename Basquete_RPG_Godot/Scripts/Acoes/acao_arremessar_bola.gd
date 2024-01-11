@@ -1,0 +1,32 @@
+# -<acao_arremessar_bola>------------------------------------------------------------------------- #
+# Ação que faz a bola ser arremessada do jogador até um outro jogador alvo ou a cesta.
+# ------------------------------------------------------------------------------------------------ #
+extends Acao
+
+# Variaveis:
+# - Necessarias
+@export var corpo : Jogador
+var bola : Bola = null
+var alvo
+var tile_alvo : Vector2i
+
+# Usado para preparar a ação antes de começar a executar ela.
+func faze_de_preparacao(info : Array):
+	bola = info[0]
+	alvo = info[1]
+	tile_alvo = info[2]
+
+# Usado para fazer a ação acontecer (é chamado constantemente).
+func executando(_delta):
+	if alvo == null or alvo is Jogador:
+		# Define o alvo da bola.
+		bola.set_alvo(alvo)
+		bola.set_tile_alvo(tile_alvo)
+	# Emite um sinal que faz a bola mudar seu estado de "ComJogador" para "EmArremesso".
+	Global.arremessou_bola.emit()
+	fim.emit()
+
+# Usado pra após o fim da ação para resetar as variaveis.
+func finalizacao():
+	bola = null
+	alvo = Vector2i.ZERO
