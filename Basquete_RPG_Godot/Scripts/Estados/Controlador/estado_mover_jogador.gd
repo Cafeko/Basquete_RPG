@@ -50,8 +50,8 @@ func executando(_delta):
 				caminho.append(tile)
 			# Desenha o caminho definido.
 			Global.visual.linha_desenhar_caminho(caminho)
-	# Faz o jogador começar o movimento no caminho definido ao precionar seta pra cima (trocar por um
-	# botão depois).
+	# Faz o jogador começar o movimento no caminho definido ao precionar seta pra cima (trocar por
+	# um botão depois).
 	if Input.is_action_just_pressed("ui_up"):
 		jogador.comeca_mover(caminho)
 		muda_estado.emit(self.name, "FazendoAcao")

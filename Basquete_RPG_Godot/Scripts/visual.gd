@@ -18,3 +18,12 @@ func linha_desenhar_caminho(caminho : Array[Vector2i]):
 # Limpa o desenho feito com a linha.
 func limpar_linha():
 	linha.clear_points()
+
+# "Pinta" a layer "Area" da quadra, nos tiles especificados.
+func desenha_area(tiles : Array[Vector2i]):
+	for t in tiles:
+		Global.quadra.set_tile_area(t)
+
+# Limpa a layer "Area" da quadra.
+func limpa_area():
+	Global.quadra.limpa_area()

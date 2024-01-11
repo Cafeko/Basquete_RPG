@@ -57,12 +57,12 @@ func prepara_navegacao():
 # Coloca um tile na layer "Navegacao" o transformando em um tile navegavel.
 func set_tile_navegavel(tile : Vector2i):
 	tilemap.set_cell(layers_id["Navegacao"], tile, 2, Vector2i(0, 0))
-	atualiza_navegacao_tile(tile)
+	#atualiza_navegacao_tile(tile)
 
 # Remove um tile na layer "Navegacao" o transformando em um tile não navegavel.
 func set_tile_nao_navegavel(tile : Vector2i):
 	tilemap.erase_cell(layers_id["Navegacao"], tile)
-	atualiza_navegacao_tile(tile)
+	#atualiza_navegacao_tile(tile)
 
 # Transforma as cordenadas do tilemap em uma cordenada global.
 func tile_para_cord(tile : Vector2i):
@@ -82,9 +82,32 @@ func tile_navegavel(tile : Vector2i):
 	var tile_data = tilemap.get_cell_tile_data(layers_id["Navegacao"], tile)
 	return tile_data != null
 
+# Retorna se o tile está dentro do chao da quadra ou não.
+func tile_em_quadra(tile : Vector2i):
+	var tile_data = tilemap.get_cell_tile_data(layers_id["Chao"], tile)
+	return tile_data != null
+
 # Cria o caminho de tiles a ser percorido para ir de uma cordenada a outra.
 func cria_caminho(de : Vector2, para : Vector2):
 	var inicio = cord_para_tile(de)
 	var fim = cord_para_tile(para)
 	var caminho = astar_grid.get_id_path(inicio, fim).slice(1)
 	return caminho
+
+# Retorna uma lista com os tiles que formam uma area circular a partir de um tile central.
+func area_circular(centro : Vector2i, alcance_maximo : int):
+	var tiles_list : Array[Vector2i] = []
+	for x in range(-alcance_maximo, alcance_maximo + 1):
+		for y in range(-alcance_maximo, alcance_maximo + 1):
+			var tile = Vector2i(x + centro.x, y + centro.y)
+			if (abs(x) + abs(y)) <= alcance_maximo:
+				tiles_list.append(tile)
+	return tiles_list
+
+# Coloca um tile na layer "Area".
+func set_tile_area(tile : Vector2i):
+	tilemap.set_cell(layers_id["Area"], tile, 2, Vector2i(0, 0))
+
+# Apaga todos os tiles da layer "Area".
+func limpa_area():
+	tilemap.clear_layer(layers_id["Area"])

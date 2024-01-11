@@ -240,3 +240,6 @@ layer_1/name = "Navegacao"
 layer_1/enabled = false
 layer_1/modulate = Color(1, 1, 1, 0.223529)
 layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Area"
+layer_2/modulate = Color(1, 1, 1, 0.243137)
+layer_2/tile_data = PackedInt32Array()
