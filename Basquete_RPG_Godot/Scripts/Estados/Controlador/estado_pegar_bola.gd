@@ -14,4 +14,3 @@ func executando(_delta):
 		muda_estado.emit(self.name, "FazendoAcao")
 	else:
 		muda_estado.emit(self.name, "SelecionaJogador")
-	

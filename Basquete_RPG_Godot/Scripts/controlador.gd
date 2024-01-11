@@ -7,6 +7,7 @@ extends Node2D
 
 @onready var maquina_estados = $MaquinaEstados
 
+var mouse_em_botao : bool = false
 var jogador_selecionado = null
 var jogador_selecionado2 = null
 
@@ -37,3 +38,11 @@ func set_jogador_selecionado2(jogador : Jogador):
 
 func get_jogador_selecionado2():
 	return jogador_selecionado2
+
+# Define se o mouse está em um botão ou não.
+func set_mouse_em_botao(valor : bool):
+	mouse_em_botao = valor
+
+# Retorna se o mouse está em um botão ou não.
+func get_mouse_em_botao():
+	return mouse_em_botao

@@ -11,20 +11,23 @@ func tudo_pronto():
 # Executado quando entra no estado.
 func entrando():
 	# Deixa o menu de escolher ação visivel.
-	Global.ui.visible = true
+	Global.ui.exibe_menu_acoes()
 
 # Executado ao sair do estado.
 func saindo():
 	# Deixa o menu de escolher ação invisivel.
-	Global.ui.visible = false
+	Global.ui.esconde_menu_acoes()
 
 # Muda o estado de acordo com a ação escolhida no menu de ações.
 func on_acao_escolhida(acao : String):
+	var novo_estado : String
 	if acao == "Mover":
-		muda_estado.emit(self.name, "MoverJogador")
+		novo_estado = "MoverJogador"
 	elif acao == "PegarBola":
-		muda_estado.emit(self.name, "PegarBola")
+		novo_estado = "PegarBola"
 	elif acao == "PassarBola":
-		muda_estado.emit(self.name, "PassarBola")
+		novo_estado = "PassarBola"
 	elif acao == "ArremessarBola":
-		muda_estado.emit(self.name, "ArremessarBola")
+		novo_estado = "ArremessarBola"
+	Global.controlador_estado_atual = novo_estado
+	muda_estado.emit(self.name, novo_estado)

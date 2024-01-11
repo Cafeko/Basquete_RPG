@@ -10,6 +10,11 @@ var definir_caminho = false
 var tile_atual : Vector2i
 var caminho_tamanho : int = 0
 
+# Executada quando os nós estiverem prontos.
+func tudo_pronto():
+	Global.confirmar_acao.connect(on_confirmar_acao)
+	Global.cancelar_acao.connect(on_cancelar_acao)
+
 # Executado quando entra no estado.
 func entrando():
 	caminho = []
@@ -17,6 +22,7 @@ func entrando():
 	jogador = Global.controlador.get_jogador_selecionado()
 	tile_jogador = Global.quadra.cord_para_tile(jogador.global_position)
 	caminho_tamanho = jogador.status.get_movimento_numero_tiles()
+	Global.ui.exibe_confirmacao()
 
 # Executando enquanto está no estado.
 func executando(_delta):
@@ -50,14 +56,10 @@ func executando(_delta):
 				caminho.append(tile)
 			# Desenha o caminho definido.
 			Global.visual.linha_desenhar_caminho(caminho)
-	# Faz o jogador começar o movimento no caminho definido ao precionar seta pra cima (trocar por
-	# um botão depois).
-	if Input.is_action_just_pressed("ui_up"):
-		jogador.comeca_mover(caminho)
-		muda_estado.emit(self.name, "FazendoAcao")
 
 # Executado ao sair do estado
 func saindo():
+	Global.ui.esconde_confirmacao()
 	Global.visual.limpar_linha()
 
 # Verifica se o tile está proximo do tile da ponta do caminho.
@@ -73,3 +75,13 @@ func ta_livre_pra_andar(tile : Vector2i):
 		return true
 	else:
 		return false
+
+func on_confirmar_acao(estado_alvo : String):
+	if self.name == estado_alvo:
+		# Faz o jogador começar o movimento no caminho definido.
+		jogador.comeca_mover(caminho)
+		muda_estado.emit(self.name, "FazendoAcao")
+
+func on_cancelar_acao(estado_alvo : String):
+	if self.name == estado_alvo:
+		muda_estado.emit(self.name, "SelecionaJogador")
