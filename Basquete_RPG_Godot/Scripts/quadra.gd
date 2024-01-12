@@ -6,15 +6,18 @@ extends Node2D
 class_name Quadra
 
 @onready var tilemap : TileMap = $TileMap
+@onready var formacoes_node = $Formacoes
 
 var layers_id : Dictionary = {}
-var astar_grid : AStarGrid2D 
+var formacoes_dict : Dictionary = {}
+#var astar_grid : AStarGrid2D
 
 func _ready():
 	Global.quadra = self
 	set_layers_id_dict()
-	cria_astar_grid()
+	#cria_astar_grid()
 	prepara_navegacao()
+	prepara_formacoes()
 
 # Coloca os IDs das layers do tilemap em um dicionario, para poderem ser acessado pelo seu nome.
 func set_layers_id_dict():
@@ -22,19 +25,19 @@ func set_layers_id_dict():
 		var nome = tilemap.get_layer_name(l)
 		layers_id[nome] = l
 
-# Cria o AStarGrid2D.
-func cria_astar_grid():
-	astar_grid = AStarGrid2D.new()
-	astar_grid.region = tilemap.get_used_rect()
-	astar_grid.cell_size = tilemap.tile_set.tile_size
-	astar_grid.diagonal_mode = astar_grid.DIAGONAL_MODE_NEVER
-	astar_grid.update()
-
-# Atualiza a navegação em um tile;
-# Se o tile estiver vazio na layer "Navegação" ele é considerado não navegavel.
-func atualiza_navegacao_tile(tile : Vector2i):
-	var tile_data = tilemap.get_cell_tile_data(layers_id["Navegacao"], tile)
-	astar_grid.set_point_solid(tile, (tile_data == null))
+## Cria o AStarGrid2D.
+#func cria_astar_grid():
+	#astar_grid = AStarGrid2D.new()
+	#astar_grid.region = tilemap.get_used_rect()
+	#astar_grid.cell_size = tilemap.tile_set.tile_size
+	#astar_grid.diagonal_mode = astar_grid.DIAGONAL_MODE_NEVER
+	#astar_grid.update()
+#
+## Atualiza a navegação em um tile;
+## Se o tile estiver vazio na layer "Navegação" ele é considerado não navegavel.
+#func atualiza_navegacao_tile(tile : Vector2i):
+	#var tile_data = tilemap.get_cell_tile_data(layers_id["Navegacao"], tile)
+	#astar_grid.set_point_solid(tile, (tile_data == null))
 
 # Cria a navegaçãocom base nos tiles no tilemap.
 func prepara_navegacao():
@@ -64,6 +67,16 @@ func set_tile_nao_navegavel(tile : Vector2i):
 	tilemap.erase_cell(layers_id["Navegacao"], tile)
 	#atualiza_navegacao_tile(tile)
 
+# Guarda as formações no dicionario "formacoes_dict", para poderem ser acessado pelo seu nome.
+func prepara_formacoes():
+	for formacao in formacoes_node.get_children():
+		var nome = formacao.name
+		formacoes_dict[nome] = formacao
+
+# Retorna a formação de acordo com seu nome.
+func get_formacao(nome : String):
+	return formacoes_dict[nome]
+
 # Transforma as cordenadas do tilemap em uma cordenada global.
 func tile_para_cord(tile : Vector2i):
 	return tilemap.map_to_local(tile)
@@ -87,12 +100,12 @@ func tile_em_quadra(tile : Vector2i):
 	var tile_data = tilemap.get_cell_tile_data(layers_id["Chao"], tile)
 	return tile_data != null
 
-# Cria o caminho de tiles a ser percorido para ir de uma cordenada a outra.
-func cria_caminho(de : Vector2, para : Vector2):
-	var inicio = cord_para_tile(de)
-	var fim = cord_para_tile(para)
-	var caminho = astar_grid.get_id_path(inicio, fim).slice(1)
-	return caminho
+## Cria o caminho de tiles a ser percorido para ir de uma cordenada a outra.
+#func cria_caminho(de : Vector2, para : Vector2):
+	#var inicio = cord_para_tile(de)
+	#var fim = cord_para_tile(para)
+	#var caminho = astar_grid.get_id_path(inicio, fim).slice(1)
+	#return caminho
 
 # Retorna uma lista com os tiles que formam uma area circular a partir de um tile central.
 func area_circular(centro : Vector2i, alcance_maximo : int):

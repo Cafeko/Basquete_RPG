@@ -16,11 +16,6 @@ var com_bola : bool = false
 signal acao_fim
 
 func _ready():
-	# Centraliza o jogador no tile.
-	self.global_position = Global.quadra.cordenada_centralizada(self.global_position)
-	# Deixa o tile que está como não navegavel.
-	var tile = Global.quadra.cord_para_tile(self.global_position)
-	Global.quadra.set_tile_nao_navegavel(tile)
 	# Ações
 	acao_atual = get_node("Acoes").get_primeira_acao()
 	acoes = get_node("Acoes").get_acoes_dict()
@@ -33,6 +28,13 @@ func _ready():
 func _physics_process(delta):
 	# Fica executando constantemente a ação atual.
 	acao_atual.executando(delta)
+
+func Ajustar_no_tile():
+	# Centraliza o jogador no tile.
+	self.global_position = Global.quadra.cordenada_centralizada(self.global_position)
+	# Deixa o tile que está como não navegavel.
+	var tile = Global.quadra.cord_para_tile(self.global_position)
+	Global.quadra.set_tile_nao_navegavel(tile)
 
 # Ações:
 # - Mover

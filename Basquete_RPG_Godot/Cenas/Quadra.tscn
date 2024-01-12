@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://mjyhv5fjm7fc"]
+[gd_scene load_steps=8 format=3 uid="uid://mjyhv5fjm7fc"]
 
 [ext_resource type="Texture2D" uid="uid://ce3t0xsvi3001" path="res://Assets/Tilesheet/groundBeige_red.png" id="1_iwbsf"]
 [ext_resource type="Script" path="res://Scripts/quadra.gd" id="1_u4eq5"]
 [ext_resource type="Texture2D" uid="uid://5pmmehjpw40w" path="res://Assets/Tilesheet/groundGrass.png" id="3_wvyc4"]
+[ext_resource type="Script" path="res://Scripts/formacao.gd" id="4_h1tgx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xr0pw"]
 resource_name = "QuadraTiles"
@@ -243,3 +244,23 @@ layer_1/tile_data = PackedInt32Array()
 layer_2/name = "Area"
 layer_2/modulate = Color(1, 1, 1, 0.243137)
 layer_2/tile_data = PackedInt32Array()
+
+[node name="Formacoes" type="Node2D" parent="."]
+
+[node name="FormacaoPadrao" type="Node2D" parent="Formacoes"]
+script = ExtResource("4_h1tgx")
+
+[node name="1" type="Marker2D" parent="Formacoes/FormacaoPadrao"]
+position = Vector2(478, 159)
+
+[node name="2" type="Marker2D" parent="Formacoes/FormacaoPadrao"]
+position = Vector2(472, 418)
+
+[node name="3" type="Marker2D" parent="Formacoes/FormacaoPadrao"]
+position = Vector2(352, 289)
+
+[node name="4" type="Marker2D" parent="Formacoes/FormacaoPadrao"]
+position = Vector2(228, 93)
+
+[node name="5" type="Marker2D" parent="Formacoes/FormacaoPadrao"]
+position = Vector2(222, 482)

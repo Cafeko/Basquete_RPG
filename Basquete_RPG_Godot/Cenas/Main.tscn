@@ -2,50 +2,23 @@
 
 [ext_resource type="PackedScene" uid="uid://mjyhv5fjm7fc" path="res://Cenas/Quadra.tscn" id="1_8wqro"]
 [ext_resource type="PackedScene" uid="uid://bfymvsxinjbns" path="res://Cenas/Controlador.tscn" id="1_wjbi7"]
-[ext_resource type="PackedScene" uid="uid://brudnwsbxiwbb" path="res://Cenas/Jogador.tscn" id="3_s0nbf"]
 [ext_resource type="PackedScene" uid="uid://cwfuoqq5vmp0g" path="res://Cenas/UI.tscn" id="5_en28u"]
 [ext_resource type="PackedScene" uid="uid://coy7olt5nnj62" path="res://Cenas/Bola.tscn" id="5_sxtxk"]
+[ext_resource type="PackedScene" uid="uid://cp7jj0443w6mw" path="res://Cenas/TimeAzul.tscn" id="6_ib5f2"]
 [ext_resource type="PackedScene" uid="uid://cmlxjygdfm1k6" path="res://Cenas/Visual.tscn" id="6_mo0vx"]
 
 [node name="Main" type="Node"]
 
-[node name="Controlador" parent="." instance=ExtResource("1_wjbi7")]
+[node name="Controlador" parent="." node_paths=PackedStringArray("time1") instance=ExtResource("1_wjbi7")]
+time1 = NodePath("../TimeAzul")
 
 [node name="Quadra" parent="." instance=ExtResource("1_8wqro")]
 
 [node name="Visual" parent="." instance=ExtResource("6_mo0vx")]
-
-[node name="Jogadores" type="Node2D" parent="."]
-
-[node name="Jogador" parent="Jogadores" instance=ExtResource("3_s0nbf")]
-position = Vector2(380, 209)
-
-[node name="Status" parent="Jogadores/Jogador" index="0"]
-movimento_alcance = 4
-passe_alcance = 6
-arremesso_alcance = 12
-
-[node name="Jogador2" parent="Jogadores" instance=ExtResource("3_s0nbf")]
-position = Vector2(553, 208)
-
-[node name="Status" parent="Jogadores/Jogador2" index="0"]
-movimento_alcance = 3
-passe_alcance = 6
-arremesso_alcance = 12
-
-[node name="Jogador3" parent="Jogadores" instance=ExtResource("3_s0nbf")]
-position = Vector2(716, 211)
-
-[node name="Status" parent="Jogadores/Jogador3" index="0"]
-movimento_alcance = 5
-passe_alcance = 6
-arremesso_alcance = 10
 
 [node name="UI" parent="." instance=ExtResource("5_en28u")]
 
 [node name="Bola" parent="." instance=ExtResource("5_sxtxk")]
 position = Vector2(544, 302)
 
-[editable path="Jogadores/Jogador"]
-[editable path="Jogadores/Jogador2"]
-[editable path="Jogadores/Jogador3"]
+[node name="TimeAzul" parent="." instance=ExtResource("6_ib5f2")]

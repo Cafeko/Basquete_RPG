@@ -1,11 +1,13 @@
-# -<ucontrolador>--------------------------------------------------------------------------------- #
+# -<controlador>---------------------------------------------------------------------------------- #
 # Gerencia os estados do jogo e trata os inputs do usuario.
 # ------------------------------------------------------------------------------------------------ #
 extends Node2D
 
-@export var bola : CharacterBody2D
+@export var time1 : TimeJogadores
+@export var time2 : TimeJogadores
 
 @onready var maquina_estados = $MaquinaEstados
+@onready var partida = $ControlePartidar
 
 var mouse_em_botao : bool = false
 var jogador_selecionado = null
@@ -13,6 +15,8 @@ var jogador_selecionado2 = null
 
 func _ready():
 	Global.controlador = self
+	Global.controle_partida = partida
+	partida.set_times(time1, time2)
 	maquina_estados.executar_tudo_pronto()
 
 # Verifica se em um ponto/cordenada especifica tem algum corpo, o retornando se sim.

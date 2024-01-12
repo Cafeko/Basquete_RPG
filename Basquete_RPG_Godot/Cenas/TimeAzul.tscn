@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp7jj0443w6mw"]
+
+[ext_resource type="PackedScene" uid="uid://brudnwsbxiwbb" path="res://Cenas/Jogador.tscn" id="1_lfia8"]
+[ext_resource type="Script" path="res://Scripts/time_jogadores.gd" id="1_ylaes"]
+
+[node name="TimeAzul" type="Node2D"]
+script = ExtResource("1_ylaes")
+
+[node name="Jogador1" parent="." instance=ExtResource("1_lfia8")]
+
+[node name="Status" parent="Jogador1" index="0"]
+movimento_alcance = 3
+passe_alcance = 5
+arremesso_alcance = 9
+
+[node name="Jogador2" parent="." instance=ExtResource("1_lfia8")]
+
+[node name="Jogador3" parent="." instance=ExtResource("1_lfia8")]
+
+[node name="Jogador4" parent="." instance=ExtResource("1_lfia8")]
+
+[node name="Jogador5" parent="." instance=ExtResource("1_lfia8")]
+
+[editable path="Jogador1"]
