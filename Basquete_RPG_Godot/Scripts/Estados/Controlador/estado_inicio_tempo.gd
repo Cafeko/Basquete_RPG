@@ -5,6 +5,7 @@ extends Estado
 
 # Executando enquanto está no estado.
 func executando(_delta):
-	# Posiciona os jogadores para o inicio de um tempo.
-	Global.controle_partida.posicionar_jogadores_inicio_tempo(false)
+	Global.quadra.prepara_navegacao()
+	Global.controlador.inicio_tempo()
+	Global.bola.global_position = Global.quadra.get_centro_cord()
 	muda_estado.emit(self.name, "SelecionaJogador")

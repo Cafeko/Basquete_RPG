@@ -13,6 +13,7 @@ func _ready():
 func prepara_jogadores_lista():
 	for j in get_children():
 		jogadores_lista.append(j)
+		j.set_time(self)
 
 # Posiciona os jogadores na posição dos pontos que estão na lista de pontos recebida.
 func posicionar_jogadores(pontos_lista : Array):

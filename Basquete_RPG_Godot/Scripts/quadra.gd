@@ -10,6 +10,7 @@ class_name Quadra
 
 var layers_id : Dictionary = {}
 var formacoes_dict : Dictionary = {}
+var tile_centro : Vector2i = Vector2i(8,4)
 #var astar_grid : AStarGrid2D
 
 func _ready():
@@ -99,6 +100,9 @@ func tile_navegavel(tile : Vector2i):
 func tile_em_quadra(tile : Vector2i):
 	var tile_data = tilemap.get_cell_tile_data(layers_id["Chao"], tile)
 	return tile_data != null
+
+func get_centro_cord():
+	return tile_para_cord(tile_centro)
 
 ## Cria o caminho de tiles a ser percorido para ir de uma cordenada a outra.
 #func cria_caminho(de : Vector2, para : Vector2):

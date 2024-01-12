@@ -5,6 +5,8 @@ extends Node2D
 
 @export var time1 : TimeJogadores
 @export var time2 : TimeJogadores
+@export var cesta_esquerda : Cesta
+@export var cesta_direita : Cesta
 
 @onready var maquina_estados = $MaquinaEstados
 @onready var partida = $ControlePartidar
@@ -15,8 +17,8 @@ var jogador_selecionado2 = null
 
 func _ready():
 	Global.controlador = self
-	Global.controle_partida = partida
 	partida.set_times(time1, time2)
+	partida.set_cestas(cesta_esquerda, cesta_direita)
 	maquina_estados.executar_tudo_pronto()
 
 # Verifica se em um ponto/cordenada especifica tem algum corpo, o retornando se sim.
@@ -30,6 +32,21 @@ func verifica_ponto(ponto : Vector2):
 		return resultado[0]["collider"]
 	else:
 		return null
+
+# Retorna se o jogador está no time que está agindo no turno atual.
+func jogador_no_time_do_turno(jogador : Jogador):
+	var time_turno = partida.get_time_do_turno()
+	return time_turno == jogador.get_time()
+
+func inicio_tempo(time1_esquerda : bool = true):
+	partida.posicionar_jogadores_inicio_tempo(time1_esquerda)
+	partida.define_time_cesta(time1_esquerda)
+
+# Executado quando a bola entra na cesta.
+func bola_entrou_em_cesta(time : TimeJogadores, pontos: int):
+	partida.Marcou_ponto(time, pontos)
+	partida.print_pontos()
+	Global.acertou_cesta.emit()
 
 func set_jogador_selecionado(jogador : Jogador):
 	jogador_selecionado = jogador

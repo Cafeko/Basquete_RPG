@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfymvsxinjbns"]
+[gd_scene load_steps=13 format=3 uid="uid://bfymvsxinjbns"]
 
 [ext_resource type="Script" path="res://Scripts/controlador.gd" id="1_0xusn"]
 [ext_resource type="Script" path="res://Scripts/Estados/maquina_estados.gd" id="2_1oy8w"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_fazendo_acao.gd" id="6_g1mc7"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_passar_bola.gd" id="7_pnjva"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_arremessar_bola.gd" id="8_otoyl"]
+[ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_fez_ponto.gd" id="12_bex5c"]
 
 [node name="Controlador" type="Node2D"]
 script = ExtResource("1_0xusn")
@@ -45,3 +46,6 @@ script = ExtResource("8_otoyl")
 
 [node name="FazendoAcao" type="Node" parent="MaquinaEstados"]
 script = ExtResource("6_g1mc7")
+
+[node name="FezPonto" type="Node" parent="MaquinaEstados"]
+script = ExtResource("12_bex5c")

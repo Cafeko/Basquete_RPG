@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddgih3b1t7v7x"]
+
+[ext_resource type="Texture2D" uid="uid://dctewvxat3687" path="res://Assets/PNG/Elements/element (64).png" id="1_0of8x"]
+[ext_resource type="Script" path="res://Scripts/cesta.gd" id="1_5x1p2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xsvl"]
+size = Vector2(29, 36)
+
+[node name="Cesta" type="CharacterBody2D"]
+script = ExtResource("1_5x1p2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(34, 0)
+texture = ExtResource("1_0of8x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(14.5, 0)
+shape = SubResource("RectangleShape2D_3xsvl")
+
+[node name="Centro" type="Marker2D" parent="."]
+position = Vector2(18, 0)

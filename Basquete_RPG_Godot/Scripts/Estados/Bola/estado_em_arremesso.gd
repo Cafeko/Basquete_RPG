@@ -17,6 +17,8 @@ func entrando():
 	if alvo == null or alvo is Jogador:
 		tile_alvo = bola.get_tile_alvo()
 		cord_alvo = Global.quadra.tile_para_cord(tile_alvo)
+	elif alvo is Cesta:
+		cord_alvo = alvo.centro.global_position
 
 # Executando enquanto está no estado.
 func executando(delta):
@@ -31,4 +33,9 @@ func executando(delta):
 		# Se alvo for um jogador: jogador pega a bola.
 		elif alvo is Jogador:
 			alvo.comeca_pegar_bola(bola)
+			muda_estado.emit(self.name, "Parada")
+		# Se alvo for cesta: Bola acertou a cesta.
+		elif alvo is Cesta:
+			alvo.bola_na_cesta(1)
+			Global.acao_acabou.emit()
 			muda_estado.emit(self.name, "Parada")

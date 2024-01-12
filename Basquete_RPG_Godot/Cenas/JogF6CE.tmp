@@ -1,0 +1,54 @@
+[gd_scene load_steps=11 format=3 uid="uid://brudnwsbxiwbb"]
+
+[ext_resource type="Texture2D" uid="uid://kvxxsjm5j4jb" path="res://Assets/PNG/Blue/characterBlue (8).png" id="1_5q6r0"]
+[ext_resource type="Script" path="res://Scripts/jogador.gd" id="1_8s316"]
+[ext_resource type="Script" path="res://Scripts/status_jogador.gd" id="2_hlyrr"]
+[ext_resource type="Script" path="res://Scripts/Acoes/acoes.gd" id="3_b3cyp"]
+[ext_resource type="Script" path="res://Scripts/Acoes/acao.gd" id="4_p5qyd"]
+[ext_resource type="Script" path="res://Scripts/Acoes/acao_mover.gd" id="5_a256m"]
+[ext_resource type="Script" path="res://Scripts/Acoes/acao_passar_bola.gd" id="6_3xc18"]
+[ext_resource type="Script" path="res://Scripts/Acoes/acao_pegar_bola.gd" id="6_pg4gc"]
+[ext_resource type="Script" path="res://Scripts/Acoes/acao_arremessar_bola.gd" id="9_67p5s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_laouc"]
+size = Vector2(64, 64)
+
+[node name="Jogador" type="CharacterBody2D"]
+script = ExtResource("1_8s316")
+
+[node name="Status" type="Node" parent="."]
+script = ExtResource("2_hlyrr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_laouc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_5q6r0")
+
+[node name="PontoBola" type="Marker2D" parent="."]
+position = Vector2(16, -16)
+
+[node name="Acoes" type="Node" parent="." node_paths=PackedStringArray("primeira_acao")]
+script = ExtResource("3_b3cyp")
+primeira_acao = NodePath("Parado")
+
+[node name="Parado" type="Node" parent="Acoes"]
+script = ExtResource("4_p5qyd")
+
+[node name="Mover" type="Node" parent="Acoes" node_paths=PackedStringArray("corpo")]
+script = ExtResource("5_a256m")
+corpo = NodePath("../..")
+velocidade = 150.0
+
+[node name="PegarBola" type="Node" parent="Acoes" node_paths=PackedStringArray("corpo")]
+script = ExtResource("6_pg4gc")
+corpo = NodePath("../..")
+
+[node name="PassarBola" type="Node" parent="Acoes" node_paths=PackedStringArray("corpo")]
+script = ExtResource("6_3xc18")
+corpo = NodePath("../..")
+
+[node name="ArremessarBola" type="Node" parent="Acoes" node_paths=PackedStringArray("corpo")]
+script = ExtResource("9_67p5s")
+corpo = NodePath("../..")

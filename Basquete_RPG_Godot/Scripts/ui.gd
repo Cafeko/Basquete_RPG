@@ -1,7 +1,7 @@
 # -<ui>------------------------------------------------------------------------------------------- #
 # Gerencia a interface de usuario.
 # ------------------------------------------------------------------------------------------------ #
-extends Control
+extends CanvasLayer
 
 @onready var menu_acoes = $MenuAcoes
 @onready var confirmacao = $Confirmacao

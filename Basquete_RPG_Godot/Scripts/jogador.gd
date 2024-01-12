@@ -7,11 +7,12 @@ class_name Jogador
 @onready var ponto_bola = $PontoBola
 @onready var status = $Status
 
+var com_bola : bool = false
+var time : TimeJogadores = null
+
 #Ações
 var acoes : Dictionary
 var acao_atual : Acao = null
-
-var com_bola : bool = false
 
 signal acao_fim
 
@@ -29,12 +30,19 @@ func _physics_process(delta):
 	# Fica executando constantemente a ação atual.
 	acao_atual.executando(delta)
 
+# Ajusta o jogador no tile em que ele está.
 func Ajustar_no_tile():
 	# Centraliza o jogador no tile.
 	self.global_position = Global.quadra.cordenada_centralizada(self.global_position)
 	# Deixa o tile que está como não navegavel.
 	var tile = Global.quadra.cord_para_tile(self.global_position)
 	Global.quadra.set_tile_nao_navegavel(tile)
+
+func set_time(novo_time : TimeJogadores):
+	time = novo_time
+
+func get_time():
+	return time
 
 # Ações:
 # - Mover

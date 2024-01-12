@@ -18,10 +18,9 @@ func faze_de_preparacao(info : Array):
 
 # Usado para fazer a ação acontecer (é chamado constantemente).
 func executando(_delta):
-	if alvo == null or alvo is Jogador:
-		# Define o alvo da bola.
-		bola.set_alvo(alvo)
-		bola.set_tile_alvo(tile_alvo)
+	# Define o alvo da bola.
+	bola.set_alvo(alvo)
+	bola.set_tile_alvo(tile_alvo)
 	# Emite um sinal que faz a bola mudar seu estado de "ComJogador" para "EmArremesso".
 	Global.arremessou_bola.emit()
 	fim.emit()

@@ -39,19 +39,23 @@ func executando(_delta):
 				if escolheu:
 					set_escolheu(false)
 				else:
+					# Verifica o que tem onde o mouse estava no click.
 					var posicao_mouse = Global.controlador.get_global_mouse_position()
-					# Verifica se o tile em que o mouse estava é um tile em que da para arremessar.
 					var tile = Global.quadra.cord_para_tile(posicao_mouse)
 					var alvo = Global.controlador.verifica_ponto(posicao_mouse)
 					if tile in tiles_arremesso:
 						tile_alvo = tile
-						# Verifica o que tem onde o mouse estava no click.
 						alvo_escolhido = alvo
 						# Se alvo for um Jogador ou um tile vazio. 
 						if alvo_escolhido == null or alvo_escolhido is Jogador:
 							if alvo_escolhido is Jogador:
 								Global.controlador.set_jogador_selecionado2(alvo_escolhido)
 							set_escolheu(true)
+					# Se o alvo for uma cesta e ela estiver no alcance:
+					elif alvo is Cesta and cesta_no_alcance(alvo):
+						tile_alvo = Vector2i.ZERO
+						alvo_escolhido = alvo
+						set_escolheu(true)
 	else:
 		muda_estado.emit(self.name, "SelecionaJogador")
 
@@ -59,6 +63,12 @@ func executando(_delta):
 func saindo():
 	Global.visual.limpa_area()
 	Global.ui.esconde_confirmacao()
+
+# Retorna se a cesta está ou não no alcance do arremesso.
+func cesta_no_alcance(cesta : Cesta):
+	var tile_cesta = Global.quadra.cord_para_tile(cesta.global_position)
+	var tile = tile_cesta - tile_jogador
+	return abs(tile.x) + abs(tile.y) <= alcance_arremesso
 
 # Remove os tiles fora da quadra dos tiles_arremesso.
 func remove_tiles_invalidos():
@@ -76,6 +86,8 @@ func set_escolheu(valor : bool):
 			Global.visual.limpa_area()
 			var tile_escolhido : Array[Vector2i] = [tile_alvo]
 			Global.visual.desenha_area(tile_escolhido)
+		elif alvo_escolhido is Cesta:
+			Global.visual.limpa_area()
 	else:
 		Global.visual.desenha_area(tiles_arremesso)
 		tile_alvo = tile_jogador
