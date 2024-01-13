@@ -21,6 +21,9 @@ func executando(_delta):
 	# Define o alvo da bola.
 	bola.set_alvo(alvo)
 	bola.set_tile_alvo(tile_alvo)
+	# Da para a bola a quantidade de pontos que o arremesso vai dar.
+	if alvo is Cesta:
+		bola.set_pontos(verifica_pontos_valor())
 	# Emite um sinal que faz a bola mudar seu estado de "ComJogador" para "EmArremesso".
 	Global.arremessou_bola.emit()
 	fim.emit()
@@ -29,3 +32,14 @@ func executando(_delta):
 func finalizacao():
 	bola = null
 	alvo = Vector2i.ZERO
+
+# Define quantos pontos esse arremesso vai valer dependendo da posição do jogador na quadra.
+func verifica_pontos_valor():
+	var distancia_jogador_cesta = (corpo.global_position - alvo.global_position).length()
+	var distancia_centro_cesta = (Global.quadra.get_centro_cord() - alvo.global_position).length()
+	var tile_jogador : Vector2i = Global.quadra.cord_para_tile(corpo.global_position)
+	var dentro_garrafao = Global.quadra.tile_em_garrafao(tile_jogador)
+	if distancia_jogador_cesta < distancia_centro_cesta and dentro_garrafao:
+		return 2
+	else:
+		return 3

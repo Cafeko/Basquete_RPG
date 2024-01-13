@@ -101,6 +101,11 @@ func tile_em_quadra(tile : Vector2i):
 	var tile_data = tilemap.get_cell_tile_data(layers_id["Chao"], tile)
 	return tile_data != null
 
+# Retorna se o tile está dentro garrafão ou não.
+func tile_em_garrafao(tile : Vector2i):
+	var tile_data = tilemap.get_cell_tile_data(layers_id["Garrafao"], tile)
+	return tile_data != null
+
 func get_centro_cord():
 	return tile_para_cord(tile_centro)
 

@@ -9,6 +9,7 @@ class_name Bola
 var jogador_segurando : Jogador = null
 var tile_alvo : Vector2i
 var alvo
+var pontos : int
 
 func _ready():
 	Global.bola = self
@@ -39,3 +40,11 @@ func set_alvo(alvo_escolhido):
 # Retorna o alvo que a bola quer chegar.
 func get_alvo():
 	return alvo
+
+# Define a quantidade de pontos que o time vai ganhar se a bola acertar a cesta.
+func set_pontos(valor : int):
+	pontos = valor
+
+# Retorna a quantidade de pontos que o time vai ganhar se a bola acertar a cesta.
+func get_pontos():
+	return pontos

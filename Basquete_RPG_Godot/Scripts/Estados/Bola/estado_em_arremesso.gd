@@ -9,6 +9,7 @@ extends Estado
 var tile_alvo : Vector2i
 var cord_alvo : Vector2
 var alvo = null
+var pontos : int
 
 # Executado quando entra no estado.
 func entrando():
@@ -17,8 +18,11 @@ func entrando():
 	if alvo == null or alvo is Jogador:
 		tile_alvo = bola.get_tile_alvo()
 		cord_alvo = Global.quadra.tile_para_cord(tile_alvo)
+	# Pega a posição da cesta que a bola tem que ir e pega quantos pontos esse arremesso bai dar se
+	# a bola entrar na cesta.
 	elif alvo is Cesta:
 		cord_alvo = alvo.centro.global_position
+		pontos = bola.get_pontos()
 
 # Executando enquanto está no estado.
 func executando(delta):
@@ -36,6 +40,6 @@ func executando(delta):
 			muda_estado.emit(self.name, "Parada")
 		# Se alvo for cesta: Bola acertou a cesta.
 		elif alvo is Cesta:
-			alvo.bola_na_cesta(1)
+			alvo.bola_na_cesta(pontos)
 			Global.acao_acabou.emit()
 			muda_estado.emit(self.name, "Parada")
