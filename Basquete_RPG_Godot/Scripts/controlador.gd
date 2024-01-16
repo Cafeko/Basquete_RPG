@@ -14,13 +14,16 @@ extends Node2D
 var mouse_em_botao : bool = false
 var jogador_selecionado = null
 var jogador_selecionado2 = null
+var guarda_info : Array = []
 
 func _ready():
 	Global.controlador = self
 	partida.set_times(time1, time2)
 	partida.set_cestas(cesta_esquerda, cesta_direita)
 	maquina_estados.executar_tudo_pronto()
+# ------------------------------------------------------------------------------------------------ #
 
+# ------------------------------------------------------------------------------------------------ #
 # Verifica se em um ponto/cordenada especifica tem algum corpo, o retornando se sim.
 func verifica_ponto(ponto : Vector2):
 	var space = get_world_2d().direct_space_state
@@ -47,6 +50,25 @@ func bola_entrou_em_cesta(time : TimeJogadores, pontos: int):
 	partida.Marcou_ponto(time, pontos)
 	partida.print_pontos()
 	Global.acertou_cesta.emit()
+
+# Adiciona informações a lista de informações "guarda_info".
+func add_info(info):
+	if info is Array:
+		for i in info:
+			guarda_info.append(i)
+	else:
+		guarda_info.append(info)
+
+# Limpa a lista de informações "guarda_info".
+func limpa_info():
+	guarda_info.clear()
+# ------------------------------------------------------------------------------------------------ #
+
+# ------------------------------------------------------------------------------------------------ #
+# - Set/Get:
+# Retorna a lista de informações "guarda_info".
+func get_info():
+	return guarda_info
 
 func set_jogador_selecionado(jogador : Jogador):
 	jogador_selecionado = jogador

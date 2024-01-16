@@ -3,9 +3,20 @@
 # ------------------------------------------------------------------------------------------------ #
 extends Node
 
-@export var movimento_alcance : int = 1
-@export var passe_alcance : int = 1
-@export var arremesso_alcance : int = 1
+@export var passe_forca : int = 1
+@export var arremesso_forca : int = 1
+
+var movimento_alcance : int = 3
+var passe_alcance : int = 5
+var arremesso_alcance : int = 9
+
+# Retorna a força maxima do passe.
+func get_passe_forca():
+	return passe_forca
+
+# Retorna a força maxima do arremesso.
+func get_arremesso_forca():
+	return arremesso_forca
 
 # Retorna o número de tiles que o jogador pode mover em uma ação.
 func get_movimento_numero_tiles():

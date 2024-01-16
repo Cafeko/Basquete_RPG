@@ -18,6 +18,8 @@ script = ExtResource("1_8s316")
 
 [node name="Status" type="Node" parent="."]
 script = ExtResource("2_hlyrr")
+passe_forca = 10
+arremesso_forca = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_laouc")

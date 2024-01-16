@@ -9,18 +9,21 @@ extends Acao
 var bola : Bola = null
 var alvo
 var tile_alvo : Vector2i
+var forca : int
 
 # Usado para preparar a ação antes de começar a executar ela.
 func faze_de_preparacao(info : Array):
 	bola = info[0]
 	alvo = info[1]
 	tile_alvo = info[2]
+	forca = info[3]
 
 # Usado para fazer a ação acontecer (é chamado constantemente).
 func executando(_delta):
-	# Define o alvo da bola.
+	# Define o alvo da bola e a força do passe.
 	bola.set_alvo(alvo)
 	bola.set_tile_alvo(tile_alvo)
+	bola.set_forca(forca)
 	# Emite um sinal que faz a bola mudar seu estado de "ComJogador" para "EmPasse".
 	Global.passou_bola.emit()
 	fim.emit()

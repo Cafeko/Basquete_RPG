@@ -80,10 +80,10 @@ func fim_pegar_bola():
 
 # - PassarBola
 # Começa a ação de PassarBola.
-func comeca_passar_bola(bola : Bola, alvo, tile_alvo : Vector2i):
+func comeca_passar_bola(bola : Bola, alvo, tile_alvo : Vector2i, forca : int):
 	# Prepara a acao_atual para ser a ação de "PassarBola".
 	acao_atual = acoes["PassarBola"]
-	acao_atual.faze_de_preparacao([bola, alvo, tile_alvo])
+	acao_atual.faze_de_preparacao([bola, alvo, tile_alvo, forca])
 
 # Muda para o estado Parado após fazer o passe.
 func fim_passar_bola():
@@ -94,10 +94,10 @@ func fim_passar_bola():
 
 # - ArremessarBola
 # Começa a ação de ArremessarBola.
-func comeca_arremessar_bola(bola : Bola, alvo, tile_alvo : Vector2i):
+func comeca_arremessar_bola(bola : Bola, alvo, tile_alvo : Vector2i, forca : int):
 	# Prepara a acao_atual para ser a ação de "ArremessarBola".
 	acao_atual = acoes["ArremessarBola"]
-	acao_atual.faze_de_preparacao([bola, alvo, tile_alvo])
+	acao_atual.faze_de_preparacao([bola, alvo, tile_alvo, forca])
 
 # Muda para o estado Parado após o jogador arremessar a bola.
 func fim_arremessar_bola():

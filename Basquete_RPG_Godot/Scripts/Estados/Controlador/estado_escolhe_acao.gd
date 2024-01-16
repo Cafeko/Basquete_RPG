@@ -26,8 +26,8 @@ func on_acao_escolhida(acao : String):
 	elif acao == "PegarBola":
 		novo_estado = "PegarBola"
 	elif acao == "PassarBola":
-		novo_estado = "PassarBola"
+		novo_estado = "PasseAlvo"
 	elif acao == "ArremessarBola":
-		novo_estado = "ArremessarBola"
+		novo_estado = "ArremessoAlvo"
 	Global.controlador_estado_atual = novo_estado
 	muda_estado.emit(self.name, novo_estado)

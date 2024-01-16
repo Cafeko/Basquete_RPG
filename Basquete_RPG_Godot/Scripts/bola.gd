@@ -10,6 +10,7 @@ var jogador_segurando : Jogador = null
 var tile_alvo : Vector2i
 var alvo
 var pontos : int
+var forca : int
 
 func _ready():
 	Global.bola = self
@@ -48,3 +49,11 @@ func set_pontos(valor : int):
 # Retorna a quantidade de pontos que o time vai ganhar se a bola acertar a cesta.
 func get_pontos():
 	return pontos
+
+# Define o valor da força que a bola tem no passe/arremesso.
+func set_forca(valor : int):
+	forca = valor
+
+# Retorna o valor da força que a bola tem no passe/arremesso.
+func get_forca():
+	return forca
