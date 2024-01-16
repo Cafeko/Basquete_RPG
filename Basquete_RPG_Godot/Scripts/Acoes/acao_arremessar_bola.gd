@@ -24,9 +24,12 @@ func executando(_delta):
 	bola.set_alvo(alvo)
 	bola.set_tile_alvo(tile_alvo)
 	bola.set_forca(forca)
-	# Da para a bola a quantidade de pontos que o arremesso vai dar.
+	# Define a quantidade de pontos que o arremesso vai dar e a dificuldade dele de acordo com a
+	# posição do jogador em relação ao alvo (cesta).
 	if alvo is Cesta:
 		bola.set_pontos(verifica_pontos_valor())
+		var tile_jogador = Global.quadra.cord_para_tile(corpo.global_position)
+		alvo.define_dificuldade(tile_jogador)
 	# Emite um sinal que faz a bola mudar seu estado de "ComJogador" para "EmArremesso".
 	Global.arremessou_bola.emit()
 	fim.emit()

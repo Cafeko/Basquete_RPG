@@ -40,6 +40,5 @@ func executando(delta):
 			muda_estado.emit(self.name, "Parada")
 		# Se alvo for cesta: Bola acertou a cesta.
 		elif alvo is Cesta:
-			alvo.bola_na_cesta(pontos)
-			Global.acao_acabou.emit()
+			alvo.bola_na_cesta(bola, pontos, bola.get_forca())
 			muda_estado.emit(self.name, "Parada")

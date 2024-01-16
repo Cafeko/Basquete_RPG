@@ -30,11 +30,11 @@ position = Vector2(544, 302)
 
 [node name="CestaEsq" parent="Cestas" instance=ExtResource("7_wmy34")]
 position = Vector2(-32, 279)
+e_cesta_esquerda = true
 
 [node name="CestaDir" parent="Cestas" instance=ExtResource("7_wmy34")]
 position = Vector2(1119, 297)
-rotation = 3.14159
-scale = Vector2(1, -1)
+scale = Vector2(-1, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(544, 288)
