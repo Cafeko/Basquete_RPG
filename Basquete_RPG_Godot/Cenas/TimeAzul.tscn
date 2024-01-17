@@ -8,11 +8,6 @@ script = ExtResource("1_ylaes")
 
 [node name="Jogador1" parent="." instance=ExtResource("1_lfia8")]
 
-[node name="Status" parent="Jogador1" index="0"]
-movimento_alcance = 3
-passe_alcance = 5
-arremesso_alcance = 9
-
 [node name="Jogador2" parent="." instance=ExtResource("1_lfia8")]
 
 [node name="Jogador3" parent="." instance=ExtResource("1_lfia8")]

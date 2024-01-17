@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://coy7olt5nnj62"]
+[gd_scene load_steps=10 format=3 uid="uid://coy7olt5nnj62"]
 
 [ext_resource type="Texture2D" uid="uid://bnm3q4oxyrkab" path="res://Assets/PNG/Equipment/ball_basket4.png" id="1_x0jql"]
 [ext_resource type="Script" path="res://Scripts/bola.gd" id="1_ymnmx"]
@@ -7,10 +7,13 @@
 [ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_com_jogador.gd" id="5_oqfx1"]
 [ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_em_passe.gd" id="6_1ukt3"]
 [ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_em_arremesso.gd" id="7_1icqr"]
+[ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_em_rebateu.gd" id="8_2vdjw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_slpnv"]
 
 [node name="Bola" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_ymnmx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -40,3 +43,8 @@ velocidade_passe = 700.0
 script = ExtResource("7_1icqr")
 bola = NodePath("../..")
 velocidade_arremesso = 1200.0
+
+[node name="EmRebateu" type="Node" parent="MaquinaEstados" node_paths=PackedStringArray("bola")]
+script = ExtResource("8_2vdjw")
+bola = NodePath("../..")
+velocidade_rebate = 600.0

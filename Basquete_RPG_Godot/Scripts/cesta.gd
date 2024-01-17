@@ -19,14 +19,13 @@ func _ready():
 	define_tile_proximos()
 
 # Informa ao controlador qual time fez ponto e a quantidde de pontos.
-func bola_na_cesta(bola : Bola, pontos_quantidade: int, forca : int):
+func bola_na_cesta(pontos_quantidade: int, forca : int):
 	# Bola acerta cesta.
 	if forca >= dificuldade:
 		Global.controlador.bola_entrou_em_cesta(time_ganha_ponto, pontos_quantidade)
 	# Bola erra cesta.
 	else:
-		bola.global_position = Global.quadra.tile_para_cord(tile_proximos.pick_random())
-		Global.acao_acabou.emit()
+		Global.errou_cesta.emit(tile_proximos.pick_random())
 
 # Define a dificuldade da bola entrar na cesta baseado na distancia entre a cesta e o jogador.
 func define_dificuldade(tile_jogador : Vector2i):

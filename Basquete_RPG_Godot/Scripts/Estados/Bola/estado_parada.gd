@@ -8,6 +8,7 @@ extends Estado
 # Executada quando os nós estiverem prontos.
 func tudo_pronto():
 	Global.pegou_bola.connect(on_pegou_bola)
+	Global.errou_cesta.connect(on_errou_cesta)
 
 # Executado quando entra no estado.
 func entrando():
@@ -17,3 +18,7 @@ func on_pegou_bola(jogador):
 	if jogador is Jogador:
 		bola.set_jogador_segurando(jogador)
 		muda_estado.emit(self.name, "ComJogador")
+
+func on_errou_cesta(tile : Vector2i):
+	bola.set_tile_alvo(tile)
+	muda_estado.emit(self.name, "EmRebateu")

@@ -14,12 +14,8 @@
 size = Vector2(64, 64)
 
 [node name="Jogador" type="CharacterBody2D"]
+collision_mask = 3
 script = ExtResource("1_8s316")
-
-[node name="Status" type="Node" parent="."]
-script = ExtResource("2_hlyrr")
-passe_forca = 10
-arremesso_forca = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_laouc")
@@ -30,6 +26,11 @@ texture = ExtResource("1_5q6r0")
 
 [node name="PontoBola" type="Marker2D" parent="."]
 position = Vector2(16, -16)
+
+[node name="Status" type="Node" parent="."]
+script = ExtResource("2_hlyrr")
+passe_forca = 10
+arremesso_forca = 50
 
 [node name="Acoes" type="Node" parent="." node_paths=PackedStringArray("primeira_acao")]
 script = ExtResource("3_b3cyp")

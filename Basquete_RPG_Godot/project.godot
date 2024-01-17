@@ -27,6 +27,12 @@ mouse_esq={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Jogador"
+2d_physics/layer_2="Bola"
+2d_physics/layer_3="Cesta"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

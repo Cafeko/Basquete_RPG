@@ -1,4 +1,4 @@
-# -<estado_em_arremesso>--------------------------------------------------------------------------- #
+# -<estado_em_arremesso>-------------------------------------------------------------------------- #
 # Estado da bola, faz a bola se movimentar até um alvo especificado, cesta pode ser alvo.
 # ------------------------------------------------------------------------------------------------ #
 extends Estado
@@ -36,9 +36,9 @@ func executando(delta):
 			muda_estado.emit(self.name, "Parada")
 		# Se alvo for um jogador: jogador pega a bola.
 		elif alvo is Jogador:
-			alvo.comeca_pegar_bola(bola)
 			muda_estado.emit(self.name, "Parada")
+			alvo.comeca_pegar_bola(bola)
 		# Se alvo for cesta: Bola acertou a cesta.
 		elif alvo is Cesta:
-			alvo.bola_na_cesta(bola, pontos, bola.get_forca())
 			muda_estado.emit(self.name, "Parada")
+			alvo.bola_na_cesta(pontos, bola.get_forca())

@@ -23,7 +23,6 @@ func executando(_delta):
 # Executado ao sair do estado
 func saindo():
 	bola.set_jogador_segurando(null)
-	jogador = null
 
 func on_passou_bola():
 	muda_estado.emit(self.name, "EmPasse")

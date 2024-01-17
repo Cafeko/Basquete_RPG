@@ -20,3 +20,4 @@ signal arremessou_bola
 signal confirmar_acao
 signal cancelar_acao
 signal acertou_cesta
+signal errou_cesta

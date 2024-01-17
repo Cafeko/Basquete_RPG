@@ -24,10 +24,11 @@ func _ready():
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #
-# Verifica se em um ponto/cordenada especifica tem algum corpo, o retornando se sim.
+# Verifica se em um ponto/cordenada especifica tem algum jogador, o retornando se sim.
 func verifica_ponto(ponto : Vector2):
 	var space = get_world_2d().direct_space_state
 	var ponto_fisico : PhysicsPointQueryParameters2D = PhysicsPointQueryParameters2D.new()
+	ponto_fisico.set_exclude([Global.bola])
 	ponto_fisico.position = ponto
 	ponto_fisico.set_collide_with_bodies(true)
 	var resultado = space.intersect_point(ponto_fisico, 1)
