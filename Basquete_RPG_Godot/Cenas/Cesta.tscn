@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/cesta.gd" id="1_5x1p2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xsvl"]
-size = Vector2(29, 36)
+size = Vector2(41, 54)
 
 [node name="Cesta" type="CharacterBody2D"]
 collision_layer = 4
@@ -12,11 +12,12 @@ collision_mask = 2
 script = ExtResource("1_5x1p2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(34, 0)
+position = Vector2(38, 0)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_0of8x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(14.5, 0)
+position = Vector2(10.5, 0)
 shape = SubResource("RectangleShape2D_3xsvl")
 
 [node name="Centro" type="Marker2D" parent="."]

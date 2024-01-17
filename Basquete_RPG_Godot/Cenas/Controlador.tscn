@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfymvsxinjbns"]
+[gd_scene load_steps=17 format=3 uid="uid://bfymvsxinjbns"]
 
 [ext_resource type="Script" path="res://Scripts/controlador.gd" id="1_0xusn"]
 [ext_resource type="Script" path="res://Scripts/Estados/maquina_estados.gd" id="2_1oy8w"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_fez_ponto.gd" id="12_bex5c"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_faz_passe.gd" id="12_tsvrt"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_faz_arremesso.gd" id="13_u5gry"]
+[ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_finaliza_turno.gd" id="16_1masu"]
 
 [node name="Controlador" type="Node2D"]
 script = ExtResource("1_0xusn")
@@ -35,11 +36,11 @@ script = ExtResource("3_3via0")
 [node name="EscolheAcao" type="Node" parent="MaquinaEstados"]
 script = ExtResource("4_if6ki")
 
-[node name="PegarBola" type="Node" parent="MaquinaEstados"]
-script = ExtResource("6_a0l77")
-
 [node name="MoverJogador" type="Node" parent="MaquinaEstados"]
 script = ExtResource("5_8stp1")
+
+[node name="PegarBola" type="Node" parent="MaquinaEstados"]
+script = ExtResource("6_a0l77")
 
 [node name="PasseAlvo" type="Node" parent="MaquinaEstados"]
 script = ExtResource("9_2fpj2")
@@ -61,3 +62,6 @@ script = ExtResource("6_g1mc7")
 
 [node name="FezPonto" type="Node" parent="MaquinaEstados"]
 script = ExtResource("12_bex5c")
+
+[node name="FinalizaTurno" type="Node" parent="MaquinaEstados"]
+script = ExtResource("16_1masu")

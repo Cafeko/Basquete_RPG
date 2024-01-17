@@ -20,3 +20,8 @@ func posicionar_jogadores(pontos_lista : Array):
 	for i in range(len(jogadores_lista)):
 		jogadores_lista[i].global_position = pontos_lista[i].global_position
 		jogadores_lista[i].Ajustar_no_tile()
+
+# Reseta o numero de ações que os jogadores do time podem fazer.
+func reset_acoes():
+	for i in range(len(jogadores_lista)):
+		jogadores_lista[i].reset_numero_acoes()

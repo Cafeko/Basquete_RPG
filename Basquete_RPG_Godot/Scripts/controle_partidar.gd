@@ -17,10 +17,27 @@ var pontuacao_time2 : int = 0
 func set_times(um : TimeJogadores, dois : TimeJogadores):
 	time1 = um
 	time2 = dois
-	time_do_turno = time1 # (Remover depois)
 
+func set_time_do_turno(time : TimeJogadores):
+	if time == time1:
+		time_do_turno = time1
+	elif time == time2:
+		time_do_turno = time2
+
+func troca_time_do_turno():
+	var time = get_time_adversario(time_do_turno)
+	time_do_turno = time
+
+# Retorna de que time é o turno.
 func get_time_do_turno():
 	return time_do_turno
+
+# Retorna o time que está enfrentando o time especificado.
+func get_time_adversario(time : TimeJogadores):
+	if time == time1:
+		return time2
+	else:
+		return time1
 
 func set_cestas(esq : Cesta, dir : Cesta):
 	cesta_esq = esq
@@ -40,8 +57,14 @@ func posicionar_jogadores_inicio_tempo(time1_esquerda : bool = true):
 	var formacao = Global.quadra.get_formacao("FormacaoPadrao")
 	if time1_esquerda:
 		time1.posicionar_jogadores(formacao.lado_esquerdo())
+		time2.posicionar_jogadores(formacao.lado_direito())
 	else:
+		time2.posicionar_jogadores(formacao.lado_esquerdo())
 		time1.posicionar_jogadores(formacao.lado_direito())
+
+# Faz o time resetar o numero de ações que os jogadores podem fazer.
+func reset_acoes_time(time : TimeJogadores):
+	time.reset_acoes()
 
 # Da pontos para o time que marcou os pontos.
 func Marcou_ponto(time : TimeJogadores, pontos : int):

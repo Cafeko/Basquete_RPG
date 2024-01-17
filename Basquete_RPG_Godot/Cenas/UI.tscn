@@ -44,11 +44,6 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="BotaoPegarBola" type="Button" parent="MenuAcoes/ColorRect/Botoes"]
-layout_direction = 1
-layout_mode = 2
-text = "Pegar Bola"
-
 [node name="BotaoMover" type="Button" parent="MenuAcoes/ColorRect/Botoes"]
 layout_direction = 1
 layout_mode = 2
@@ -100,7 +95,36 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Cancelar"
 
-[connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoPegarBola" to="." method="on_botao_pegar_bola"]
+[node name="FimTurno" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Botao" type="HBoxContainer" parent="FimTurno"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -25.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="BotaoFimTurno" type="Button" parent="FimTurno/Botao"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Finalizar Turno"
+
 [connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoMover" to="." method="on_botao_mover"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoPassarBola" to="." method="on_botao_passar_bola"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoArremessarBola" to="." method="on_botao_arremessar_bola"]
@@ -110,3 +134,6 @@ text = "Cancelar"
 [connection signal="button_up" from="Confirmacao/Botoes/BotaoCancelar" to="." method="on_botao_cancelar"]
 [connection signal="mouse_entered" from="Confirmacao/Botoes/BotaoCancelar" to="." method="mouse_entrou"]
 [connection signal="mouse_exited" from="Confirmacao/Botoes/BotaoCancelar" to="." method="mouse_saiu"]
+[connection signal="button_up" from="FimTurno/Botao/BotaoFimTurno" to="." method="on_botao_fim_turno"]
+[connection signal="mouse_entered" from="FimTurno/Botao/BotaoFimTurno" to="." method="mouse_entrou"]
+[connection signal="mouse_exited" from="FimTurno/Botao/BotaoFimTurno" to="." method="mouse_saiu"]

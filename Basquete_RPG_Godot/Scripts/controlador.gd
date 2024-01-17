@@ -42,9 +42,20 @@ func jogador_no_time_do_turno(jogador : Jogador):
 	var time_turno = partida.get_time_do_turno()
 	return time_turno == jogador.get_time()
 
+# Retorna se o jogador está no mesmo tile que a bola.
+func jogador_em_bola(jogador : Jogador):
+	var tile_jogador = Global.quadra.cord_para_tile(jogador.global_position)
+	var tile_bola = Global.quadra.cord_para_tile(Global.bola.global_position)
+	return tile_jogador == tile_bola
+
 func inicio_tempo(time1_esquerda : bool = true):
 	partida.posicionar_jogadores_inicio_tempo(time1_esquerda)
 	partida.define_time_cesta(time1_esquerda)
+	partida.time_do_turno = partida.time1 # (Remover depois)
+
+func fim_de_turno():
+	partida.reset_acoes_time(partida.time_do_turno)
+	partida.troca_time_do_turno()
 
 # Executado quando a bola entra na cesta.
 func bola_entrou_em_cesta(time : TimeJogadores, pontos: int):

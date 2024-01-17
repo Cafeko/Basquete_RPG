@@ -13,6 +13,7 @@ var time : TimeJogadores = null
 #Ações
 var acoes : Dictionary
 var acao_atual : Acao = null
+var numero_acoes : int = 2
 
 signal acao_fim
 
@@ -45,6 +46,18 @@ func get_time():
 	return time
 
 # Ações:
+func fez_acao():
+	numero_acoes -= 1
+
+func reset_numero_acoes():
+	numero_acoes = 2
+
+func get_acoes_disponiveis():
+	return numero_acoes
+
+func tem_acoes():
+	return numero_acoes > 0
+
 # - Mover
 # Começa a ação de Mover.
 func comeca_mover(caminho : Array[Vector2i]):
@@ -63,8 +76,11 @@ func fim_mover():
 	# Finaliza a acao_atual e muda ela para a ação "Parado".
 	acao_atual.finalizacao()
 	acao_atual = acoes["Parado"]
-	# Emite um sinal informando que a ação acabou.
-	Global.acao_acabou.emit()
+	if Global.controlador.jogador_em_bola(self):
+		Global.jogador_pega_bola.emit()
+	else:
+		Global.acao_acabou.emit()
+	fez_acao()
 
 # - PegarBola
 # Começa a ação de PegarBola.
@@ -91,6 +107,7 @@ func fim_passar_bola():
 	# Finaliza a acao_atual e muda ela para a ação "Parado".
 	acao_atual.finalizacao()
 	acao_atual = acoes["Parado"]
+	fez_acao()
 
 # - ArremessarBola
 # Começa a ação de ArremessarBola.
@@ -105,3 +122,4 @@ func fim_arremessar_bola():
 	# Finaliza a acao_atual e muda ela para a ação "Parado".
 	acao_atual.finalizacao()
 	acao_atual = acoes["Parado"]
+	fez_acao()

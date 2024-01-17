@@ -21,3 +21,5 @@ signal confirmar_acao
 signal cancelar_acao
 signal acertou_cesta
 signal errou_cesta
+signal finalizar_turno
+signal jogador_pega_bola
