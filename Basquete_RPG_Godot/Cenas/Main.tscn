@@ -28,6 +28,7 @@ position = Vector2(544, 302)
 [node name="Time Azul" parent="." instance=ExtResource("6_ib5f2")]
 
 [node name="TimeAzul2" parent="." instance=ExtResource("6_ib5f2")]
+modulate = Color(1, 0, 0, 1)
 
 [node name="Cestas" type="Node2D" parent="."]
 

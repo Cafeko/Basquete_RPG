@@ -22,9 +22,10 @@ func executando(delta):
 	bola.global_position = bola.global_position.move_toward(cord_alvo, delta * velocidade_passe)
 	# Quando chegar no alvo:
 	if bola.global_position == cord_alvo:
-		# Se alvo for vazio: bola para no chão acabando a ação de passe (futuramente vai acabar o turno).
+		# Se alvo for vazio: bola para no chão acabando a ação de passe e acabando o turno.
 		if alvo == null:
 			Global.acao_acabou.emit()
+			Global.finalizar_turno.emit()
 			muda_estado.emit(self.name, "Parada")
 		# Se alvo for um jogador: jogador pega a bola.
 		elif alvo is Jogador:

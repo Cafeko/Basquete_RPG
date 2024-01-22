@@ -66,6 +66,11 @@ func posicionar_jogadores_inicio_tempo(time1_esquerda : bool = true):
 func reset_acoes_time(time : TimeJogadores):
 	time.reset_acoes()
 
+# Faz os dois times resetarem o numero de ações que os jogadores podem fazer.
+func reset_acoes_times():
+	time1.reset_acoes()
+	time2.reset_acoes()
+
 # Da pontos para o time que marcou os pontos.
 func Marcou_ponto(time : TimeJogadores, pontos : int):
 	if time == time1:

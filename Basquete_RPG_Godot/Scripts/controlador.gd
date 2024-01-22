@@ -49,6 +49,7 @@ func jogador_em_bola(jogador : Jogador):
 	return tile_jogador == tile_bola
 
 func inicio_tempo(time1_esquerda : bool = true):
+	partida.reset_acoes_times()
 	partida.posicionar_jogadores_inicio_tempo(time1_esquerda)
 	partida.define_time_cesta(time1_esquerda)
 	partida.time_do_turno = partida.time1 # (Remover depois)

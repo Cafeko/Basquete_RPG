@@ -93,6 +93,8 @@ func fim_pegar_bola():
 	acao_atual.finalizacao()
 	acao_atual = acoes["Parado"]
 	Global.acao_acabou.emit()
+	if not Global.controlador.jogador_no_time_do_turno(self):
+		Global.finalizar_turno.emit()
 
 # - PassarBola
 # Começa a ação de PassarBola.
