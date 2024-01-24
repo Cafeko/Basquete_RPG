@@ -8,4 +8,5 @@ func executando(_delta):
 	Global.quadra.prepara_navegacao()
 	Global.controlador.inicio_tempo()
 	Global.bola.global_position = Global.quadra.get_centro_cord()
+	Global.controlador.limpa_info()
 	muda_estado.emit(self.name, "SelecionaJogador")

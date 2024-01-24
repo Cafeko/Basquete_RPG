@@ -22,5 +22,4 @@ func entrando():
 # Executando enquanto está no estado.
 func executando(_delta):
 	jogador.comeca_arremessar_bola(bola, alvo, tile_alvo, forca)
-	Global.controlador.limpa_info()
 	muda_estado.emit(self.name, "FazendoAcao")

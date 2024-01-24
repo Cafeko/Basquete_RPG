@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwfuoqq5vmp0g"]
+[gd_scene load_steps=3 format=3 uid="uid://cwfuoqq5vmp0g"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_j3g14"]
+[ext_resource type="PackedScene" uid="uid://clxo1v0xh0f63" path="res://Cenas/BarraForca.tscn" id="2_obh6j"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_j3g14")
@@ -125,6 +126,59 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Finalizar Turno"
 
+[node name="BarraForca" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Barra" type="Control" parent="BarraForca"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BarraForca" parent="BarraForca/Barra" instance=ExtResource("2_obh6j")]
+rotation = -1.5708
+
+[node name="Botao" type="Control" parent="BarraForca"]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -45.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Botao" type="HBoxContainer" parent="BarraForca/Botao"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -25.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="BotaoParaBarra" type="Button" parent="BarraForca/Botao/Botao"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Parar"
+
 [connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoMover" to="." method="on_botao_mover"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoPassarBola" to="." method="on_botao_passar_bola"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoArremessarBola" to="." method="on_botao_arremessar_bola"]
@@ -137,3 +191,6 @@ text = "Finalizar Turno"
 [connection signal="button_up" from="FimTurno/Botao/BotaoFimTurno" to="." method="on_botao_fim_turno"]
 [connection signal="mouse_entered" from="FimTurno/Botao/BotaoFimTurno" to="." method="mouse_entrou"]
 [connection signal="mouse_exited" from="FimTurno/Botao/BotaoFimTurno" to="." method="mouse_saiu"]
+[connection signal="button_up" from="BarraForca/Botao/Botao/BotaoParaBarra" to="." method="on_botao_para_barra"]
+[connection signal="mouse_entered" from="BarraForca/Botao/Botao/BotaoParaBarra" to="." method="mouse_entrou"]
+[connection signal="mouse_exited" from="BarraForca/Botao/Botao/BotaoParaBarra" to="." method="mouse_saiu"]

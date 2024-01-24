@@ -77,7 +77,7 @@ func fim_mover():
 	acao_atual.finalizacao()
 	acao_atual = acoes["Parado"]
 	if Global.controlador.jogador_em_bola(self):
-		Global.jogador_pega_bola.emit()
+		self.comeca_pegar_bola(Global.bola)
 	else:
 		Global.acao_acabou.emit()
 	fez_acao()

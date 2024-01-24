@@ -11,6 +11,7 @@ func tudo_pronto():
 func entrando():
 	Global.controlador.set_jogador_selecionado(null)
 	Global.controlador.set_jogador_selecionado2(null)
+	Global.controlador.limpa_info()
 	Global.ui.exibe_fim_turno()
 
 # Executando enquanto está no estado.
