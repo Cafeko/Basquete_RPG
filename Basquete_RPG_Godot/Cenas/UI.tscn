@@ -60,6 +60,11 @@ layout_direction = 1
 layout_mode = 2
 text = "Arremessar Bola"
 
+[node name="BotaoRoubarBola" type="Button" parent="MenuAcoes/ColorRect/Botoes"]
+layout_direction = 1
+layout_mode = 2
+text = "Roubar Bola"
+
 [node name="Confirmacao" type="Control" parent="."]
 visible = false
 custom_minimum_size = Vector2(300, 60)
@@ -127,6 +132,7 @@ size_flags_horizontal = 3
 text = "Finalizar Turno"
 
 [node name="BarraForca" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -182,6 +188,7 @@ text = "Parar"
 [connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoMover" to="." method="on_botao_mover"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoPassarBola" to="." method="on_botao_passar_bola"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoArremessarBola" to="." method="on_botao_arremessar_bola"]
+[connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoRoubarBola" to="." method="on_botao_roubar_bola"]
 [connection signal="button_up" from="Confirmacao/Botoes/BotaoConfirmar" to="." method="on_botao_confirmar"]
 [connection signal="mouse_entered" from="Confirmacao/Botoes/BotaoConfirmar" to="." method="mouse_entrou"]
 [connection signal="mouse_exited" from="Confirmacao/Botoes/BotaoConfirmar" to="." method="mouse_saiu"]

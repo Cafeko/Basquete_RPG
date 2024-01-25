@@ -6,14 +6,17 @@ extends Estado
 @export var bola : Bola
 
 var jogador : Jogador
+var roubada : bool = false
 
 # Executada quando os nós estiverem prontos.
 func tudo_pronto():
 	Global.passou_bola.connect(on_passou_bola)
 	Global.arremessou_bola.connect(on_arremessou_bola)
+	Global.roubou_bola.connect(on_roubou_bola)
 
 # Executado quando entra no estado.
 func entrando():
+	roubada = false
 	jogador = bola.get_jogador_segurando()
 
 # Executando enquanto está no estado.
@@ -22,10 +25,17 @@ func executando(_delta):
 
 # Executado ao sair do estado
 func saindo():
-	bola.set_jogador_segurando(null)
+	if not roubada:
+		bola.set_jogador_segurando(null)
 
 func on_passou_bola():
 	muda_estado.emit(self.name, "EmPasse")
 
 func on_arremessou_bola():
 	muda_estado.emit(self.name, "EmArremesso")
+
+func on_roubou_bola(jogador):
+	if jogador is Jogador:
+		roubada = true
+		bola.set_jogador_segurando(jogador)
+		muda_estado.emit(self.name, "ComJogador")

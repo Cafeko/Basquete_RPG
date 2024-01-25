@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfymvsxinjbns"]
+[gd_scene load_steps=18 format=3 uid="uid://bfymvsxinjbns"]
 
 [ext_resource type="Script" path="res://Scripts/controlador.gd" id="1_0xusn"]
 [ext_resource type="Script" path="res://Scripts/Estados/maquina_estados.gd" id="2_1oy8w"]
@@ -10,10 +10,12 @@
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_fazendo_acao.gd" id="6_g1mc7"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_passe_alvo.gd" id="9_2fpj2"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_arremesso_alvo.gd" id="10_58hiv"]
+[ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_roubar_bola.gd" id="10_mu8jk"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_defina_forca_acao.gd" id="11_evh47"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_fez_ponto.gd" id="12_bex5c"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_faz_passe.gd" id="12_tsvrt"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_faz_arremesso.gd" id="13_u5gry"]
+[ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_faz_roubar_bola.gd" id="14_vawll"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_finaliza_turno.gd" id="16_1masu"]
 
 [node name="Controlador" type="Node2D"]
@@ -44,6 +46,9 @@ script = ExtResource("9_2fpj2")
 [node name="ArremessoAlvo" type="Node" parent="MaquinaEstados"]
 script = ExtResource("10_58hiv")
 
+[node name="RoubarBolaAlvo" type="Node" parent="MaquinaEstados"]
+script = ExtResource("10_mu8jk")
+
 [node name="DefinaForcaAcao" type="Node" parent="MaquinaEstados"]
 script = ExtResource("11_evh47")
 
@@ -52,6 +57,9 @@ script = ExtResource("12_tsvrt")
 
 [node name="FazArremesso" type="Node" parent="MaquinaEstados"]
 script = ExtResource("13_u5gry")
+
+[node name="FazRoubarBola" type="Node" parent="MaquinaEstados"]
+script = ExtResource("14_vawll")
 
 [node name="FazendoAcao" type="Node" parent="MaquinaEstados"]
 script = ExtResource("6_g1mc7")

@@ -126,6 +126,15 @@ func area_circular(centro : Vector2i, alcance_maximo : int):
 				tiles_list.append(tile)
 	return tiles_list
 
+# retorna uma lista com os tiles que formam uma area quadrada a partir de um tile central.
+func area_quadrada(centro : Vector2i, alcance_maximo : int):
+	var tiles_list : Array[Vector2i] = []
+	for x in range(-alcance_maximo, alcance_maximo + 1):
+		for y in range(-alcance_maximo, alcance_maximo + 1):
+			var tile = Vector2i(x + centro.x, y + centro.y)
+			tiles_list.append(tile)
+	return tiles_list
+
 # Coloca um tile na layer "Area".
 func set_tile_area(tile : Vector2i):
 	tilemap.set_cell(layers_id["Area"], tile, 2, Vector2i(0, 0))

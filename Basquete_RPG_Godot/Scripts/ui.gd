@@ -79,3 +79,6 @@ func on_botao_fim_turno():
 
 func on_botao_para_barra():
 	Global.para_barra_forca.emit()
+
+func on_botao_roubar_bola():
+	Global.acao_escolhida.emit("RoubarBola")

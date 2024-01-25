@@ -24,3 +24,4 @@ signal acertou_cesta
 signal errou_cesta
 signal finalizar_turno
 signal para_barra_forca
+signal roubou_bola

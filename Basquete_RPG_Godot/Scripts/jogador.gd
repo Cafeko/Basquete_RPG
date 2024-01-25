@@ -13,7 +13,8 @@ var time : TimeJogadores = null
 #Ações
 var acoes : Dictionary
 var acao_atual : Acao = null
-var numero_acoes : int = 2
+var numero_acoes : int
+var numero_acoes_maximo : int = 3
 
 signal acao_fim
 
@@ -21,11 +22,13 @@ func _ready():
 	# Ações
 	acao_atual = get_node("Acoes").get_primeira_acao()
 	acoes = get_node("Acoes").get_acoes_dict()
+	numero_acoes = numero_acoes_maximo
 	# Conecta o sinal de fim.
 	acoes["Mover"].fim.connect(fim_mover)
 	acoes["PegarBola"].fim.connect(fim_pegar_bola)
 	acoes["PassarBola"].fim.connect(fim_passar_bola)
 	acoes["ArremessarBola"].fim.connect(fim_arremessar_bola)
+	acoes["RoubarBola"].fim.connect(fim_roubar_bola)
 
 func _physics_process(delta):
 	# Fica executando constantemente a ação atual.
@@ -45,12 +48,22 @@ func set_time(novo_time : TimeJogadores):
 func get_time():
 	return time
 
+# Executada quando o jogador tiver a bola roubada dele.
+func perdeu_bola():
+	com_bola = false
+
+func fica_atordoado():
+	set_numero_acoes(0)
+
 # Ações:
+func set_numero_acoes(valor : int):
+	numero_acoes = valor
+
 func fez_acao():
 	numero_acoes -= 1
 
 func reset_numero_acoes():
-	numero_acoes = 2
+	numero_acoes = numero_acoes_maximo
 
 func get_acoes_disponiveis():
 	return numero_acoes
@@ -103,7 +116,7 @@ func comeca_passar_bola(bola : Bola, alvo, tile_alvo : Vector2i, forca : int):
 	acao_atual = acoes["PassarBola"]
 	acao_atual.faze_de_preparacao([bola, alvo, tile_alvo, forca])
 
-# Muda para o estado Parado após fazer o passe.
+# Finaliza a ação PassarBola.
 func fim_passar_bola():
 	com_bola = false
 	# Finaliza a acao_atual e muda ela para a ação "Parado".
@@ -118,10 +131,24 @@ func comeca_arremessar_bola(bola : Bola, alvo, tile_alvo : Vector2i, forca : int
 	acao_atual = acoes["ArremessarBola"]
 	acao_atual.faze_de_preparacao([bola, alvo, tile_alvo, forca])
 
-# Muda para o estado Parado após o jogador arremessar a bola.
+# Finaliza a ação ArremessarBola.
 func fim_arremessar_bola():
 	com_bola = false
 	# Finaliza a acao_atual e muda ela para a ação "Parado".
 	acao_atual.finalizacao()
 	acao_atual = acoes["Parado"]
 	fez_acao()
+
+# - RoubarBola
+# Começa a ação de RoubarBola.
+func comeca_roubar_bola(bola : Bola, alvo : Jogador, aliado : bool, forca : float):
+	acao_atual = acoes["RoubarBola"]
+	acao_atual.faze_de_preparacao([bola, alvo, aliado, forca])
+
+# Finaliza a ação RoubarBola.
+func fim_roubar_bola():
+	# Finaliza a acao_atual e muda ela para a ação "Parado".
+	acao_atual.finalizacao()
+	acao_atual = acoes["Parado"]
+	# Emite o sinal informando que a ação acabou.  
+	Global.acao_acabou.emit()
