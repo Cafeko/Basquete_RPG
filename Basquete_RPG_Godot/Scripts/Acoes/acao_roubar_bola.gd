@@ -10,28 +10,29 @@ extends Acao
 var bola : Bola = null
 var alvo : Jogador
 var e_aliado : bool
-var forca : float
+var forca : int
+var dificuldade : int
 
 # Usado para preparar a ação antes de começar a executar ela.
 func faze_de_preparacao(info : Array):
 	bola = info[0]
 	alvo = info[1]
 	e_aliado = info[2]
-	forca = info[3]
+	dificuldade = info[3]
+	forca = info[4]
 
 # Usado para fazer a ação acontecer (é chamado constantemente).
 func executando(_delta):
-	# Alvo é aliado:
+	# Alvo é aliado: apenas pega a bola.
 	if e_aliado:
 		Global.roubou_bola.emit(corpo) # Sinal que faz a bola ir de um jogador para outro.
 		alvo.perdeu_bola()
 		corpo.com_bola = true
-	# Alvo não é aliado:
+	# Alvo não é aliado: disputa pela bola, ganhando se a força for maior que a dificuldade, que é 
+	# baseada na defesa do adversario).
 	else:
-		# Pega defesa do alvo e compara ela com a força do ataque.
-		var alvo_defesa = alvo.status.get_defesa_forca()
 		# Se perder:
-		if forca <= alvo_defesa:
+		if forca <= dificuldade:
 			corpo.fica_atordoado() # Deixa jogador atordoado ao perder para o alvo. 
 		# Se ganhar:
 		else:

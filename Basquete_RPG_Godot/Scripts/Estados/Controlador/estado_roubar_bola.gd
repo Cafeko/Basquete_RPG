@@ -46,6 +46,7 @@ func executando(_delta):
 				# Define se o alvo é um jogador do mesmo time ou não.
 				alvo_e_aliado = Global.controlador.jogador_no_time_do_turno(alvo)
 				Global.ui.exibe_confirmacao()
+				break
 		# Se não tiver nenhum jogador com bola dentro do alcance de roubo:
 		if nada_pra_roubar:
 			muda_estado.emit(self.name, "SelecionaJogador")
@@ -60,10 +61,11 @@ func on_confirmar_acao(estado_alvo : String):
 	if self.name == estado_alvo:
 		Global.controlador.add_info("RoubaBola")
 		if alvo_e_aliado:
-			Global.controlador.add_info([Global.bola, alvo, alvo_e_aliado, 0]) # bola, alvo, aliado, forca
+			Global.controlador.add_info([Global.bola, alvo, alvo_e_aliado, 0, 0]) # bola, alvo, aliado, dificuldade, forca
 			muda_estado.emit(self.name, "FazRoubarBola")
 		else:
-			Global.controlador.add_info([Global.bola, alvo, alvo_e_aliado]) # bola, alvo, aliado
+			var dificuldade = alvo.status.defesa()
+			Global.controlador.add_info([Global.bola, alvo, alvo_e_aliado, dificuldade]) # bola, alvo, aliado, dificuldade
 			muda_estado.emit(self.name, "DefinaForcaAcao")
 
 func on_cancelar_acao(estado_alvo : String):

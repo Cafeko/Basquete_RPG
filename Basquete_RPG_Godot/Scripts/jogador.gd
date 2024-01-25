@@ -141,9 +141,9 @@ func fim_arremessar_bola():
 
 # - RoubarBola
 # Começa a ação de RoubarBola.
-func comeca_roubar_bola(bola : Bola, alvo : Jogador, aliado : bool, forca : float):
+func comeca_roubar_bola(bola : Bola, alvo : Jogador, aliado : bool, dificuldade : int, forca : int):
 	acao_atual = acoes["RoubarBola"]
-	acao_atual.faze_de_preparacao([bola, alvo, aliado, forca])
+	acao_atual.faze_de_preparacao([bola, alvo, aliado, dificuldade, forca])
 
 # Finaliza a ação RoubarBola.
 func fim_roubar_bola():

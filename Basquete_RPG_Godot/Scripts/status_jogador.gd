@@ -50,3 +50,10 @@ func get_arremesso_numero_tiles():
 # Retorna o número de tiles de alcance do roubo de bola do jogador.
 func get_roubo_bola_numero_tiles():
 	return roubo_bola_alcance
+# ------------------------------------------------------------------------------------------------ #
+
+# ------------------------------------------------------------------------------------------------ #
+# - Defesas
+# Retorna um valor aleatorio para a defesa.
+func defesa():
+	return round(randf_range(defesa_forca/2.0, defesa_forca))

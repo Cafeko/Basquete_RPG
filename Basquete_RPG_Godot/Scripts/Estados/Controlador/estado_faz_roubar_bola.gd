@@ -9,6 +9,7 @@ var jogador : Jogador
 var bola : Bola
 var alvo 
 var aliado : bool
+var dificuldade : int
 var forca : int
 
 # Executado quando entra no estado.
@@ -18,9 +19,10 @@ func entrando():
 	bola = informacoes[1]
 	alvo = informacoes[2]
 	aliado = informacoes[3]
-	forca = informacoes[4]
+	dificuldade = informacoes [4]
+	forca = informacoes[5]
 
 # Executando enquanto está no estado.
 func executando(_delta):
-	jogador.comeca_roubar_bola(bola, alvo, aliado, forca)
+	jogador.comeca_roubar_bola(bola, alvo, aliado, dificuldade, forca)
 	muda_estado.emit(self.name, "FazendoAcao")

@@ -143,17 +143,17 @@ grow_vertical = 2
 
 [node name="Barra" type="Control" parent="BarraForca"]
 layout_mode = 1
-anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -100.0
+offset_left = -130.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="BarraForca" parent="BarraForca/Barra" instance=ExtResource("2_obh6j")]
 rotation = -1.5708
+scale = Vector2(1.3, 1.3)
 
 [node name="Botao" type="Control" parent="BarraForca"]
 custom_minimum_size = Vector2(300, 60)

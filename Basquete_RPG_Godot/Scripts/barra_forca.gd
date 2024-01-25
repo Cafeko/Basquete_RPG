@@ -15,7 +15,6 @@ var areas : Array[String]
 var area_distancias : Dictionary = {}
 var area_atual : String = ""
 
-var potencias : Dictionary = {}
 var potencia_atual : float = 0
 
 var posicao_barra : float
@@ -26,7 +25,6 @@ func _ready():
 	centro_container = get_container_centro()
 	distancia_maxima = container.size.y / 2
 	define_areas()
-	define_potencias()
 	reset_barra_forca()
 	#comeca_mover()
 
@@ -74,14 +72,6 @@ func define_areas():
 		area_distancias[nome] = abs(distancia_posicao_centro(cor.position.y))
 	areas.reverse()
 
-func define_potencias():
-	potencias["Azul"] = 1
-	potencias["VerdeEscuro"] = 0.9
-	potencias["VerdeClaro"] = 0.75
-	potencias["Amarelo"] = 0.5
-	potencias["Laranja"] = 0.25
-	potencias["Vermelho"] = 0.1
-
 # Retorna a cor da area em que a barra está.
 func area_da_barra():
 	var distancia = abs(distancia_barra_centro())
@@ -91,12 +81,16 @@ func area_da_barra():
 			return cor
 
 # Retorna a potencia de acordo com a área especificada.
-func get_potencia(area : String):
-	return potencias[area]
+func get_potencia(distancia: float):
+	return 1.0 - (abs(distancia) / 100)
 
 # Retorna a potencia atual.
 func get_potencia_atual():
 	return potencia_atual
+
+# Retorna a área atual.
+func get_area_atual():
+	return area_atual
 
 # Faz a barra comaçar a mover.
 func comeca_mover():
@@ -117,4 +111,7 @@ func movendo(delta):
 func parar_mover():
 	mover = false
 	area_atual = area_da_barra()
-	potencia_atual = get_potencia(area_da_barra())
+	if area_atual == "Azul":
+		potencia_atual = 1.0
+	else:
+		potencia_atual = get_potencia(distancia_barra_centro())

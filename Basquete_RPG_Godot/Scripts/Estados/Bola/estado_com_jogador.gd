@@ -34,8 +34,8 @@ func on_passou_bola():
 func on_arremessou_bola():
 	muda_estado.emit(self.name, "EmArremesso")
 
-func on_roubou_bola(jogador):
-	if jogador is Jogador:
+func on_roubou_bola(jogador_que_roubou):
+	if jogador_que_roubou is Jogador:
 		roubada = true
-		bola.set_jogador_segurando(jogador)
+		bola.set_jogador_segurando(jogador_que_roubou)
 		muda_estado.emit(self.name, "ComJogador")

@@ -34,10 +34,10 @@ func on_para_barra_forca():
 	var potencia = Global.barra_forca.get_potencia_atual()
 	# Pega a força_maxima da ação e o proximo estado, baseado na ação que está sendo feita.
 	var lista = forca_e_acao()
-	var forca_maxima : float = lista[0]
+	var forca_base : float = lista[0]
 	var proximo_estado : String = lista[1]
 	# Define a força, baseado na potencia adquirida, e a adiciona na lista de informações.
-	var forca = forca_maxima * potencia
+	var forca = round(forca_base * potencia)
 	Global.controlador.add_info(forca)
 	# Espera 1 segundo pra ir para o proximo estado.
 	await get_tree().create_timer(0.8).timeout
