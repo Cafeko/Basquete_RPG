@@ -95,6 +95,8 @@ func set_escolheu(valor : bool):
 
 func on_confirmar_acao(estado_alvo : String):
 	if self.name == estado_alvo:
+		if alvo_escolhido is Cesta:
+			Global.ui.set_valor_adversario(str(alvo_escolhido.define_dificuldade(tile_jogador)))
 		Global.controlador.add_info("Arremesso")
 		Global.controlador.add_info([Global.bola, alvo_escolhido, tile_alvo])
 		muda_estado.emit(self.name, "DefinaForcaAcao")

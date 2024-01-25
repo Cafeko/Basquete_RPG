@@ -49,14 +49,19 @@ func jogador_em_bola(jogador : Jogador):
 	return tile_jogador == tile_bola
 
 func inicio_tempo(time1_esquerda : bool = true):
-	partida.reset_acoes_times()
+	partida.set_time1_esq(time1_esquerda)
 	partida.posicionar_jogadores_inicio_tempo(time1_esquerda)
 	partida.define_time_cesta(time1_esquerda)
+	partida.reset_acoes_times()
 	partida.time_do_turno = partida.time1 # (Remover depois)
 
 func fim_de_turno():
 	partida.reset_acoes_time(partida.time_do_turno)
 	partida.troca_time_do_turno()
+
+# Retorna se o time está no lado esquerdo ou não
+func time_na_esquerda(time : TimeJogadores):
+	return partida.e_time_da_esquerda(time)
 
 # Executado quando a bola entra na cesta.
 func bola_entrou_em_cesta(time : TimeJogadores, pontos: int):

@@ -32,7 +32,7 @@ func executando(_delta):
 	# baseada na defesa do adversario).
 	else:
 		# Se perder:
-		if forca <= dificuldade:
+		if forca < dificuldade:
 			corpo.fica_atordoado() # Deixa jogador atordoado ao perder para o alvo. 
 		# Se ganhar:
 		else:

@@ -8,6 +8,12 @@ extends CanvasLayer
 @onready var fim_turno = $FimTurno
 @onready var barra_forca = $BarraForca
 @onready var barra_forca_botao = $BarraForca/Botao
+@onready var valores = $Valores
+@onready var valor_esq = $Valores/HBoxContainer/Valor1
+@onready var valor_dir = $Valores/HBoxContainer/Valor2
+
+var valor_jogador : String
+var valor_adversario : String
 
 func _ready():
 	Global.ui = self
@@ -15,6 +21,8 @@ func _ready():
 	esconde_confirmacao()
 	esconde_fim_turno()
 	esconde_barra_forca()
+	reset_valores()
+	esconde_valores()
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #
@@ -50,6 +58,12 @@ func exibe_barra_forca_botao():
 
 func esconde_barra_forca_botao():
 	barra_forca_botao.visible = false
+
+func exibe_valores():
+	valores.visible = true
+
+func esconde_valores():
+	valores.visible = false
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #
@@ -82,3 +96,26 @@ func on_botao_para_barra():
 
 func on_botao_roubar_bola():
 	Global.acao_escolhida.emit("RoubarBola")
+# ------------------------------------------------------------------------------------------------ #
+
+# ------------------------------------------------------------------------------------------------ #
+# - Valores
+func reset_valores():
+	valor_esq.text = ""
+	valor_dir.text = ""
+	valor_jogador = ""
+	valor_adversario = ""
+
+func set_valor_jogador(texto : String):
+	valor_jogador = texto
+
+func set_valor_adversario(texto : String):
+	valor_adversario = texto
+
+func atualiza_valores(jogador_na_esquerda : bool = true):
+	if jogador_na_esquerda:
+		valor_esq.text = valor_jogador
+		valor_dir.text = valor_adversario
+	else:
+		valor_esq.text = valor_adversario
+		valor_dir.text = valor_jogador

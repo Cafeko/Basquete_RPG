@@ -65,6 +65,7 @@ func on_confirmar_acao(estado_alvo : String):
 			muda_estado.emit(self.name, "FazRoubarBola")
 		else:
 			var dificuldade = alvo.status.defesa()
+			Global.ui.set_valor_adversario(str(dificuldade))
 			Global.controlador.add_info([Global.bola, alvo, alvo_e_aliado, dificuldade]) # bola, alvo, aliado, dificuldade
 			muda_estado.emit(self.name, "DefinaForcaAcao")
 

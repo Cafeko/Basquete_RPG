@@ -6,6 +6,8 @@ extends Estado
 var informacoes : Array
 var acao : String
 var jogador : Jogador
+var time_jogado_esquerda : bool
+var na_esq : bool
 
 # Executada quando os nós estiverem prontos.
 func tudo_pronto():
@@ -20,11 +22,18 @@ func entrando():
 	Global.barra_forca.reset_barra_forca()
 	Global.ui.exibe_barra_forca()
 	Global.barra_forca.comeca_mover()
+	# Exibe Valores.
+	Global.ui.exibe_valores()
+	na_esq = Global.controlador.time_na_esquerda(jogador.get_time())
+	Global.ui.set_valor_jogador("00")
+	Global.ui.atualiza_valores(na_esq)
 
 # Executado ao sair do estado
 func saindo():
-	# Esconder barra de força.
+	# Esconder barra de força e valores.
 	Global.ui.esconde_barra_forca()
+	Global.ui.esconde_valores()
+	Global.ui.reset_valores()
 
 func on_para_barra_forca():
 	# Esconde o botão que para a barra de força.
@@ -39,8 +48,10 @@ func on_para_barra_forca():
 	# Define a força, baseado na potencia adquirida, e a adiciona na lista de informações.
 	var forca = round(forca_base * potencia)
 	Global.controlador.add_info(forca)
+	Global.ui.set_valor_jogador(str(forca))
+	Global.ui.atualiza_valores(na_esq)
 	# Espera 1 segundo pra ir para o proximo estado.
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(1.2).timeout
 	muda_estado.emit(self.name, proximo_estado)
 
 func forca_e_acao():

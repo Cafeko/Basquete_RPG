@@ -20,17 +20,19 @@ func _ready():
 
 # Informa ao controlador qual time fez ponto e a quantidde de pontos.
 func bola_na_cesta(pontos_quantidade: int, forca : int):
-	# Bola acerta cesta.
-	if forca >= dificuldade:
-		Global.controlador.bola_entrou_em_cesta(time_ganha_ponto, pontos_quantidade)
 	# Bola erra cesta.
-	else:
+	if  forca < dificuldade:
 		Global.errou_cesta.emit(tile_proximos.pick_random())
+	# Bola acerta cesta.
+	else:
+		Global.controlador.bola_entrou_em_cesta(time_ganha_ponto, pontos_quantidade)
+	
 
 # Define a dificuldade da bola entrar na cesta baseado na distancia entre a cesta e o jogador.
 func define_dificuldade(tile_jogador : Vector2i):
 	var distancia = tile_cesta - tile_jogador
 	dificuldade = (abs(distancia.x) + abs(distancia.y))*10
+	return dificuldade
 
 # Guarda em uma lista os tiles que são considerados proximos a cesta (tiles que a bola vai cair se 
 # errar a cesta).
