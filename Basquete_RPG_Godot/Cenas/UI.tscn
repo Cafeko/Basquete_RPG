@@ -7,6 +7,7 @@
 script = ExtResource("1_j3g14")
 
 [node name="MenuAcoes" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,6 +49,11 @@ alignment = 1
 layout_direction = 1
 layout_mode = 2
 text = "Mover"
+
+[node name="BotaoDescanso" type="Button" parent="MenuAcoes/ColorRect/Botoes"]
+layout_direction = 1
+layout_mode = 2
+text = "Descansar"
 
 [node name="BotaoPassarBola" type="Button" parent="MenuAcoes/ColorRect/Botoes"]
 layout_direction = 1
@@ -229,6 +235,7 @@ size_flags_horizontal = 3
 text = "Parar"
 
 [connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoMover" to="." method="on_botao_mover"]
+[connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoDescanso" to="." method="on_botao_descanso"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoPassarBola" to="." method="on_botao_passar_bola"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoArremessarBola" to="." method="on_botao_arremessar_bola"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoRoubarBola" to="." method="on_botao_roubar_bola"]

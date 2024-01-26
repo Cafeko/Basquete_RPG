@@ -122,4 +122,6 @@ func on_botao_roubar_bola():
 
 func on_botao_enterrar_bola():
 	Global.acao_escolhida.emit("Enterrar")
-# ------------------------------------------------------------------------------------------------ #
+
+func on_botao_descanso():
+	Global.acao_escolhida.emit("Descansar")

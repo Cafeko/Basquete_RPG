@@ -30,6 +30,7 @@ func _ready():
 	acoes["ArremessarBola"].fim.connect(fim_arremessar_bola)
 	acoes["RoubarBola"].fim.connect(fim_roubar_bola)
 	acoes["EnterrarBola"].fim.connect(fim_enterrar_bola)
+	acoes["Descansar"].fim.connect(fim_descansar)
 
 func _physics_process(delta):
 	# Fica executando constantemente a ação atual.
@@ -167,3 +168,17 @@ func fim_enterrar_bola():
 	acao_atual.finalizacao()
 	acao_atual = acoes["Parado"]
 	fez_acao()
+
+# - Descansar
+# Começa a ação de Descansar.
+func comeca_descansar(valor_descanso : int):
+	acao_atual = acoes["Descansar"]
+	acao_atual.faze_de_preparacao([valor_descanso, get_acoes_disponiveis()])
+
+# Finaliza a ação de Descansar.
+func fim_descansar():
+	# Finaliza a acao_atual e muda ela para a ação "Parado".
+	acao_atual.finalizacao()
+	acao_atual = acoes["Parado"]
+	Global.acao_acabou.emit()
+	set_numero_acoes(0)

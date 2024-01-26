@@ -31,5 +31,7 @@ func on_acao_escolhida(acao : String):
 		novo_estado = "RoubarBolaAlvo"
 	elif acao == "Enterrar":
 		novo_estado = "EnterradaAlvo"
+	elif acao == "Descansar":
+		novo_estado = "DescansarJogador"
 	Global.controlador_estado_atual = novo_estado
 	muda_estado.emit(self.name, novo_estado)

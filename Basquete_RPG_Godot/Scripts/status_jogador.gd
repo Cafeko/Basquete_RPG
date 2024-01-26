@@ -55,14 +55,13 @@ func get_energia():
 
 func gasta_energia(valor : int):
 	energia -= valor
-	if energia < 0:
+	if energia <= 0:
 		energia = 0
 
 func ganha_energia(valor : int):
 	energia += valor
 	if energia > energia_max:
 		energia = energia_max
-	
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #
@@ -90,6 +89,10 @@ func get_bloqueio_forca():
 # Retorna a força maxima da defesa no ar.
 func get_no_ar_forca():
 	return no_ar_forca
+
+# Retorna a força maxima da energia.
+func get_energia_forca():
+	return energia_forca
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #
