@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dovcj2aiyhwuk"]
+[gd_scene load_steps=9 format=3 uid="uid://dovcj2aiyhwuk"]
 
 [ext_resource type="PackedScene" uid="uid://mjyhv5fjm7fc" path="res://Cenas/Quadra.tscn" id="1_8wqro"]
 [ext_resource type="PackedScene" uid="uid://bfymvsxinjbns" path="res://Cenas/Controlador.tscn" id="1_wjbi7"]
@@ -6,13 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://coy7olt5nnj62" path="res://Cenas/Bola.tscn" id="5_sxtxk"]
 [ext_resource type="PackedScene" uid="uid://cp7jj0443w6mw" path="res://Cenas/TimeAzul.tscn" id="6_ib5f2"]
 [ext_resource type="PackedScene" uid="uid://cmlxjygdfm1k6" path="res://Cenas/Visual.tscn" id="6_mo0vx"]
+[ext_resource type="PackedScene" uid="uid://b2bee3gthahqo" path="res://Cenas/TimeVermelho.tscn" id="7_nydxq"]
 [ext_resource type="PackedScene" uid="uid://ddgih3b1t7v7x" path="res://Cenas/Cesta.tscn" id="7_wmy34"]
 
 [node name="Main" type="Node"]
 
 [node name="Controlador" parent="." node_paths=PackedStringArray("time1", "time2", "cesta_esquerda", "cesta_direita") instance=ExtResource("1_wjbi7")]
 time1 = NodePath("../Time Azul")
-time2 = NodePath("../TimeAzul2")
+time2 = NodePath("../TimeVermelho")
 cesta_esquerda = NodePath("../Cestas/CestaEsq")
 cesta_direita = NodePath("../Cestas/CestaDir")
 
@@ -27,8 +28,7 @@ position = Vector2(544, 302)
 
 [node name="Time Azul" parent="." instance=ExtResource("6_ib5f2")]
 
-[node name="TimeAzul2" parent="." instance=ExtResource("6_ib5f2")]
-modulate = Color(1, 0, 0, 1)
+[node name="TimeVermelho" parent="." instance=ExtResource("7_nydxq")]
 
 [node name="Cestas" type="Node2D" parent="."]
 

@@ -30,10 +30,7 @@ position = Vector2(16, -16)
 
 [node name="Status" type="Node" parent="."]
 script = ExtResource("2_hlyrr")
-passe_forca = 40
-arremesso_forca = 70
-ataque_forca = 50
-defesa_forca = 30
+tipo_jogador = "Atacante"
 
 [node name="Acoes" type="Node" parent="." node_paths=PackedStringArray("primeira_acao")]
 script = ExtResource("3_b3cyp")

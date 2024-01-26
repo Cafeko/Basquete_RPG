@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2bee3gthahqo"]
+
+[ext_resource type="Script" path="res://Scripts/time_jogadores.gd" id="1_ugef2"]
+[ext_resource type="PackedScene" uid="uid://brudnwsbxiwbb" path="res://Cenas/Jogador.tscn" id="2_56jsa"]
+[ext_resource type="Texture2D" uid="uid://814w2epxyhnh" path="res://Assets/PNG/Red/characterRed (3).png" id="3_2yxv1"]
+
+[node name="TimeVermelho" type="Node2D"]
+script = ExtResource("1_ugef2")
+
+[node name="Jogador1" parent="." instance=ExtResource("2_56jsa")]
+
+[node name="Sprite2D" parent="Jogador1" index="1"]
+texture = ExtResource("3_2yxv1")
+
+[node name="Jogador2" parent="." instance=ExtResource("2_56jsa")]
+
+[node name="Sprite2D" parent="Jogador2" index="1"]
+texture = ExtResource("3_2yxv1")
+
+[node name="Jogador3" parent="." instance=ExtResource("2_56jsa")]
+
+[node name="Sprite2D" parent="Jogador3" index="1"]
+texture = ExtResource("3_2yxv1")
+
+[node name="Status" parent="Jogador3" index="3"]
+tipo_jogador = "Meio"
+
+[node name="Jogador4" parent="." instance=ExtResource("2_56jsa")]
+
+[node name="Sprite2D" parent="Jogador4" index="1"]
+texture = ExtResource("3_2yxv1")
+
+[node name="Status" parent="Jogador4" index="3"]
+tipo_jogador = "Defesa"
+
+[node name="Jogador5" parent="." instance=ExtResource("2_56jsa")]
+
+[node name="Sprite2D" parent="Jogador5" index="1"]
+texture = ExtResource("3_2yxv1")
+
+[node name="Status" parent="Jogador5" index="3"]
+tipo_jogador = "Defesa"
+
+[editable path="Jogador1"]
+[editable path="Jogador2"]
+[editable path="Jogador3"]
+[editable path="Jogador4"]
+[editable path="Jogador5"]

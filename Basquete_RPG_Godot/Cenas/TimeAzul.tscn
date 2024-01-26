@@ -12,8 +12,21 @@ script = ExtResource("1_ylaes")
 
 [node name="Jogador3" parent="." instance=ExtResource("1_lfia8")]
 
+[node name="Status" parent="Jogador3" index="3"]
+tipo_jogador = "Meio"
+
 [node name="Jogador4" parent="." instance=ExtResource("1_lfia8")]
+
+[node name="Status" parent="Jogador4" index="3"]
+tipo_jogador = "Defesa"
 
 [node name="Jogador5" parent="." instance=ExtResource("1_lfia8")]
 
+[node name="Status" parent="Jogador5" index="3"]
+tipo_jogador = "Defesa"
+
 [editable path="Jogador1"]
+[editable path="Jogador2"]
+[editable path="Jogador3"]
+[editable path="Jogador4"]
+[editable path="Jogador5"]

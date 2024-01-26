@@ -3,15 +3,66 @@
 # ------------------------------------------------------------------------------------------------ #
 extends Node
 
-@export var passe_forca : int = 1
-@export var arremesso_forca : int = 1
-@export var ataque_forca : int = 1
-@export var defesa_forca : int = 1
+@export var tipo_jogador : String = ""
+
+var passe_forca : int = 1
+var arremesso_forca : int = 1
+var ataque_forca : int = 1
+var defesa_forca : int = 1
+var bloqueio_forca : int = 1
+var no_ar_forca : int = 1
+var energia_forca : int = 1
+
+# 300 Max; passe, arremesso, ataque, defesa, bloqueio, no_ar, energia
+var tipo_status : Dictionary = {"Atacante" : [40,70,40,30,10,30,90], 
+								"Meio" :     [60,30,40,30,30,50,60],
+								"Defesa" :   [40,20,30,50,60,50,50]}
+
+var energia : int = 1
+var energia_max : int = 1
 
 var movimento_alcance : int = 4
 var passe_alcance : int = 6
 var arremesso_alcance : int = 9
 var roubo_bola_alcance : int = 1
+
+func _ready():
+	define_status(tipo_jogador)
+# ------------------------------------------------------------------------------------------------ #
+# - Status
+func define_status(tipo : String):
+	set_status(tipo_status[tipo])
+
+func set_status(lista_status : Array):
+	passe_forca = lista_status[0]
+	arremesso_forca = lista_status[1]
+	ataque_forca = lista_status[2]
+	defesa_forca = lista_status[3]
+	bloqueio_forca = lista_status[4]
+	no_ar_forca = lista_status[5]
+	energia_forca = lista_status[6]
+	forca_para_energia(energia_forca)
+# ------------------------------------------------------------------------------------------------ #
+
+# ------------------------------------------------------------------------------------------------ #
+# - Energia
+func forca_para_energia(forca : int):
+	energia = forca * 10
+	energia_max = energia
+
+func get_energia():
+	return energia
+
+func gasta_energia(valor : int):
+	energia -= valor
+	if energia < 0:
+		energia = 0
+
+func ganha_energia(valor : int):
+	energia += valor
+	if energia > energia_max:
+		energia = energia_max
+	
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #
@@ -31,6 +82,14 @@ func get_ataque_forca():
 # Retorna a força maxima da defesa.
 func get_defesa_forca():
 	return defesa_forca
+
+# Retorna a força maxima de bloqueio.
+func get_bloqueio_forca():
+	return bloqueio_forca
+
+# Retorna a força maxima da defesa no ar.
+func get_no_ar_forca():
+	return no_ar_forca
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #
