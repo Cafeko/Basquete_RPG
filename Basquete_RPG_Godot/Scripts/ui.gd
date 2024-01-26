@@ -67,6 +67,29 @@ func esconde_valores():
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #
+# - Valores
+func reset_valores():
+	valor_esq.text = ""
+	valor_dir.text = ""
+	valor_jogador = ""
+	valor_adversario = ""
+
+func set_valor_jogador(texto : String):
+	valor_jogador = texto
+
+func set_valor_adversario(texto : String):
+	valor_adversario = texto
+
+func atualiza_valores(jogador_na_esquerda : bool = true):
+	if jogador_na_esquerda:
+		valor_esq.text = valor_jogador
+		valor_dir.text = valor_adversario
+	else:
+		valor_esq.text = valor_adversario
+		valor_dir.text = valor_jogador
+# ------------------------------------------------------------------------------------------------ #
+
+# ------------------------------------------------------------------------------------------------ #
 func mouse_entrou():
 	Global.controlador.set_mouse_em_botao(true)
 
@@ -96,26 +119,7 @@ func on_botao_para_barra():
 
 func on_botao_roubar_bola():
 	Global.acao_escolhida.emit("RoubarBola")
+
+func on_botao_enterrar_bola():
+	Global.acao_escolhida.emit("Enterrar")
 # ------------------------------------------------------------------------------------------------ #
-
-# ------------------------------------------------------------------------------------------------ #
-# - Valores
-func reset_valores():
-	valor_esq.text = ""
-	valor_dir.text = ""
-	valor_jogador = ""
-	valor_adversario = ""
-
-func set_valor_jogador(texto : String):
-	valor_jogador = texto
-
-func set_valor_adversario(texto : String):
-	valor_adversario = texto
-
-func atualiza_valores(jogador_na_esquerda : bool = true):
-	if jogador_na_esquerda:
-		valor_esq.text = valor_jogador
-		valor_dir.text = valor_adversario
-	else:
-		valor_esq.text = valor_adversario
-		valor_dir.text = valor_jogador

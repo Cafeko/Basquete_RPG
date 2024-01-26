@@ -7,7 +7,6 @@
 script = ExtResource("1_j3g14")
 
 [node name="MenuAcoes" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,6 +63,11 @@ text = "Arremessar Bola"
 layout_direction = 1
 layout_mode = 2
 text = "Roubar Bola"
+
+[node name="BotaoEnterrarBola" type="Button" parent="MenuAcoes/ColorRect/Botoes"]
+layout_direction = 1
+layout_mode = 2
+text = "Enterrada"
 
 [node name="Confirmacao" type="Control" parent="."]
 visible = false
@@ -134,6 +138,7 @@ text = "Finalizar Turno"
 [node name="Valores" type="Control" parent="."]
 visible = false
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 25.0
@@ -227,6 +232,7 @@ text = "Parar"
 [connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoPassarBola" to="." method="on_botao_passar_bola"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoArremessarBola" to="." method="on_botao_arremessar_bola"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoRoubarBola" to="." method="on_botao_roubar_bola"]
+[connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoEnterrarBola" to="." method="on_botao_enterrar_bola"]
 [connection signal="button_up" from="Confirmacao/Botoes/BotaoConfirmar" to="." method="on_botao_confirmar"]
 [connection signal="mouse_entered" from="Confirmacao/Botoes/BotaoConfirmar" to="." method="mouse_entrou"]
 [connection signal="mouse_exited" from="Confirmacao/Botoes/BotaoConfirmar" to="." method="mouse_saiu"]

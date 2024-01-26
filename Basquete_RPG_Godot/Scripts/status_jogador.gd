@@ -14,7 +14,7 @@ var no_ar_forca : int = 1
 var energia_forca : int = 1
 
 # 300 Max; passe, arremesso, ataque, defesa, bloqueio, no_ar, energia
-var tipo_status : Dictionary = {"Atacante" : [40,70,40,30,10,30,90], 
+var tipo_status : Dictionary = {"Atacante" : [40,70,40,20,10,40,90],
 								"Meio" :     [60,30,40,30,30,50,60],
 								"Defesa" :   [40,20,30,50,60,50,50]}
 
@@ -116,3 +116,11 @@ func get_roubo_bola_numero_tiles():
 # Retorna um valor aleatorio para a defesa.
 func defesa():
 	return round(randf_range(defesa_forca/2.0, defesa_forca))
+
+# Retorna um valor aleatorio para a defesa no ar.
+func defesa_no_ar():
+	return round(randf_range(no_ar_forca/2.0, no_ar_forca))
+
+# Retorna um valor aleatorio para o bloqueio.
+func bloqueio():
+	return round(randf_range(bloqueio_forca/2.0, bloqueio_forca))

@@ -10,8 +10,8 @@ extends Acao
 var bola : Bola = null
 var alvo : Jogador
 var e_aliado : bool
-var forca : int
 var dificuldade : int
+var forca : int
 
 # Usado para preparar a ação antes de começar a executar ela.
 func faze_de_preparacao(info : Array):

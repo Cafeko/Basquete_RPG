@@ -29,6 +29,7 @@ func _ready():
 	acoes["PassarBola"].fim.connect(fim_passar_bola)
 	acoes["ArremessarBola"].fim.connect(fim_arremessar_bola)
 	acoes["RoubarBola"].fim.connect(fim_roubar_bola)
+	acoes["EnterrarBola"].fim.connect(fim_enterrar_bola)
 
 func _physics_process(delta):
 	# Fica executando constantemente a ação atual.
@@ -152,3 +153,17 @@ func fim_roubar_bola():
 	acao_atual = acoes["Parado"]
 	# Emite o sinal informando que a ação acabou.  
 	Global.acao_acabou.emit()
+
+# - EnterrarBola
+# Começa a ação de EnterrarBola.
+func comeca_enterrar_bola(bola : Bola, alvo : Cesta, dificuldade : int, forca : int):
+	acao_atual = acoes["EnterrarBola"]
+	acao_atual.faze_de_preparacao([bola, alvo, dificuldade, forca])
+
+# Finaliza a ação EnterrarBola.
+func fim_enterrar_bola():
+	com_bola = false
+	# Finaliza a acao_atual e muda ela para a ação "Parado".
+	acao_atual.finalizacao()
+	acao_atual = acoes["Parado"]
+	fez_acao()

@@ -66,4 +66,7 @@ func forca_e_acao():
 	elif acao == "RoubaBola":
 		forca = jogador.status.get_ataque_forca()
 		estado = "FazRoubarBola"
+	elif acao == "EnterraBola":
+		forca = jogador.status.get_no_ar_forca()
+		estado = "FazEnterraBola"
 	return [forca, estado]

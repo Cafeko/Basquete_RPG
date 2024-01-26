@@ -91,4 +91,4 @@ func Marcou_ponto(time : TimeJogadores, pontos : int):
 
 func print_pontos():
 	print(time1.name + " - " + str(pontuacao_time1))
-	print("Time2 - " + str(pontuacao_time2))
+	print(time2.name + " - " + str(pontuacao_time2))
