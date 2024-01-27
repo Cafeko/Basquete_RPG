@@ -7,7 +7,6 @@
 script = ExtResource("1_j3g14")
 
 [node name="MenuAcoes" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,50 +29,76 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.223529, 0.0117647, 0.239216, 0.662745)
 
-[node name="Botoes" type="HBoxContainer" parent="MenuAcoes/ColorRect"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuAcoes/ColorRect"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -76.5
-offset_top = -15.5
-offset_right = 76.5
-offset_bottom = 15.5
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Botoes" type="HBoxContainer" parent="MenuAcoes/ColorRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 8
 alignment = 1
 
-[node name="BotaoMover" type="Button" parent="MenuAcoes/ColorRect/Botoes"]
+[node name="BotaoMover" type="Button" parent="MenuAcoes/ColorRect/HBoxContainer/Botoes"]
+custom_minimum_size = Vector2(0, 50)
 layout_direction = 1
 layout_mode = 2
 text = "Mover"
 
-[node name="BotaoDescanso" type="Button" parent="MenuAcoes/ColorRect/Botoes"]
-layout_direction = 1
-layout_mode = 2
-text = "Descansar"
-
-[node name="BotaoPassarBola" type="Button" parent="MenuAcoes/ColorRect/Botoes"]
+[node name="BotaoPassarBola" type="Button" parent="MenuAcoes/ColorRect/HBoxContainer/Botoes"]
 layout_direction = 1
 layout_mode = 2
 text = "Passar Bola"
 
-[node name="BotaoArremessarBola" type="Button" parent="MenuAcoes/ColorRect/Botoes"]
+[node name="BotaoArremessarBola" type="Button" parent="MenuAcoes/ColorRect/HBoxContainer/Botoes"]
 layout_direction = 1
 layout_mode = 2
 text = "Arremessar Bola"
 
-[node name="BotaoRoubarBola" type="Button" parent="MenuAcoes/ColorRect/Botoes"]
+[node name="BotaoEnterrarBola" type="Button" parent="MenuAcoes/ColorRect/HBoxContainer/Botoes"]
+layout_direction = 1
+layout_mode = 2
+text = "Enterrada"
+
+[node name="BotaoRoubarBola" type="Button" parent="MenuAcoes/ColorRect/HBoxContainer/Botoes"]
 layout_direction = 1
 layout_mode = 2
 text = "Roubar Bola"
 
-[node name="BotaoEnterrarBola" type="Button" parent="MenuAcoes/ColorRect/Botoes"]
+[node name="BotaoDescanso" type="Button" parent="MenuAcoes/ColorRect/HBoxContainer/Botoes"]
 layout_direction = 1
 layout_mode = 2
-text = "Enterrada"
+text = "Descansar"
+
+[node name="FechaMenu" type="Control" parent="MenuAcoes/ColorRect/HBoxContainer"]
+layout_mode = 2
+
+[node name="BotaoFechar" type="Button" parent="MenuAcoes/ColorRect/HBoxContainer/FechaMenu"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+text = "X"
+
+[node name="StatusJogador" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Confirmacao" type="Control" parent="."]
 visible = false
@@ -234,12 +259,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Parar"
 
-[connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoMover" to="." method="on_botao_mover"]
-[connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoDescanso" to="." method="on_botao_descanso"]
-[connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoPassarBola" to="." method="on_botao_passar_bola"]
-[connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoArremessarBola" to="." method="on_botao_arremessar_bola"]
-[connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoRoubarBola" to="." method="on_botao_roubar_bola"]
-[connection signal="button_up" from="MenuAcoes/ColorRect/Botoes/BotaoEnterrarBola" to="." method="on_botao_enterrar_bola"]
+[connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoMover" to="." method="on_botao_mover"]
+[connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoPassarBola" to="." method="on_botao_passar_bola"]
+[connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoArremessarBola" to="." method="on_botao_arremessar_bola"]
+[connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoEnterrarBola" to="." method="on_botao_enterrar_bola"]
+[connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola" to="." method="on_botao_roubar_bola"]
+[connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDescanso" to="." method="on_botao_descanso"]
+[connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/FechaMenu/BotaoFechar" to="." method="on_botao_fechar"]
 [connection signal="button_up" from="Confirmacao/Botoes/BotaoConfirmar" to="." method="on_botao_confirmar"]
 [connection signal="mouse_entered" from="Confirmacao/Botoes/BotaoConfirmar" to="." method="mouse_entrou"]
 [connection signal="mouse_exited" from="Confirmacao/Botoes/BotaoConfirmar" to="." method="mouse_saiu"]

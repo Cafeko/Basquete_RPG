@@ -11,12 +11,12 @@ func tudo_pronto():
 # Executado quando entra no estado.
 func entrando():
 	# Deixa o menu de escolher ação visivel.
-	Global.ui.exibe_menu_acoes()
+	Global.ui.abre_menu_acoes()
 
 # Executado ao sair do estado.
 func saindo():
 	# Deixa o menu de escolher ação invisivel.
-	Global.ui.esconde_menu_acoes()
+	Global.ui.fecha_menu_acoes()
 
 # Muda o estado de acordo com a ação escolhida no menu de ações.
 func on_acao_escolhida(acao : String):
@@ -33,5 +33,7 @@ func on_acao_escolhida(acao : String):
 		novo_estado = "EnterradaAlvo"
 	elif acao == "Descansar":
 		novo_estado = "DescansarJogador"
+	elif acao == "FecharMenu":
+		novo_estado = "SelecionaJogador"
 	Global.controlador_estado_atual = novo_estado
 	muda_estado.emit(self.name, novo_estado)

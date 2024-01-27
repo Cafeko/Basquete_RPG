@@ -23,6 +23,9 @@ func entrando():
 	tile_jogador = Global.quadra.cord_para_tile(jogador.global_position)
 	caminho_tamanho = jogador.status.get_movimento_numero_tiles()
 	Global.ui.exibe_confirmacao()
+	# Destaca o jogador selecionado.
+	var tile_escolhido : Array[Vector2i] = [tile_jogador]
+	Global.visual.desenha_area(tile_escolhido)
 
 # Executando enquanto está no estado.
 func executando(_delta):
@@ -61,6 +64,7 @@ func executando(_delta):
 func saindo():
 	Global.ui.esconde_confirmacao()
 	Global.visual.limpar_linha()
+	Global.visual.limpa_area()
 
 # Verifica se o tile está proximo do tile da ponta do caminho.
 func distancia_valida(tile1 : Vector2i):

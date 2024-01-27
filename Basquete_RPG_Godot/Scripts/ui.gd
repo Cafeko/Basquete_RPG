@@ -12,6 +12,15 @@ extends CanvasLayer
 @onready var valor_esq = $Valores/HBoxContainer/Valor1
 @onready var valor_dir = $Valores/HBoxContainer/Valor2
 
+# Botoes do menu de ações:
+@onready var botao_mover = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoMover
+@onready var botao_passar_bola = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoPassarBola
+@onready var botao_arremessar_bola = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoArremessarBola
+@onready var botao_enterrar_bola = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoEnterrarBola
+@onready var botao_roubar_bola = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola
+@onready var botao_descanso = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDescanso
+
+
 var valor_jogador : String
 var valor_adversario : String
 
@@ -64,6 +73,44 @@ func exibe_valores():
 
 func esconde_valores():
 	valores.visible = false
+# ------------------------------------------------------------------------------------------------ #
+
+# ------------------------------------------------------------------------------------------------ #
+# - Menu Ações
+func abre_menu_acoes():
+	exibe_menu_acoes()
+	verifica_botoes_disponiveis()
+	pass
+
+func fecha_menu_acoes():
+	esconde_menu_acoes()
+
+func desabilita_botoes():
+	botao_mover.disabled = true
+	botao_passar_bola.disabled = true
+	botao_arremessar_bola.disabled = true
+	botao_enterrar_bola.disabled = true
+	botao_roubar_bola.disabled = true
+	botao_descanso.disabled = true
+
+func verifica_botoes_disponiveis():
+	desabilita_botoes()
+	var jogador : Jogador = Global.controlador.get_jogador_selecionado()
+	if jogador == null:
+		return
+	# Botão Mover:
+	botao_mover.disabled = !(jogador.consegue_mover_ou_descansar())
+	# Botão Passar Bola:
+	botao_passar_bola.disabled = !(jogador.consegue_passar_ou_arremessar())
+	# Botão Arremessar Bola:
+	botao_arremessar_bola.disabled = !(jogador.consegue_passar_ou_arremessar())
+	# Botão Enterrar Bola:
+	botao_enterrar_bola.disabled = !(jogador.consegue_enterrar())
+	# Botão Roubar Bola:
+	botao_roubar_bola.disabled = !(jogador.consegue_roubar())
+	# Botão Descanso:
+	botao_descanso.disabled = !(jogador.consegue_mover_ou_descansar())
+	pass
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #
@@ -125,3 +172,6 @@ func on_botao_enterrar_bola():
 
 func on_botao_descanso():
 	Global.acao_escolhida.emit("Descansar")
+
+func on_botao_fechar():
+	Global.acao_escolhida.emit("FecharMenu")
