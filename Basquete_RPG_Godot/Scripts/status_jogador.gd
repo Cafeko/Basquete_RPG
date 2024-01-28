@@ -53,6 +53,9 @@ func forca_para_energia(forca : int):
 func get_energia():
 	return energia
 
+func get_energia_max():
+	return energia_max
+
 func gasta_energia(valor : int):
 	energia -= valor
 	if energia <= 0:

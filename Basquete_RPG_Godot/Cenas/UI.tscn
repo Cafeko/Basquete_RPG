@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwfuoqq5vmp0g"]
+[gd_scene load_steps=4 format=3 uid="uid://cwfuoqq5vmp0g"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_j3g14"]
 [ext_resource type="PackedScene" uid="uid://clxo1v0xh0f63" path="res://Cenas/BarraForca.tscn" id="2_obh6j"]
+[ext_resource type="Script" path="res://Scripts/botao_menu.gd" id="2_rougo"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_j3g14")
 
 [node name="MenuAcoes" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,35 +51,40 @@ theme_override_constants/separation = 8
 alignment = 1
 
 [node name="BotaoMover" type="Button" parent="MenuAcoes/ColorRect/HBoxContainer/Botoes"]
-custom_minimum_size = Vector2(0, 50)
 layout_direction = 1
 layout_mode = 2
 text = "Mover"
+script = ExtResource("2_rougo")
 
 [node name="BotaoPassarBola" type="Button" parent="MenuAcoes/ColorRect/HBoxContainer/Botoes"]
 layout_direction = 1
 layout_mode = 2
 text = "Passar Bola"
+script = ExtResource("2_rougo")
 
 [node name="BotaoArremessarBola" type="Button" parent="MenuAcoes/ColorRect/HBoxContainer/Botoes"]
 layout_direction = 1
 layout_mode = 2
 text = "Arremessar Bola"
+script = ExtResource("2_rougo")
 
 [node name="BotaoEnterrarBola" type="Button" parent="MenuAcoes/ColorRect/HBoxContainer/Botoes"]
 layout_direction = 1
 layout_mode = 2
 text = "Enterrada"
+script = ExtResource("2_rougo")
 
 [node name="BotaoRoubarBola" type="Button" parent="MenuAcoes/ColorRect/HBoxContainer/Botoes"]
 layout_direction = 1
 layout_mode = 2
 text = "Roubar Bola"
+script = ExtResource("2_rougo")
 
 [node name="BotaoDescanso" type="Button" parent="MenuAcoes/ColorRect/HBoxContainer/Botoes"]
 layout_direction = 1
 layout_mode = 2
 text = "Descansar"
+script = ExtResource("2_rougo")
 
 [node name="FechaMenu" type="Control" parent="MenuAcoes/ColorRect/HBoxContainer"]
 layout_mode = 2
@@ -94,13 +101,14 @@ grow_horizontal = 0
 text = "X"
 
 [node name="StatusJogador" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 50.0
+offset_left = 200.0
 offset_top = 50.0
-offset_right = -50.0
+offset_right = -200.0
 offset_bottom = -145.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -111,9 +119,14 @@ anchors_preset = 0
 
 [node name="ColorRect" type="ColorRect" parent="StatusJogador/Control"]
 custom_minimum_size = Vector2(300, 455)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_right = 150.0
+offset_bottom = 455.0
+grow_horizontal = 2
 color = Color(0.223529, 0.0117647, 0.239216, 0.662745)
 
 [node name="HBoxContainer" type="VBoxContainer" parent="StatusJogador/Control/ColorRect"]
@@ -137,7 +150,6 @@ text = "Status"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="StatusJogador/Control/ColorRect/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 60
 
 [node name="LabelsNome" type="VBoxContainer" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -146,38 +158,38 @@ theme_override_constants/separation = 10
 
 [node name="Passe" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsNome"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "Passe"
 
 [node name="Arremesso" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsNome"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "Arremesso
 "
 
 [node name="Ataque" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsNome"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "Ataque"
 
 [node name="Defesa" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsNome"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "Defesa"
 
 [node name="Bloqueio" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsNome"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "Bloqueio"
 
 [node name="NoAr" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsNome"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Defesa No Ar"
+theme_override_font_sizes/font_size = 20
+text = "No Ar"
 
 [node name="Energia" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsNome"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "Energia"
 
 [node name="LabelsValores" type="VBoxContainer" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer"]
@@ -188,43 +200,43 @@ theme_override_constants/separation = 10
 [node name="Label" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsValores"]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "XX"
 
 [node name="Label2" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsValores"]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "XX"
 
 [node name="Label3" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsValores"]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "XX"
 
 [node name="Label4" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsValores"]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "XX"
 
 [node name="Label5" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsValores"]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "XX"
 
 [node name="Label6" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsValores"]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "XX"
 
 [node name="Label7" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsValores"]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "XX"
 
 [node name="AcoesNumero" type="Control" parent="StatusJogador/Control/ColorRect/HBoxContainer"]
@@ -409,11 +421,23 @@ size_flags_horizontal = 3
 text = "Parar"
 
 [connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoMover" to="." method="on_botao_mover"]
+[connection signal="mouse_entered" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoMover" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoMover" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoMover" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoMover" method="on_mouse_exited"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoPassarBola" to="." method="on_botao_passar_bola"]
+[connection signal="mouse_entered" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoPassarBola" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoPassarBola" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoPassarBola" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoPassarBola" method="on_mouse_exited"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoArremessarBola" to="." method="on_botao_arremessar_bola"]
+[connection signal="mouse_entered" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoArremessarBola" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoArremessarBola" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoArremessarBola" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoArremessarBola" method="on_mouse_exited"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoEnterrarBola" to="." method="on_botao_enterrar_bola"]
+[connection signal="mouse_entered" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoEnterrarBola" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoEnterrarBola" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoEnterrarBola" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoEnterrarBola" method="on_mouse_exited"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola" to="." method="on_botao_roubar_bola"]
+[connection signal="mouse_entered" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola" method="on_mouse_exited"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDescanso" to="." method="on_botao_descanso"]
+[connection signal="mouse_entered" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDescanso" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDescanso" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDescanso" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDescanso" method="on_mouse_exited"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/FechaMenu/BotaoFechar" to="." method="on_botao_fechar"]
 [connection signal="button_up" from="Confirmacao/Botoes/BotaoConfirmar" to="." method="on_botao_confirmar"]
 [connection signal="mouse_entered" from="Confirmacao/Botoes/BotaoConfirmar" to="." method="mouse_entrou"]

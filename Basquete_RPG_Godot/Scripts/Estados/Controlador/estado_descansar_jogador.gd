@@ -21,7 +21,7 @@ func entrando():
 	jogador = Global.controlador.get_jogador_selecionado()
 	tile_jogador = Global.quadra.cord_para_tile(jogador.global_position)
 	numero_acoes = jogador.get_acoes_disponiveis()
-	energia_recuperada = jogador.status.get_energia_forca()
+	energia_recuperada = jogador.ganho_de_energia()
 
 # Executando enquanto está no estado.
 func executando(_delta):

@@ -10,10 +10,13 @@ func tudo_pronto():
 
 # Executado quando entra no estado.
 func entrando():
+	# Define o lado doque o status vai aparecer.
+	var jogador = Global.controlador.get_jogador_selecionado()
+	var na_esq = Global.controlador.time_na_esquerda(jogador.get_time())
+	# Deixa os status do jogador selecionado visivel.
+	Global.ui.abre_status_jogador(na_esq)
 	# Deixa o menu de escolher ação visivel.
 	Global.ui.abre_menu_acoes()
-	# Deixa os status do jogador selecionado visivel.
-	Global.ui.abre_status_jogador()
 
 # Executado ao sair do estado.
 func saindo():

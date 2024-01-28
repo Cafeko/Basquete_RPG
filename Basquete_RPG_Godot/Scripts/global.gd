@@ -26,3 +26,5 @@ signal finalizar_turno
 signal para_barra_forca
 signal roubou_bola
 signal enterrou_bola
+signal entrou_botao_menu
+signal saiu_botao_menu

@@ -12,6 +12,7 @@ extends CanvasLayer
 @onready var valor_esq = $Valores/HBoxContainer/Valor1
 @onready var valor_dir = $Valores/HBoxContainer/Valor2
 @onready var status_jogador = $StatusJogador
+@onready var status_jogador_posicao = $StatusJogador/Control
 
 # Botoes do menu de ações:
 @onready var botao_mover = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoMover
@@ -35,6 +36,8 @@ var valor_adversario : String
 
 func _ready():
 	Global.ui = self
+	Global.entrou_botao_menu.connect(mouse_entrou_botao_menu)
+	Global.saiu_botao_menu.connect(mouse_saiu_botao_menu)
 	esconde_menu_acoes()
 	esconde_confirmacao()
 	esconde_fim_turno()
@@ -130,11 +133,95 @@ func verifica_botoes_disponiveis():
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #
+# - Mouse nos botões do menu de ações:
+func mouse_entrou_botao_menu(botao : Button):
+	if botao.disabled == false:
+		var jogador = Global.controlador.get_jogador_selecionado()
+		if botao.name == "BotaoMover":
+			# Ação perdida.
+			set_cor_em("Acoes", Color.RED)
+			set_valor_em("Acoes", jogador.get_acoes_disponiveis() - 1)
+		elif botao.name == "BotaoPassarBola":
+			# Status usado.
+			set_cor_em("Passe", Color.DEEP_SKY_BLUE)
+			# Energia perdida.
+			var energia_atual = jogador.status.get_energia()
+			var perda_max = jogador.status.get_passe_forca()
+			var nova_energia = energia_atual - perda_max
+			if nova_energia < 0:
+				nova_energia = 0
+			set_cor_em("Energia", Color.RED)
+			set_valor_em("Energia", str(nova_energia) + " - " + str(energia_atual))
+			# Ação perdida.
+			set_cor_em("Acoes", Color.RED)
+			set_valor_em("Acoes", jogador.get_acoes_disponiveis() - 1)
+		elif botao.name == "BotaoArremessarBola":
+			# Status usado.
+			set_cor_em("Arremesso", Color.DEEP_SKY_BLUE)
+			# Energia perdida.
+			var energia_atual = jogador.status.get_energia()
+			var perda_max = jogador.status.get_arremesso_forca()
+			var nova_energia = energia_atual - perda_max
+			if nova_energia < 0:
+				nova_energia = 0
+			set_cor_em("Energia", Color.RED)
+			set_valor_em("Energia", str(nova_energia) + " - " + str(energia_atual))
+			# Ação perdida.
+			set_cor_em("Acoes", Color.RED)
+			set_valor_em("Acoes", jogador.get_acoes_disponiveis() - 1)
+		elif botao.name == "BotaoEnterrarBola":
+			# Status usado.
+			set_cor_em("NoAr", Color.DEEP_SKY_BLUE)
+			# Energia perdida.
+			var energia_atual = jogador.status.get_energia()
+			var perda_max = jogador.status.get_no_ar_forca()
+			var nova_energia = energia_atual - perda_max
+			if nova_energia < 0:
+				nova_energia = 0
+			set_cor_em("Energia", Color.RED)
+			set_valor_em("Energia", str(nova_energia) + " - " + str(energia_atual))
+			# Ação perdida.
+			set_cor_em("Acoes", Color.RED)
+			set_valor_em("Acoes", jogador.get_acoes_disponiveis() - 1)
+		elif botao.name == "BotaoRoubarBola":
+			# Status usado.
+			set_cor_em("Ataque", Color.DEEP_SKY_BLUE)
+			# Energia perdida.
+			var energia_atual = jogador.status.get_energia()
+			var perda_max = jogador.status.get_ataque_forca()
+			var nova_energia = energia_atual - perda_max
+			if nova_energia < 0:
+				nova_energia = 0
+			set_cor_em("Energia", Color.RED)
+			set_valor_em("Energia", str(nova_energia) + " - " + str(energia_atual))
+		elif botao.name == "BotaoDescanso":
+			# Ganha energia.
+			var energia_max = jogador.status.get_energia_max()
+			var energia_atual = jogador.status.get_energia()
+			var ganho = jogador.ganho_de_energia() * jogador.get_acoes_disponiveis()
+			var nova_energia = energia_atual + ganho
+			if nova_energia > energia_max:
+				nova_energia = energia_max
+			set_cor_em("Energia", Color.GREEN)
+			set_valor_em("Energia", nova_energia)
+			# Ação perdida.
+			set_cor_em("Acoes", Color.RED)
+			set_valor_em("Acoes", 0)
+
+func mouse_saiu_botao_menu(botao : Button):
+	if botao.disabled == false:
+		set_todos_status_branco()
+		set_valores_do_jogador()
+# ------------------------------------------------------------------------------------------------ #
+
+# ------------------------------------------------------------------------------------------------ #
 # - Status
-func abre_status_jogador():
+func abre_status_jogador(lado_esquerdo : bool = true):
 	exibe_status_jogador()
+	set_todos_status_branco()
 	set_valores_do_jogador()
-	pass
+	set_status_do_jogador()
+	set_lado_status(lado_esquerdo)
 
 func fecha_status_jogador():
 	esconde_status_jogador()
@@ -153,6 +240,50 @@ func prepara_status():
 	for label in status_valores.get_children():
 		status_valores_lista.append(label)
 	status_valores_lista.append(status_acoes_valor)
+
+func set_lado_status(esqerda : bool = true):
+	if esqerda:
+		status_jogador_posicao.set_anchors_preset(Control.PRESET_TOP_LEFT, true)
+	else:
+		status_jogador_posicao.set_anchors_preset(Control.PRESET_TOP_RIGHT, true)
+
+func set_todos_status_branco():
+	for chave in status_index_dict.keys():
+		var indice = status_index_dict[chave]
+		status_nomes_lista[indice].set("theme_override_colors/font_color",Color.WHITE)
+		status_valores_lista[indice].set("theme_override_colors/font_color",Color.WHITE)
+
+func set_status_branco():
+	for chave in status_index_dict.keys():
+		if chave != "Acoes" and chave != "Energia":
+			var indice = status_index_dict[chave]
+			status_nomes_lista[indice].set("theme_override_colors/font_color",Color.WHITE)
+			status_valores_lista[indice].set("theme_override_colors/font_color",Color.WHITE)
+
+func set_status_vermelho():
+	for chave in status_index_dict.keys():
+		if chave != "Acoes" and chave != "Energia":
+			var indice = status_index_dict[chave]
+			status_nomes_lista[indice].set("theme_override_colors/font_color",Color.RED)
+			status_valores_lista[indice].set("theme_override_colors/font_color",Color.RED)
+
+func set_cor_em(status_nome : String, cor : Color):
+	var indice = status_index_dict[status_nome]
+	status_nomes_lista[indice].set("theme_override_colors/font_color",cor)
+	status_valores_lista[indice].set("theme_override_colors/font_color",cor)
+
+func set_valor_em(status_nome : String, valor):
+	var indice = status_index_dict[status_nome]
+	status_valores_lista[indice].text = str(valor)
+
+func set_status_do_jogador():
+	var jogador : Jogador = Global.controlador.get_jogador_selecionado()
+	if jogador == null:
+		return
+	# Define cor de acordo com estado do jogador.
+	set_status_branco()
+	if not jogador.tem_acoes():
+		set_cor_em("Acoes", Color.DIM_GRAY)
 
 func set_valores_do_jogador():
 	var jogador : Jogador = Global.controlador.get_jogador_selecionado()
@@ -254,3 +385,7 @@ func on_botao_descanso():
 
 func on_botao_fechar():
 	Global.acao_escolhida.emit("FecharMenu")
+
+
+func on_mouse_entered():
+	pass # Replace with function body.
