@@ -58,17 +58,19 @@ func verifica_proximidades(tile):
 	alvo = Global.controlador.verifica_ponto(cords)
 	if alvo is Cesta:
 		cesta = alvo
-	# - Adversarios
-	# Verifica Cima:
-	cords = Global.quadra.tile_para_cord(tile + Vector2i.UP)
-	alvo = Global.controlador.verifica_ponto(cords)
-	if alvo is Jogador and not Global.controlador.jogador_no_time_do_turno(alvo):
-		jogadores_proximos.append(alvo)
-	# Verifica Baixo:
-	cords = Global.quadra.tile_para_cord(tile + Vector2i.DOWN)
-	alvo = Global.controlador.verifica_ponto(cords)
-	if alvo is Jogador and not Global.controlador.jogador_no_time_do_turno(alvo):
-		jogadores_proximos.append(alvo)
+	if cesta != null:
+		var time_ganha_ponto = cesta.time_ganha_ponto
+		# - Adversarios
+		# Verifica Cima:
+		cords = Global.quadra.tile_para_cord(tile + Vector2i.UP)
+		alvo = Global.controlador.verifica_ponto(cords)
+		if alvo is Jogador and not Global.controlador.jogador_no_time_do_turno(alvo) and alvo.time != time_ganha_ponto:
+			jogadores_proximos.append(alvo)
+		# Verifica Baixo:
+		cords = Global.quadra.tile_para_cord(tile + Vector2i.DOWN)
+		alvo = Global.controlador.verifica_ponto(cords)
+		if alvo is Jogador and not Global.controlador.jogador_no_time_do_turno(alvo) and alvo.time != time_ganha_ponto:
+			jogadores_proximos.append(alvo)
 	
 func on_confirmar_acao(estado_alvo : String):
 	if self.name == estado_alvo:

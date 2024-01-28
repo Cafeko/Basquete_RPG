@@ -65,7 +65,7 @@ func ganha_energia(valor : int):
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #
-# - Força
+# - Get força maxima
 # Retorna a força maxima do passe.
 func get_passe_forca():
 	return passe_forca
@@ -118,12 +118,12 @@ func get_roubo_bola_numero_tiles():
 # - Defesas
 # Retorna um valor aleatorio para a defesa.
 func defesa():
-	return round(randf_range(defesa_forca/2.0, defesa_forca))
+	return round(randf_range(get_defesa_forca()/2.0, get_defesa_forca()))
 
 # Retorna um valor aleatorio para a defesa no ar.
 func defesa_no_ar():
-	return round(randf_range(no_ar_forca/2.0, no_ar_forca))
+	return round(randf_range(get_no_ar_forca()/2.0, get_no_ar_forca()))
 
 # Retorna um valor aleatorio para o bloqueio.
 func bloqueio():
-	return round(randf_range(bloqueio_forca/2.0, bloqueio_forca))
+	return round(randf_range(get_bloqueio_forca()/2.0, get_bloqueio_forca()))

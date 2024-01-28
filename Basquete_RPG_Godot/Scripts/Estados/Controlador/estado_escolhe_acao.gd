@@ -12,11 +12,15 @@ func tudo_pronto():
 func entrando():
 	# Deixa o menu de escolher ação visivel.
 	Global.ui.abre_menu_acoes()
+	# Deixa os status do jogador selecionado visivel.
+	Global.ui.abre_status_jogador()
 
 # Executado ao sair do estado.
 func saindo():
 	# Deixa o menu de escolher ação invisivel.
 	Global.ui.fecha_menu_acoes()
+	# Deixa os status do jogador selecionado invisivel.
+	Global.ui.fecha_status_jogador()
 
 # Muda o estado de acordo com a ação escolhida no menu de ações.
 func on_acao_escolhida(acao : String):

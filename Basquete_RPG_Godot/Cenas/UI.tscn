@@ -94,11 +94,160 @@ grow_horizontal = 0
 text = "X"
 
 [node name="StatusJogador" type="Control" parent="."]
-visible = false
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -145.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="StatusJogador"]
+layout_mode = 1
 anchors_preset = 0
+
+[node name="ColorRect" type="ColorRect" parent="StatusJogador/Control"]
+custom_minimum_size = Vector2(300, 455)
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+color = Color(0.223529, 0.0117647, 0.239216, 0.662745)
+
+[node name="HBoxContainer" type="VBoxContainer" parent="StatusJogador/Control/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 20.0
+offset_right = -15.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Status"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusJogador/Control/ColorRect/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="LabelsNome" type="VBoxContainer" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Passe" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsNome"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Passe"
+
+[node name="Arremesso" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsNome"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Arremesso
+"
+
+[node name="Ataque" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsNome"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Ataque"
+
+[node name="Defesa" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsNome"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Defesa"
+
+[node name="Bloqueio" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsNome"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Bloqueio"
+
+[node name="NoAr" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsNome"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Defesa No Ar"
+
+[node name="Energia" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsNome"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Energia"
+
+[node name="LabelsValores" type="VBoxContainer" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsValores"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 25
+text = "XX"
+
+[node name="Label2" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsValores"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 25
+text = "XX"
+
+[node name="Label3" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsValores"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 25
+text = "XX"
+
+[node name="Label4" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsValores"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 25
+text = "XX"
+
+[node name="Label5" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsValores"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 25
+text = "XX"
+
+[node name="Label6" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsValores"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 25
+text = "XX"
+
+[node name="Label7" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/HBoxContainer/LabelsValores"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 25
+text = "XX"
+
+[node name="AcoesNumero" type="Control" parent="StatusJogador/Control/ColorRect/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusJogador/Control/ColorRect/HBoxContainer/AcoesNumero"]
+layout_mode = 2
+offset_top = -4.0
+offset_right = 270.0
+offset_bottom = -4.0
+
+[node name="Acoes" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/AcoesNumero/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 25
+text = "Ações Disponiveis"
+
+[node name="Label8" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/AcoesNumero/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 25
+text = "XX"
 
 [node name="Confirmacao" type="Control" parent="."]
 visible = false

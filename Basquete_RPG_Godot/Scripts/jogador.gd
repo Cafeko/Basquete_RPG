@@ -57,7 +57,7 @@ func consegue_passar_ou_arremessar():
 	return (tem_acoes() and com_bola)
 
 func consegue_enterrar():
-	if com_bola:
+	if tem_acoes() and com_bola:
 		var tile = Global.quadra.cord_para_tile(self.global_position)
 		# Verifica esquerda:
 		var cords = Global.quadra.tile_para_cord(tile + Vector2i.LEFT)
