@@ -92,6 +92,20 @@ func get_potencia_atual():
 func get_area_atual():
 	return area_atual
 
+func get_cor_area_atual():
+	if area_atual == "Azul":
+		return Color('007dcc')
+	elif area_atual == "VerdeEscuro":
+		return Color('179200')
+	elif area_atual == "VerdeClaro":
+		return Color('a2ed00')
+	elif area_atual == "Amarelo":
+		return Color('f4d100')
+	elif area_atual == "Laranja":
+		return Color('f66700')
+	elif area_atual == "Vermelho":
+		return Color('ff0000')
+
 # Faz a barra comaçar a mover.
 func comeca_mover():
 	mover = true

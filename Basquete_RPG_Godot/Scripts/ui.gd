@@ -45,6 +45,7 @@ func _ready():
 	reset_valores()
 	esconde_valores()
 	esconde_status_jogador()
+	reset_valores()
 	prepara_status()
 # ------------------------------------------------------------------------------------------------ #
 
@@ -330,6 +331,17 @@ func reset_valores():
 	valor_dir.text = ""
 	valor_jogador = ""
 	valor_adversario = ""
+	set_valores_branco()
+
+func set_valores_branco():
+	valor_esq.set("theme_override_colors/font_color", Color.WHITE)
+	valor_dir.set("theme_override_colors/font_color", Color.WHITE)
+
+func set_cor_do_valor(cor : Color, jogador_na_esquerda : bool = true):
+	if jogador_na_esquerda:
+		valor_esq.set("theme_override_colors/font_color", cor)
+	else:
+		valor_dir.set("theme_override_colors/font_color", cor)
 
 func set_valor_jogador(texto : String):
 	valor_jogador = texto
