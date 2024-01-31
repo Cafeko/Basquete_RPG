@@ -26,10 +26,14 @@ func faze_de_preparacao(info : Array):
 
 # Usado para fazer a ação acontecer (é chamado constantemente).
 func executando(_delta):
+	# Gasta energia.
+	corpo.status.gasta_energia(forca)
+	# Prepara bola.
 	bola.set_alvo(alvo)
 	bola.set_tile_alvo(tile_jogador) # Tile vai ser evitado se a bola rebater.
 	bola.set_forca(forca)
 	bola.set_pontos(2)
+	# Prepara cesta.
 	alvo.set_dificuldade(dificuldade)
 	Global.enterrou_bola.emit()
 	fim.emit()

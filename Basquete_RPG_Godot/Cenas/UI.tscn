@@ -101,7 +101,6 @@ grow_horizontal = 0
 text = "X"
 
 [node name="StatusJogador" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -260,6 +259,28 @@ layout_mode = 2
 size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 25
 text = "XX"
+
+[node name="Cansado" type="Control" parent="StatusJogador/Control/ColorRect/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="StatusJogador/Control/ColorRect/HBoxContainer/Cansado"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -17.5
+offset_right = 107.0
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 40
+text = "Cansado!"
+horizontal_alignment = 1
 
 [node name="Confirmacao" type="Control" parent="."]
 visible = false

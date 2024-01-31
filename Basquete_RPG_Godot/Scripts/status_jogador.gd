@@ -20,6 +20,7 @@ var tipo_status : Dictionary = {"Atacante" : [40,70,40,20,10,40,90],
 
 var energia : int = 1
 var energia_max : int = 1
+var cansado : bool = false
 
 var movimento_alcance : int = 4
 var passe_alcance : int = 6
@@ -47,8 +48,8 @@ func set_status(lista_status : Array):
 # ------------------------------------------------------------------------------------------------ #
 # - Energia
 func forca_para_energia(forca : int):
-	energia = forca * 10
-	energia_max = energia
+	energia_max = forca * 10
+	energia = energia_max
 
 func get_energia():
 	return energia
@@ -56,13 +57,22 @@ func get_energia():
 func get_energia_max():
 	return energia_max
 
+func ta_cansado():
+	return cansado
+
+func ganho_de_energia():
+	return energia_forca
+
 func gasta_energia(valor : int):
 	energia -= valor
 	if energia <= 0:
 		energia = 0
+		cansado = true
 
 func ganha_energia(valor : int):
 	energia += valor
+	if cansado and energia >= round(energia_max/2.0):
+		cansado = false
 	if energia > energia_max:
 		energia = energia_max
 # ------------------------------------------------------------------------------------------------ #
@@ -71,27 +81,45 @@ func ganha_energia(valor : int):
 # - Get força maxima
 # Retorna a força maxima do passe.
 func get_passe_forca():
-	return passe_forca
+	if cansado:
+		return round(passe_forca/2.0)
+	else:
+		return passe_forca
 
 # Retorna a força maxima do arremesso.
 func get_arremesso_forca():
-	return arremesso_forca
+	if cansado:
+		return round(arremesso_forca/2.0)
+	else:
+		return arremesso_forca
 
 # Retorna a força maxima do ataque.
 func get_ataque_forca():
-	return ataque_forca
+	if cansado:
+		return round(ataque_forca/2.0)
+	else:
+		return ataque_forca
 
 # Retorna a força maxima da defesa.
 func get_defesa_forca():
-	return defesa_forca
+	if cansado:
+		return round(defesa_forca/2.0)
+	else:
+		return defesa_forca
 
 # Retorna a força maxima de bloqueio.
 func get_bloqueio_forca():
-	return bloqueio_forca
+	if cansado:
+		return round(bloqueio_forca/2.0)
+	else:
+		return bloqueio_forca
 
 # Retorna a força maxima da defesa no ar.
 func get_no_ar_forca():
-	return no_ar_forca
+	if cansado:
+		return round(no_ar_forca/2.0)
+	else:
+		return no_ar_forca
 
 # Retorna a força maxima da energia.
 func get_energia_forca():

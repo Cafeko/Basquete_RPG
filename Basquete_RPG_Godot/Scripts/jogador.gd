@@ -46,10 +46,6 @@ func Ajustar_no_tile():
 	# Deixa o tile que está como não navegavel.
 	var tile = Global.quadra.cord_para_tile(self.global_position)
 	Global.quadra.set_tile_nao_navegavel(tile)
-
-# Retorna quanto de energia o jogador ganha por ação de descanso.
-func ganho_de_energia():
-	return status.get_energia_forca()
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #

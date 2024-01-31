@@ -25,12 +25,16 @@ func faze_de_preparacao(info : Array):
 func executando(_delta):
 	# Alvo é aliado: apenas pega a bola.
 	if e_aliado:
+		# Gasta energia.
+		corpo.status.gasta_energia(round(corpo.status.get_ataque_forca()/2.0))
 		Global.roubou_bola.emit(corpo) # Sinal que faz a bola ir de um jogador para outro.
 		alvo.perdeu_bola()
 		corpo.com_bola = true
 	# Alvo não é aliado: disputa pela bola, ganhando se a força for maior que a dificuldade, que é 
 	# baseada na defesa do adversario).
 	else:
+		# Gasta energia.
+		corpo.status.gasta_energia(forca)
 		# Se perder:
 		if forca < dificuldade:
 			corpo.fica_atordoado() # Deixa jogador atordoado ao perder para o alvo. 
