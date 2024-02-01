@@ -4,6 +4,8 @@
 extends Node
 class_name Acao
 
+var pause : bool = false
+
 signal fim
 
 # Usado para preparar a ação antes de começar a executar ela.
@@ -16,4 +18,12 @@ func executando(_delta):
 
 # Usado pra após o fim da ação para resetar as variaveis.
 func finalizacao():
+	pass
+
+# Pausa a ação
+func pausar():
+	pass
+
+# Continua a ação.
+func continuar():
 	pass

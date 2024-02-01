@@ -1,0 +1,115 @@
+[gd_scene load_steps=2 format=3 uid="uid://clxo1v0xh0f63"]
+
+[ext_resource type="Script" path="res://Scripts/barra_forca.gd" id="1_r3tft"]
+
+[node name="BarraForca" type="Node2D"]
+script = ExtResource("1_r3tft")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 50.0
+offset_bottom = 210.0
+color = Color(0.239216, 0.239216, 0.239216, 1)
+
+[node name="Control" type="Control" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="ColorRect" parent="ColorRect/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 100)
+color = Color(0, 0, 0, 1)
+
+[node name="Vermelho" type="ColorRect" parent="ColorRect/Control/Container"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Laranja" type="ColorRect" parent="ColorRect/Control/Container"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.964706, 0.403922, 0, 1)
+
+[node name="Amarelo" type="ColorRect" parent="ColorRect/Control/Container"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.956863, 0.819608, 0, 1)
+
+[node name="VerdeClaro" type="ColorRect" parent="ColorRect/Control/Container"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.635294, 0.929412, 0, 1)
+
+[node name="VerdeEscuro" type="ColorRect" parent="ColorRect/Control/Container"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0901961, 0.572549, 0, 1)
+
+[node name="Azul" type="ColorRect" parent="ColorRect/Control/Container"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.490196, 0.8, 1)
+
+[node name="Barra" type="ColorRect" parent="ColorRect/Control"]
+custom_minimum_size = Vector2(40, 4)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -1.0
+offset_right = 20.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 2)

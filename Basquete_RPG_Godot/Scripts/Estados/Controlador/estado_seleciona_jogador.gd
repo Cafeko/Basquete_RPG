@@ -11,6 +11,7 @@ func tudo_pronto():
 func entrando():
 	Global.controlador.set_jogador_selecionado(null)
 	Global.controlador.set_jogador_selecionado2(null)
+	Global.controlador.limpa_info()
 	Global.ui.exibe_fim_turno()
 
 # Executando enquanto está no estado.
@@ -20,7 +21,7 @@ func executando(_delta):
 	if Input.is_action_just_pressed("mouse_esq"):
 		var posicao_mouse = Global.controlador.get_global_mouse_position()
 		var corpo = Global.controlador.verifica_ponto(posicao_mouse)
-		if corpo is Jogador and Global.controlador.jogador_no_time_do_turno(corpo) and corpo.tem_acoes():
+		if corpo is Jogador and Global.controlador.jogador_no_time_do_turno(corpo):
 			Global.controlador.set_jogador_selecionado(corpo)
 			muda_estado.emit(self.name, "EscolheAcao")
 

@@ -10,6 +10,7 @@ var ui
 var bola : Bola
 var visual
 var controlador_estado_atual : String
+var barra_forca
 
 # Sinais:
 signal acao_escolhida
@@ -22,4 +23,8 @@ signal cancelar_acao
 signal acertou_cesta
 signal errou_cesta
 signal finalizar_turno
-signal jogador_pega_bola
+signal para_barra_forca
+signal roubou_bola
+signal enterrou_bola
+signal entrou_botao_menu
+signal saiu_botao_menu

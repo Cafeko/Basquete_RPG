@@ -23,11 +23,12 @@ func executando(delta):
 	bola.global_position = bola.global_position.move_toward(cord_alvo, delta * velocidade_rebate)
 	# Quando chegar no alvo:
 	if bola.global_position == cord_alvo:
-		# Se alvo for jogador: alvo pega a bola.
-		if alvo is Jogador:
-			alvo.comeca_pegar_bola(bola)
-			muda_estado.emit(self.name, "Parada")
-		# Se não: bola cai no chão.
-		else:
+		# Se alvo é nulo: bola cai no chão.
+		if alvo == null:
 			Global.acao_acabou.emit()
+			Global.finalizar_turno.emit()
+			muda_estado.emit(self.name, "Parada")
+		# Se alvo for jogador: alvo pega a bola.
+		elif alvo is Jogador:
+			alvo.comeca_pegar_bola(bola)
 			muda_estado.emit(self.name, "Parada")

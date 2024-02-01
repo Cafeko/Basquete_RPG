@@ -24,6 +24,8 @@ func executando(_delta):
 	bola.set_alvo(alvo)
 	bola.set_tile_alvo(tile_alvo)
 	bola.set_forca(forca)
+	# Gasta energia.
+	corpo.status.gasta_energia(forca)
 	# Define a quantidade de pontos que o arremesso vai dar e a dificuldade dele de acordo com a
 	# posição do jogador em relação ao alvo (cesta).
 	if alvo is Cesta:

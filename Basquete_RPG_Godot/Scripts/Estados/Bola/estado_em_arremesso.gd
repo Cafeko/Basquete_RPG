@@ -18,7 +18,7 @@ func entrando():
 	if alvo == null or alvo is Jogador:
 		tile_alvo = bola.get_tile_alvo()
 		cord_alvo = Global.quadra.tile_para_cord(tile_alvo)
-	# Pega a posição da cesta que a bola tem que ir e pega quantos pontos esse arremesso bai dar se
+	# Pega a posição da cesta que a bola tem que ir e pega quantos pontos esse arremesso vai dar se
 	# a bola entrar na cesta.
 	elif alvo is Cesta:
 		cord_alvo = alvo.centro.global_position
@@ -33,6 +33,7 @@ func executando(delta):
 		# Se alvo for vazio: bola para no chão acabando a ação de passe (futuramente vai acabar o turno).
 		if alvo == null:
 			Global.acao_acabou.emit()
+			Global.finalizar_turno.emit()
 			muda_estado.emit(self.name, "Parada")
 		# Se alvo for um jogador: jogador pega a bola.
 		elif alvo is Jogador:

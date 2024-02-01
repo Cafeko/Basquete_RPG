@@ -24,6 +24,8 @@ func executando(_delta):
 	bola.set_alvo(alvo)
 	bola.set_tile_alvo(tile_alvo)
 	bola.set_forca(forca)
+	# Gasta energia.
+	corpo.status.gasta_energia(forca)
 	# Emite um sinal que faz a bola mudar seu estado de "ComJogador" para "EmPasse".
 	Global.passou_bola.emit()
 	fim.emit()

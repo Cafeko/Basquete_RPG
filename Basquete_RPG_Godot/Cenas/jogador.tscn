@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://brudnwsbxiwbb"]
+[gd_scene load_steps=14 format=3 uid="uid://brudnwsbxiwbb"]
 
 [ext_resource type="Texture2D" uid="uid://kvxxsjm5j4jb" path="res://Assets/PNG/Blue/characterBlue (8).png" id="1_5q6r0"]
 [ext_resource type="Script" path="res://Scripts/jogador.gd" id="1_8s316"]
@@ -9,6 +9,9 @@
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_passar_bola.gd" id="6_3xc18"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_pegar_bola.gd" id="6_pg4gc"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_arremessar_bola.gd" id="9_67p5s"]
+[ext_resource type="Script" path="res://Scripts/Acoes/acao_roubar_bola.gd" id="10_e8psy"]
+[ext_resource type="Script" path="res://Scripts/Acoes/acao_enterrar_bola.gd" id="11_xjjl4"]
+[ext_resource type="Script" path="res://Scripts/Acoes/acao_descansar.gd" id="12_qhhqj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_laouc"]
 size = Vector2(64, 64)
@@ -29,8 +32,7 @@ position = Vector2(16, -16)
 
 [node name="Status" type="Node" parent="."]
 script = ExtResource("2_hlyrr")
-passe_forca = 10
-arremesso_forca = 50
+tipo_jogador = "Atacante"
 
 [node name="Acoes" type="Node" parent="." node_paths=PackedStringArray("primeira_acao")]
 script = ExtResource("3_b3cyp")
@@ -54,4 +56,16 @@ corpo = NodePath("../..")
 
 [node name="ArremessarBola" type="Node" parent="Acoes" node_paths=PackedStringArray("corpo")]
 script = ExtResource("9_67p5s")
+corpo = NodePath("../..")
+
+[node name="RoubarBola" type="Node" parent="Acoes" node_paths=PackedStringArray("corpo")]
+script = ExtResource("10_e8psy")
+corpo = NodePath("../..")
+
+[node name="EnterrarBola" type="Node" parent="Acoes" node_paths=PackedStringArray("corpo")]
+script = ExtResource("11_xjjl4")
+corpo = NodePath("../..")
+
+[node name="Descansar" type="Node" parent="Acoes" node_paths=PackedStringArray("corpo")]
+script = ExtResource("12_qhhqj")
 corpo = NodePath("../..")

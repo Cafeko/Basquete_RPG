@@ -6,6 +6,8 @@ extends Node
 var time1 : TimeJogadores
 var time2 : TimeJogadores
 
+var time1_esq : bool = true
+
 var cesta_esq : Cesta
 var cesta_dir : Cesta
 
@@ -17,6 +19,15 @@ var pontuacao_time2 : int = 0
 func set_times(um : TimeJogadores, dois : TimeJogadores):
 	time1 = um
 	time2 = dois
+
+func set_time1_esq(valor : bool):
+	time1_esq = valor
+
+func e_time_da_esquerda(time : TimeJogadores):
+	if time1_esq:
+		return time == time1
+	else:
+		return not time == time1
 
 func set_time_do_turno(time : TimeJogadores):
 	if time == time1:
@@ -66,6 +77,11 @@ func posicionar_jogadores_inicio_tempo(time1_esquerda : bool = true):
 func reset_acoes_time(time : TimeJogadores):
 	time.reset_acoes()
 
+# Faz os dois times resetarem o numero de ações que os jogadores podem fazer.
+func reset_acoes_times():
+	time1.reset_acoes()
+	time2.reset_acoes()
+
 # Da pontos para o time que marcou os pontos.
 func Marcou_ponto(time : TimeJogadores, pontos : int):
 	if time == time1:
@@ -75,4 +91,4 @@ func Marcou_ponto(time : TimeJogadores, pontos : int):
 
 func print_pontos():
 	print(time1.name + " - " + str(pontuacao_time1))
-	print("Time2 - " + str(pontuacao_time2))
+	print(time2.name + " - " + str(pontuacao_time2))
