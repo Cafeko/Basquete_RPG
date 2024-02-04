@@ -28,3 +28,9 @@ signal roubou_bola
 signal enterrou_bola
 signal entrou_botao_menu
 signal saiu_botao_menu
+signal teve_interrupcao
+signal defesa_deu_errado
+signal defesa_deu_certo
+signal para_movimento_bola
+signal continua_movimento_bola
+signal para_bola_no_ar

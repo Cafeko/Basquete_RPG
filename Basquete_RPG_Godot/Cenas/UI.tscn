@@ -80,6 +80,12 @@ layout_mode = 2
 text = "Roubar Bola"
 script = ExtResource("2_rougo")
 
+[node name="BotaoDefesa" type="Button" parent="MenuAcoes/ColorRect/HBoxContainer/Botoes"]
+layout_direction = 1
+layout_mode = 2
+text = "Defender"
+script = ExtResource("2_rougo")
+
 [node name="BotaoDescanso" type="Button" parent="MenuAcoes/ColorRect/HBoxContainer/Botoes"]
 layout_direction = 1
 layout_mode = 2
@@ -101,6 +107,7 @@ grow_horizontal = 0
 text = "X"
 
 [node name="StatusJogador" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -456,6 +463,9 @@ text = "Parar"
 [connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola" to="." method="on_botao_roubar_bola"]
 [connection signal="mouse_entered" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola" method="on_mouse_entered"]
 [connection signal="mouse_exited" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola" method="on_mouse_exited"]
+[connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDefesa" to="." method="on_botao_defesa"]
+[connection signal="mouse_entered" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDefesa" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDefesa" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDefesa" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDefesa" method="on_mouse_exited"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDescanso" to="." method="on_botao_descanso"]
 [connection signal="mouse_entered" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDescanso" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDescanso" method="on_mouse_entered"]
 [connection signal="mouse_exited" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDescanso" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDescanso" method="on_mouse_exited"]

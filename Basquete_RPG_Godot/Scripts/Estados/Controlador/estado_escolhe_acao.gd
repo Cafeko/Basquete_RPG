@@ -42,5 +42,7 @@ func on_acao_escolhida(acao : String):
 		novo_estado = "DescansarJogador"
 	elif acao == "FecharMenu":
 		novo_estado = "SelecionaJogador"
+	elif acao == "Defender":
+		novo_estado = "DefenderJogador"
 	Global.controlador_estado_atual = novo_estado
 	muda_estado.emit(self.name, novo_estado)

@@ -17,7 +17,7 @@ func _ready():
 	# Coloca o primeiro estado como o estado atual.
 	estado_atual = primeiro_estado
 
-func _process(delta):
+func _physics_process(delta):
 	# Fica executando o estado atual.
 	estado_atual.executando(delta)
 
@@ -32,8 +32,8 @@ func on_muda_estado(estado_nome : String, novo_estado_nome : String):
 	var novo_estado = estados_dict[novo_estado_nome]
 	# Faz a transição entre os estados.
 	estado_atual.saindo()
-	novo_estado.entrando()
 	estado_atual = novo_estado
+	estado_atual.entrando()
 
 # Executa a função tudo_pronto para todos os estados.
 func executar_tudo_pronto():

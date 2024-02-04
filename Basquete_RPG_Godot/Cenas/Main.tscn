@@ -23,12 +23,12 @@ cesta_direita = NodePath("../Cestas/CestaDir")
 
 [node name="Visual" parent="." instance=ExtResource("6_mo0vx")]
 
-[node name="Bola" parent="." instance=ExtResource("5_sxtxk")]
-position = Vector2(544, 302)
-
 [node name="Time Azul" parent="." instance=ExtResource("6_ib5f2")]
 
 [node name="Time Vermelho" parent="." instance=ExtResource("7_nydxq")]
+
+[node name="Bola" parent="." instance=ExtResource("5_sxtxk")]
+position = Vector2(544, 302)
 
 [node name="Cestas" type="Node2D" parent="."]
 

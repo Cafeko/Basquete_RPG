@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bfymvsxinjbns"]
+[gd_scene load_steps=24 format=3 uid="uid://bfymvsxinjbns"]
 
 [ext_resource type="Script" path="res://Scripts/controlador.gd" id="1_0xusn"]
 [ext_resource type="Script" path="res://Scripts/Estados/maquina_estados.gd" id="2_1oy8w"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_mover_jogador.gd" id="5_8stp1"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_fazendo_acao.gd" id="6_g1mc7"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_descansar_jogador.gd" id="8_oavso"]
+[ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_defender_jogador.gd" id="8_pyao4"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_passe_alvo.gd" id="9_2fpj2"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_arremesso_alvo.gd" id="10_58hiv"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_roubar_bola.gd" id="10_mu8jk"]
@@ -20,6 +21,8 @@
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_faz_roubar_bola.gd" id="14_vawll"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_finaliza_turno.gd" id="16_1masu"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_faz_enterra_bola.gd" id="16_wiwct"]
+[ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_interrupcao.gd" id="22_3442d"]
+[ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_pega_bola_no_ar.gd" id="23_00cqb"]
 
 [node name="Controlador" type="Node2D"]
 script = ExtResource("1_0xusn")
@@ -42,6 +45,9 @@ script = ExtResource("4_if6ki")
 
 [node name="MoverJogador" type="Node" parent="MaquinaEstados"]
 script = ExtResource("5_8stp1")
+
+[node name="DefenderJogador" type="Node" parent="MaquinaEstados"]
+script = ExtResource("8_pyao4")
 
 [node name="DescansarJogador" type="Node" parent="MaquinaEstados"]
 script = ExtResource("8_oavso")
@@ -81,3 +87,9 @@ script = ExtResource("12_bex5c")
 
 [node name="FinalizaTurno" type="Node" parent="MaquinaEstados"]
 script = ExtResource("16_1masu")
+
+[node name="Interrupcao" type="Node" parent="MaquinaEstados"]
+script = ExtResource("22_3442d")
+
+[node name="PegaBolaNoAr" type="Node" parent="MaquinaEstados"]
+script = ExtResource("23_00cqb")

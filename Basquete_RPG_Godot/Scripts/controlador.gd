@@ -11,6 +11,10 @@ extends Node2D
 @onready var maquina_estados = $MaquinaEstados
 @onready var partida = $ControlePartidar
 
+enum INTERRUPCAO{NADA, NO_AR, BLOQUEIO}
+var interrupcao_lista : Array = []
+var interrupcao_tipo = INTERRUPCAO.NADA
+
 var mouse_em_botao : bool = false
 var jogador_selecionado = null
 var jogador_selecionado2 = null
@@ -37,6 +41,42 @@ func verifica_ponto(ponto : Vector2):
 	else:
 		return null
 
+# Adiciona informações a lista de informações "guarda_info".
+func add_info(info):
+	if info is Array:
+		for i in info:
+			guarda_info.append(i)
+	else:
+		guarda_info.append(info)
+
+# Limpa a lista de informações "guarda_info".
+func limpa_info():
+	guarda_info.clear()
+# ------------------------------------------------------------------------------------------------ #
+
+# ------------------------------------------------------------------------------------------------ #
+# Interrupção:
+func add_interrupcao(inte):
+	interrupcao_lista.append(inte)
+
+func limpa_interrupcao():
+	interrupcao_lista.clear()
+
+func get_primeira_interrupcao():
+	return interrupcao_lista.front()
+
+func pop_primeira_interrupcao():
+	return interrupcao_lista.pop_front()
+
+func tem_interrupcao():
+	return len(interrupcao_lista) > 0
+
+func get_tipo_interrupcao():
+	return interrupcao_tipo
+# ------------------------------------------------------------------------------------------------ #
+
+# ------------------------------------------------------------------------------------------------ #
+# Relacionadas a partida:
 # Retorna se o jogador está no time que está agindo no turno atual.
 func jogador_no_time_do_turno(jogador : Jogador):
 	var time_turno = partida.get_time_do_turno()
@@ -56,8 +96,8 @@ func inicio_tempo(time1_esquerda : bool = true):
 	partida.time_do_turno = partida.time1 # (Remover depois)
 
 func fim_de_turno():
-	partida.reset_acoes_time(partida.time_do_turno)
 	partida.troca_time_do_turno()
+	partida.entra_novo_turno(partida.time_do_turno)
 
 # Retorna se o time está no lado esquerdo ou não
 func time_na_esquerda(time : TimeJogadores):
@@ -68,18 +108,6 @@ func bola_entrou_em_cesta(time : TimeJogadores, pontos: int):
 	partida.Marcou_ponto(time, pontos)
 	partida.print_pontos()
 	Global.acertou_cesta.emit()
-
-# Adiciona informações a lista de informações "guarda_info".
-func add_info(info):
-	if info is Array:
-		for i in info:
-			guarda_info.append(i)
-	else:
-		guarda_info.append(info)
-
-# Limpa a lista de informações "guarda_info".
-func limpa_info():
-	guarda_info.clear()
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #

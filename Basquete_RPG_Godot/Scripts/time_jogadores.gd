@@ -25,3 +25,8 @@ func posicionar_jogadores(pontos_lista : Array):
 func reset_acoes():
 	for i in range(len(jogadores_lista)):
 		jogadores_lista[i].reset_numero_acoes()
+
+# Faz todos os jogadores sairem do modo de defesa.
+func sai_modo_defesa():
+	for i in range(len(jogadores_lista)):
+		jogadores_lista[i].sai_modo_defesa()

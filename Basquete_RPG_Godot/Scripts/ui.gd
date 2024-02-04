@@ -20,6 +20,7 @@ extends CanvasLayer
 @onready var botao_arremessar_bola = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoArremessarBola
 @onready var botao_enterrar_bola = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoEnterrarBola
 @onready var botao_roubar_bola = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola
+@onready var botao_defesa = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDefesa
 @onready var botao_descanso = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDescanso
 
 # Status:
@@ -113,6 +114,7 @@ func desabilita_botoes():
 	botao_arremessar_bola.disabled = true
 	botao_enterrar_bola.disabled = true
 	botao_roubar_bola.disabled = true
+	botao_defesa.disabled = true
 	botao_descanso.disabled = true
 
 func verifica_botoes_disponiveis():
@@ -121,7 +123,7 @@ func verifica_botoes_disponiveis():
 	if jogador == null:
 		return
 	# Botão Mover:
-	botao_mover.disabled = !(jogador.consegue_mover_ou_descansar())
+	botao_mover.disabled = !(jogador.consegue_mover())
 	# Botão Passar Bola:
 	botao_passar_bola.disabled = !(jogador.consegue_passar_ou_arremessar())
 	# Botão Arremessar Bola:
@@ -130,8 +132,10 @@ func verifica_botoes_disponiveis():
 	botao_enterrar_bola.disabled = !(jogador.consegue_enterrar())
 	# Botão Roubar Bola:
 	botao_roubar_bola.disabled = !(jogador.consegue_roubar())
+	# Botão defesa:
+	botao_defesa.disabled = !(jogador.consegue_defender())
 	# Botão Descanso:
-	botao_descanso.disabled = !(jogador.consegue_mover_ou_descansar())
+	botao_descanso.disabled = !(jogador.consegue_descansar())
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #
@@ -212,6 +216,13 @@ func mouse_entrou_botao_menu(botao : Button):
 			else:
 				set_cor_em("Energia", Color.RED)
 				set_valor_em("Energia", str(energia_atual))
+		elif botao.name == "BotaoDefesa":
+			# Status usados.
+			set_cor_em("Bloqueio", Color.DEEP_SKY_BLUE)
+			set_cor_em("NoAr", Color.DEEP_SKY_BLUE)
+			# Ação perdida.
+			set_cor_em("Acoes", Color.RED)
+			set_valor_em("Acoes", 0)
 		elif botao.name == "BotaoDescanso":
 			# Ganha energia.
 			var energia_max = jogador.status.get_energia_max()
@@ -428,6 +439,5 @@ func on_botao_descanso():
 func on_botao_fechar():
 	Global.acao_escolhida.emit("FecharMenu")
 
-
-func on_mouse_entered():
-	pass # Replace with function body.
+func on_botao_defesa():
+	Global.acao_escolhida.emit("Defender")

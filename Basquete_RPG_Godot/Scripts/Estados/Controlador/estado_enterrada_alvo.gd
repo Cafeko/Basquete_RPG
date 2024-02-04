@@ -64,16 +64,17 @@ func verifica_proximidades(tile):
 		# Verifica Cima:
 		cords = Global.quadra.tile_para_cord(tile + Vector2i.UP)
 		alvo = Global.controlador.verifica_ponto(cords)
-		if alvo is Jogador and not Global.controlador.jogador_no_time_do_turno(alvo) and alvo.time != time_ganha_ponto:
+		if alvo is Jogador and alvo.get_modo_defesa() and not Global.controlador.jogador_no_time_do_turno(alvo) and alvo.time != time_ganha_ponto:
 			jogadores_proximos.append(alvo)
 		# Verifica Baixo:
 		cords = Global.quadra.tile_para_cord(tile + Vector2i.DOWN)
 		alvo = Global.controlador.verifica_ponto(cords)
-		if alvo is Jogador and not Global.controlador.jogador_no_time_do_turno(alvo) and alvo.time != time_ganha_ponto:
+		if alvo is Jogador and alvo.get_modo_defesa() and not Global.controlador.jogador_no_time_do_turno(alvo) and alvo.time != time_ganha_ponto:
 			jogadores_proximos.append(alvo)
 	
 func on_confirmar_acao(estado_alvo : String):
 	if self.name == estado_alvo:
+		#Global.controlador.limpa_info()
 		Global.controlador.add_info("EnterraBola")
 		Global.ui.set_valor_adversario(str(dificuldade))
 		Global.controlador.add_info([Global.bola, cesta, dificuldade])

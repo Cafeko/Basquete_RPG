@@ -82,6 +82,7 @@ func ta_livre_pra_andar(tile : Vector2i):
 
 func on_confirmar_acao(estado_alvo : String):
 	if self.name == estado_alvo:
+		Global.controlador.limpa_interrupcao()
 		# Faz o jogador começar o movimento no caminho definido.
 		jogador.comeca_mover(caminho)
 		muda_estado.emit(self.name, "FazendoAcao")

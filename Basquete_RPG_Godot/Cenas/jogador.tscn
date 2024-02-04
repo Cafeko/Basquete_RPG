@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://brudnwsbxiwbb"]
+[gd_scene load_steps=15 format=3 uid="uid://brudnwsbxiwbb"]
 
 [ext_resource type="Texture2D" uid="uid://kvxxsjm5j4jb" path="res://Assets/PNG/Blue/characterBlue (8).png" id="1_5q6r0"]
 [ext_resource type="Script" path="res://Scripts/jogador.gd" id="1_8s316"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_roubar_bola.gd" id="10_e8psy"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_enterrar_bola.gd" id="11_xjjl4"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_descansar.gd" id="12_qhhqj"]
+[ext_resource type="Script" path="res://Scripts/Acoes/acao_defesa_no_ar.gd" id="13_mrgiu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_laouc"]
 size = Vector2(64, 64)
@@ -68,4 +69,8 @@ corpo = NodePath("../..")
 
 [node name="Descansar" type="Node" parent="Acoes" node_paths=PackedStringArray("corpo")]
 script = ExtResource("12_qhhqj")
+corpo = NodePath("../..")
+
+[node name="DefesaNoAr" type="Node" parent="Acoes" node_paths=PackedStringArray("corpo")]
+script = ExtResource("13_mrgiu")
 corpo = NodePath("../..")
