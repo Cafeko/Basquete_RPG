@@ -74,7 +74,7 @@ func verifica_proximidades(tile):
 	
 func on_confirmar_acao(estado_alvo : String):
 	if self.name == estado_alvo:
-		#Global.controlador.limpa_info()
+		Global.controlador.limpa_info()
 		Global.controlador.add_info("EnterraBola")
 		Global.ui.set_valor_adversario(str(dificuldade))
 		Global.controlador.add_info([Global.bola, cesta, dificuldade])

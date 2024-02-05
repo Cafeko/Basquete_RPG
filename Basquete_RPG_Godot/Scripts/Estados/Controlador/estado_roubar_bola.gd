@@ -59,7 +59,7 @@ func saindo():
 
 func on_confirmar_acao(estado_alvo : String):
 	if self.name == estado_alvo:
-		#Global.controlador.limpa_info()
+		Global.controlador.limpa_info()
 		Global.controlador.add_info("RoubaBola")
 		if alvo_e_aliado:
 			Global.controlador.add_info([Global.bola, alvo, alvo_e_aliado, 0, 0]) # bola, alvo, aliado, dificuldade, forca

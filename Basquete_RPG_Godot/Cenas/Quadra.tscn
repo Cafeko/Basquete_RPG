@@ -252,6 +252,7 @@ layer_3/tile_data = PackedInt32Array()
 [node name="Formacoes" type="Node2D" parent="."]
 
 [node name="FormacaoPadrao" type="Node2D" parent="Formacoes"]
+visible = false
 script = ExtResource("4_h1tgx")
 
 [node name="1" type="Marker2D" parent="Formacoes/FormacaoPadrao"]
@@ -268,3 +269,21 @@ position = Vector2(228, 93)
 
 [node name="5" type="Marker2D" parent="Formacoes/FormacaoPadrao"]
 position = Vector2(222, 482)
+
+[node name="FormacaoNaCesta" type="Node2D" parent="Formacoes"]
+script = ExtResource("4_h1tgx")
+
+[node name="1" type="Marker2D" parent="Formacoes/FormacaoNaCesta"]
+position = Vector2(354, 163)
+
+[node name="2" type="Marker2D" parent="Formacoes/FormacaoNaCesta"]
+position = Vector2(353, 420)
+
+[node name="3" type="Marker2D" parent="Formacoes/FormacaoNaCesta"]
+position = Vector2(219, 290)
+
+[node name="4" type="Marker2D" parent="Formacoes/FormacaoNaCesta"]
+position = Vector2(157, 165)
+
+[node name="5" type="Marker2D" parent="Formacoes/FormacaoNaCesta"]
+position = Vector2(34, 285)

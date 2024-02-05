@@ -34,3 +34,12 @@ func sai_modo_defesa():
 func set_pode_mover(valor : bool):
 	for i in range(len(jogadores_lista)):
 		jogadores_lista[i].set_pode_mover(valor)
+
+func pegar_bola():
+	var bola = Global.bola
+	var bola_tile = Global.quadra.cord_para_tile(bola.global_position)
+	for i in range(len(jogadores_lista)):
+		var jogador = jogadores_lista[i]
+		var jogador_tile = Global.quadra.cord_para_tile(jogador.global_position)
+		if jogador_tile == bola_tile:
+			jogador.comeca_pegar_bola(bola)

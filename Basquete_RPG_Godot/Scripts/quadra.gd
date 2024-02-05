@@ -11,6 +11,8 @@ class_name Quadra
 var layers_id : Dictionary = {}
 var formacoes_dict : Dictionary = {}
 var tile_centro : Vector2i = Vector2i(8,4)
+var tile_esq_centro : Vector2i = Vector2i(0, 4)
+var tile_dir_centro : Vector2i = Vector2i(16, 4)
 #var astar_grid : AStarGrid2D
 
 func _ready():
@@ -108,6 +110,12 @@ func tile_em_garrafao(tile : Vector2i):
 
 func get_centro_cord():
 	return tile_para_cord(tile_centro)
+
+func get_esq_centro_cord():
+	return tile_para_cord(tile_esq_centro)
+
+func get_dir_centro_cord():
+	return tile_para_cord(tile_dir_centro)
 
 ## Cria o caminho de tiles a ser percorido para ir de uma cordenada a outra.
 #func cria_caminho(de : Vector2, para : Vector2):

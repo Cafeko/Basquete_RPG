@@ -77,6 +77,7 @@ func get_tipo_interrupcao():
 
 # ------------------------------------------------------------------------------------------------ #
 # Relacionadas a partida:
+# - Geral
 # Retorna se o jogador está no time que está agindo no turno atual.
 func jogador_no_time_do_turno(jogador : Jogador):
 	var time_turno = partida.get_time_do_turno()
@@ -88,26 +89,70 @@ func jogador_em_bola(jogador : Jogador):
 	var tile_bola = Global.quadra.cord_para_tile(Global.bola.global_position)
 	return tile_jogador == tile_bola
 
-func inicio_tempo(time1_esquerda : bool = true):
-	partida.set_time1_esq(time1_esquerda)
-	partida.posicionar_jogadores_inicio_tempo(time1_esquerda)
-	partida.define_time_cesta(time1_esquerda)
-	partida.reset_acoes_times()
-	partida.time_do_turno = partida.time1 # (Remover depois)
-
-func fim_de_turno():
-	partida.troca_time_do_turno()
-	partida.entra_novo_turno(partida.time_do_turno)
+func define_time_do_turno(time : TimeJogadores):
+	partida.set_time_do_turno(time)
+	partida.entra_novo_turno(time)
 
 # Retorna se o time está no lado esquerdo ou não
 func time_na_esquerda(time : TimeJogadores):
 	return partida.e_time_da_esquerda(time)
 
+# Retorna o time adversario ao time especificado.
+func time_adversario(time : TimeJogadores):
+	return partida.get_time_adversario(time)
+
+# Faz os jogadores do time pegarem a bola, se possivel.
+func time_pega_bola(time : TimeJogadores):
+	partida.time_pega_bola(time)
+
+# - Fim de turno
+func fim_de_turno():
+	partida.troca_time_do_turno()
+	partida.entra_novo_turno(partida.time_do_turno)
+
+# - Inicio de tempo 
+func inicio_tempo(time1_esquerda : bool = true):
+	partida.set_time1_esq(time1_esquerda)
+	partida.posiciona_jogadores(partida.time1, "FormacaoPadrao", time1_esquerda)
+	partida.posiciona_jogadores(partida.time2, "FormacaoPadrao", !(time1_esquerda))
+	partida.define_time_cesta(time1_esquerda)
+	partida.reset_acoes_times()
+	partida.time_do_turno = partida.time1 # (Remover depois)
+
+# - Fez cesta
 # Executado quando a bola entra na cesta.
 func bola_entrou_em_cesta(time : TimeJogadores, pontos: int):
+	limpa_info()
+	add_info([time, pontos])
+	Global.acertou_cesta.emit()
+
+# Marca ponto para o time especificado.
+func marcar_pontos(time : TimeJogadores, pontos: int):
 	partida.Marcou_ponto(time, pontos)
 	partida.print_pontos()
-	Global.acertou_cesta.emit()
+
+# Posiciona os jogadores após uma cesta ter sido feita.
+func formacao_pos_ponto(time_fez_ponto : TimeJogadores, outro_time : TimeJogadores):
+	partida.posiciona_jogadores(time_fez_ponto, "FormacaoPadrao", partida.e_time_da_esquerda(time_fez_ponto))
+	partida.posiciona_jogadores(outro_time, "FormacaoNaCesta", partida.e_time_da_esquerda(outro_time))
+
+# Posiciona bola para o jogador do time que tomou a cesta pegar.
+func posiciona_bola_pos_ponto(na_esquerda : bool = true):
+	if na_esquerda:
+		Global.bola.global_position = Global.quadra.get_esq_centro_cord()
+	else:
+		Global.bola.global_position = Global.quadra.get_dir_centro_cord()
+
+# Faz o jogador que vai passar a bola para começãr o jogo novamente não poder se mover.
+func jogador_nao_move_pos_ponto(na_esquerda : bool = true):
+	var cord : Vector2
+	if na_esquerda:
+		cord = Global.quadra.get_esq_centro_cord()
+	else:
+		cord = Global.quadra.get_dir_centro_cord()
+	var jogador = self.verifica_ponto(cord)
+	if jogador != null:
+		jogador.set_pode_mover(false)
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #

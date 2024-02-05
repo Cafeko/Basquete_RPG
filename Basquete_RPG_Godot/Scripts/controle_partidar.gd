@@ -63,15 +63,13 @@ func define_time_cesta(time1_esquerda : bool = true):
 		cesta_esq.set_time_ganha_ponto(time1)
 		cesta_dir.set_time_ganha_ponto(time2)
 
-# Posiciona os jogadores para o inicio de um tempo da partida.
-func posicionar_jogadores_inicio_tempo(time1_esquerda : bool = true):
-	var formacao = Global.quadra.get_formacao("FormacaoPadrao")
-	if time1_esquerda:
-		time1.posicionar_jogadores(formacao.lado_esquerdo())
-		time2.posicionar_jogadores(formacao.lado_direito())
+# Posiciona os jogadores de acordo com a formação indicada.
+func posiciona_jogadores(time : TimeJogadores, formacao_nome : String, na_esquerda : bool = true):
+	var formacao = Global.quadra.get_formacao(formacao_nome)
+	if na_esquerda:
+		time.posicionar_jogadores(formacao.lado_esquerdo())
 	else:
-		time2.posicionar_jogadores(formacao.lado_esquerdo())
-		time1.posicionar_jogadores(formacao.lado_direito())
+		time.posicionar_jogadores(formacao.lado_direito())
 
 func entra_novo_turno(time : TimeJogadores):
 	reset_acoes_time(time)
@@ -93,6 +91,9 @@ func time_sai_modo_defesa(time : TimeJogadores):
 
 func time_pode_mover(time : TimeJogadores):
 	time.set_pode_mover(true)
+
+func time_pega_bola(time : TimeJogadores):
+	time.pegar_bola()
 
 # Da pontos para o time que marcou os pontos.
 func Marcou_ponto(time : TimeJogadores, pontos : int):
