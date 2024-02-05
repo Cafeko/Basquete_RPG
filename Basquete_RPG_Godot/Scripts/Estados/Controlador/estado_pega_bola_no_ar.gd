@@ -1,4 +1,4 @@
-# -<estado_interrupcao>--------------------------------------------------------------------------- #
+# -<estado_pega_bola_no_ar>----------------------------------------------------------------------- #
 # Estado do controlador, faz o jogador que fez a interrupção tentar pegar a bola no ar. 
 # ------------------------------------------------------------------------------------------------ #
 extends Estado
@@ -32,7 +32,7 @@ func entrando():
 	var tile_alvo = Global.quadra.cord_para_tile(agente_interrupcao.global_position)
 	var desenha_tiles : Array[Vector2i] = [tile_alvo]
 	Global.visual.desenha_area(desenha_tiles)
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(2.0).timeout 
 	agente_interrupcao.comeca_defesa_no_ar(bola, dificuldade, forca)
 
 # Executado ao sair do estado

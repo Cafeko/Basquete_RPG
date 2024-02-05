@@ -30,3 +30,7 @@ func reset_acoes():
 func sai_modo_defesa():
 	for i in range(len(jogadores_lista)):
 		jogadores_lista[i].sai_modo_defesa()
+
+func set_pode_mover(valor : bool):
+	for i in range(len(jogadores_lista)):
+		jogadores_lista[i].set_pode_mover(valor)

@@ -13,6 +13,6 @@ func entrando():
 		if tipo == Global.controlador.INTERRUPCAO.NO_AR:
 			muda_estado.emit(self.name, "PegaBolaNoAr")
 		elif tipo == Global.controlador.INTERRUPCAO.BLOQUEIO:
-			muda_estado.emit(self.name, "")
+			muda_estado.emit(self.name, "BloqueioInicio")
 	else:
 		muda_estado.emit(self.name, "FazendoAcao")

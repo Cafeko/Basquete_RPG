@@ -7,6 +7,7 @@ extends Estado
 
 var jogador : Jogador
 var roubada : bool = false
+var tile_atual : Vector2i
 
 # Executada quando os nós estiverem prontos.
 func tudo_pronto():

@@ -34,6 +34,7 @@ func _ready():
 	acoes["EnterrarBola"].fim.connect(fim_enterrar_bola)
 	acoes["Descansar"].fim.connect(fim_descansar)
 	acoes["DefesaNoAr"].fim.connect(fim_defesa_no_ar)
+	acoes["Bloquear"].fim.connect(fim_bloquear)
 
 func _physics_process(delta):
 	# Fica executando constantemente a ação atual.
@@ -124,6 +125,9 @@ func perdeu_bola():
 
 func fica_atordoado():
 	set_numero_acoes(0)
+
+func foi_bloqueado():
+	set_pode_mover(false)
 
 func entra_modo_defesa():
 	self.modo_defesa = true
@@ -270,6 +274,16 @@ func comeca_defesa_no_ar(alvo : Bola, dificuldade : int, forca : int):
 	acao_atual.faze_de_preparacao([alvo, dificuldade, forca])
 
 func fim_defesa_no_ar():
+	# Finaliza a acao_atual e muda ela para a ação "Parado".
+	acao_atual.finalizacao()
+	acao_atual = acoes["Parado"]
+
+# - Bloquear
+func comeca_bloquear(alvo : Jogador, dificuldade : int, forca : int):
+	acao_atual = acoes["Bloquear"]
+	acao_atual.faze_de_preparacao([alvo, dificuldade, forca])
+
+func fim_bloquear():
 	# Finaliza a acao_atual e muda ela para a ação "Parado".
 	acao_atual.finalizacao()
 	acao_atual = acoes["Parado"]

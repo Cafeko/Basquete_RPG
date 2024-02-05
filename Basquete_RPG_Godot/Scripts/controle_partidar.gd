@@ -76,6 +76,7 @@ func posicionar_jogadores_inicio_tempo(time1_esquerda : bool = true):
 func entra_novo_turno(time : TimeJogadores):
 	reset_acoes_time(time)
 	time_sai_modo_defesa(time)
+	time_pode_mover(time)
 
 # Faz o time resetar o numero de ações que os jogadores podem fazer.
 func reset_acoes_time(time : TimeJogadores):
@@ -89,6 +90,9 @@ func reset_acoes_times():
 # Muda o modo de defesa do time.
 func time_sai_modo_defesa(time : TimeJogadores):
 	time.sai_modo_defesa()
+
+func time_pode_mover(time : TimeJogadores):
+	time.set_pode_mover(true)
 
 # Da pontos para o time que marcou os pontos.
 func Marcou_ponto(time : TimeJogadores, pontos : int):
