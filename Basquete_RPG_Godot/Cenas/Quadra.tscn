@@ -271,6 +271,7 @@ position = Vector2(228, 93)
 position = Vector2(222, 482)
 
 [node name="FormacaoNaCesta" type="Node2D" parent="Formacoes"]
+visible = false
 script = ExtResource("4_h1tgx")
 
 [node name="1" type="Marker2D" parent="Formacoes/FormacaoNaCesta"]
