@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://coy7olt5nnj62"]
 
-[ext_resource type="Texture2D" uid="uid://bnm3q4oxyrkab" path="res://Assets/PNG/Equipment/ball_basket4.png" id="1_x0jql"]
 [ext_resource type="Script" path="res://Scripts/bola.gd" id="1_ymnmx"]
+[ext_resource type="Texture2D" uid="uid://b6oy7l35ahkgr" path="res://Assets/Bola.png" id="2_7g8l0"]
 [ext_resource type="Script" path="res://Scripts/Estados/maquina_estados.gd" id="3_meqhi"]
 [ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_parada.gd" id="4_u7nr7"]
 [ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_com_jogador.gd" id="5_oqfx1"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_enterrada.gd" id="9_6apky"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_slpnv"]
+radius = 4.0
 
 [node name="Bola" type="CharacterBody2D"]
 collision_layer = 2
@@ -18,7 +19,7 @@ collision_mask = 5
 script = ExtResource("1_ymnmx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_x0jql")
+texture = ExtResource("2_7g8l0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_slpnv")

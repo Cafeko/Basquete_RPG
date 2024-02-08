@@ -13,8 +13,8 @@ func lado_esquerdo():
 
 # Retorna uma lista com os pontos da formação para o lado direito da quadra.
 func lado_direito():
-	self.position = Vector2(1088, 576)
-	self.scale = Vector2(-1, -1)
+	self.position = Vector2(432 - 48, 0)#96 - 16
+	self.scale = Vector2(-1, 1)
 	return get_pontos()
 
 # Retorna uma lista dos marcadores filhos.

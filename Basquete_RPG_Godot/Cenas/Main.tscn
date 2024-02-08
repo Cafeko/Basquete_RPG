@@ -1,6 +1,5 @@
 [gd_scene load_steps=9 format=3 uid="uid://dovcj2aiyhwuk"]
 
-[ext_resource type="PackedScene" uid="uid://mjyhv5fjm7fc" path="res://Cenas/Quadra.tscn" id="1_8wqro"]
 [ext_resource type="PackedScene" uid="uid://bfymvsxinjbns" path="res://Cenas/Controlador.tscn" id="1_wjbi7"]
 [ext_resource type="PackedScene" uid="uid://cwfuoqq5vmp0g" path="res://Cenas/UI.tscn" id="5_en28u"]
 [ext_resource type="PackedScene" uid="uid://coy7olt5nnj62" path="res://Cenas/Bola.tscn" id="5_sxtxk"]
@@ -8,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cmlxjygdfm1k6" path="res://Cenas/Visual.tscn" id="6_mo0vx"]
 [ext_resource type="PackedScene" uid="uid://b2bee3gthahqo" path="res://Cenas/TimeVermelho.tscn" id="7_nydxq"]
 [ext_resource type="PackedScene" uid="uid://ddgih3b1t7v7x" path="res://Cenas/Cesta.tscn" id="7_wmy34"]
+[ext_resource type="PackedScene" uid="uid://bkpcjg0cbn6ps" path="res://Cenas/Quadra2.tscn" id="8_b8ccj"]
 
 [node name="Main" type="Node"]
 
@@ -19,7 +19,7 @@ cesta_direita = NodePath("../Cestas/CestaDir")
 
 [node name="UI" parent="." instance=ExtResource("5_en28u")]
 
-[node name="Quadra" parent="." instance=ExtResource("1_8wqro")]
+[node name="Quadra2" parent="." instance=ExtResource("8_b8ccj")]
 
 [node name="Visual" parent="." instance=ExtResource("6_mo0vx")]
 
@@ -28,18 +28,17 @@ cesta_direita = NodePath("../Cestas/CestaDir")
 [node name="Time Vermelho" parent="." instance=ExtResource("7_nydxq")]
 
 [node name="Bola" parent="." instance=ExtResource("5_sxtxk")]
-position = Vector2(544, 302)
 
 [node name="Cestas" type="Node2D" parent="."]
 
 [node name="CestaEsq" parent="Cestas" instance=ExtResource("7_wmy34")]
-position = Vector2(-32, 279)
+position = Vector2(71, 120)
 e_cesta_esquerda = true
 
 [node name="CestaDir" parent="Cestas" instance=ExtResource("7_wmy34")]
-position = Vector2(1119, 297)
+position = Vector2(473, 120)
 scale = Vector2(-1, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(544, 288)
-zoom = Vector2(0.95, 0.95)
+position = Vector2(272, 136)
+zoom = Vector2(2.12, 2.38)

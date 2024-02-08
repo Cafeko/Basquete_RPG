@@ -9,13 +9,15 @@ class_name Cesta
 @onready var centro = $Centro
 
 var tile_cesta : Vector2i
+var tile_base : Vector2i
 var time_ganha_ponto : TimeJogadores
 var dificuldade : int = 0
 var tile_proximos : Array[Vector2i]
 
 func _ready():
 	tile_cesta = Global.quadra.cord_para_tile(self.global_position)
-	self.global_position = Global.quadra.cordenada_centralizada(self.global_position)
+	#self.global_position = Global.quadra.cordenada_centralizada(self.global_position)
+	define_tile_base()
 	define_tile_proximos()
 
 # Informa ao controlador qual time fez ponto e a quantidde de pontos.
@@ -37,9 +39,17 @@ func set_dificuldade(valor : int):
 
 # Define a dificuldade da bola entrar na cesta baseado na distancia entre a cesta e o jogador.
 func define_dificuldade(tile_jogador : Vector2i):
-	var distancia = tile_cesta - tile_jogador
+	var distancia = tile_base - tile_jogador
 	dificuldade = (abs(distancia.x) + abs(distancia.y))*10
 	return dificuldade
+
+func define_tile_base():
+	var direcao = 0
+	if e_cesta_esquerda:
+		direcao = 1
+	else:
+		direcao = -1
+	tile_base = tile_cesta + Vector2i(-1 * direcao, 2)
 
 # Guarda em uma lista os tiles que são considerados proximos a cesta (tiles que a bola vai cair se 
 # errar a cesta).
@@ -50,9 +60,18 @@ func define_tile_proximos():
 		direcao = 1
 	else:
 		direcao = -1
-	for x in range(1,3):
-		for y in range(-1, 2):
-			tile_proximos.append(tile_cesta + Vector2i(x * direcao, y))
+	var tiles : Array = []
+	tiles.append(Vector2i(1, 0))
+	tiles.append(Vector2i(2, 0))
+	tiles.append(Vector2i(2, -1))
+	tiles.append(Vector2i(3, -1))
+	tiles.append(Vector2i(1, 1))
+	tiles.append(Vector2i(2, 1))
+	tiles.append(Vector2i(1, 2))
+	tiles.append(Vector2i(0, 2))
+	for tile in tiles:
+		tile_proximos.append(tile_base + Vector2i(tile.x * direcao, tile.y))
+	#Global.visual.desenha_area(tile_proximos)
 
 # Defne qual time vai ganhar ponto quando a cesta for acertada.
 func set_time_ganha_ponto(time : TimeJogadores):

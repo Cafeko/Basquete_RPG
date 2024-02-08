@@ -10,9 +10,9 @@ class_name Quadra
 
 var layers_id : Dictionary = {}
 var formacoes_dict : Dictionary = {}
-var tile_centro : Vector2i = Vector2i(8,4)
-var tile_esq_centro : Vector2i = Vector2i(0, 4)
-var tile_dir_centro : Vector2i = Vector2i(16, 4)
+var tile_centro : Vector2i = Vector2i(16,9)
+var tile_esq_centro : Vector2i = Vector2i(4, 9)
+var tile_dir_centro : Vector2i = Vector2i(29, 9)
 #var astar_grid : AStarGrid2D
 
 func _ready():
