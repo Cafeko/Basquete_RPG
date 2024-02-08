@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://brudnwsbxiwbb"]
+[gd_scene load_steps=15 format=3 uid="uid://brudnwsbxiwbb"]
 
 [ext_resource type="Texture2D" uid="uid://kvxxsjm5j4jb" path="res://Assets/PNG/Blue/characterBlue (8).png" id="1_5q6r0"]
 [ext_resource type="Script" path="res://Scripts/jogador.gd" id="1_8s316"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_pegar_bola.gd" id="6_pg4gc"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_arremessar_bola.gd" id="9_67p5s"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_roubar_bola.gd" id="10_e8psy"]
-[ext_resource type="Script" path="res://Scripts/Acoes/acao_enterrar_bola.gd" id="11_xjjl4"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_descansar.gd" id="12_qhhqj"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_defesa_no_ar.gd" id="13_mrgiu"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_bloquear.gd" id="14_dxe3r"]
@@ -62,10 +61,6 @@ corpo = NodePath("../..")
 
 [node name="RoubarBola" type="Node" parent="Acoes" node_paths=PackedStringArray("corpo")]
 script = ExtResource("10_e8psy")
-corpo = NodePath("../..")
-
-[node name="EnterrarBola" type="Node" parent="Acoes" node_paths=PackedStringArray("corpo")]
-script = ExtResource("11_xjjl4")
 corpo = NodePath("../..")
 
 [node name="Descansar" type="Node" parent="Acoes" node_paths=PackedStringArray("corpo")]

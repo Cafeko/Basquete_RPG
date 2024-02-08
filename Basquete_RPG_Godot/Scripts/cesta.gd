@@ -21,14 +21,11 @@ func _ready():
 	define_tile_proximos()
 
 # Informa ao controlador qual time fez ponto e a quantidde de pontos.
-func bola_na_cesta(pontos_quantidade: int, forca : int, tiles_excluidos : Array[Vector2i] = []):
+func bola_na_cesta(pontos_quantidade: int, forca : int):
 	# Bola erra cesta.
 	if  forca < dificuldade:
-		# Evita tiles especificados os removendo dos tiles que podem ser pegos aleatoriamente.
-		var tiles = tile_proximos.duplicate()
-		for t in tiles_excluidos:
-			tiles.erase(t)
-		Global.errou_cesta.emit(tiles.pick_random())
+		# Tile proximo que a bola vai cair é pego aleatoriamente.
+		Global.errou_cesta.emit(tile_proximos.pick_random())
 	# Bola acerta cesta.
 	else:
 		Global.controlador.bola_entrou_em_cesta(time_ganha_ponto, pontos_quantidade)

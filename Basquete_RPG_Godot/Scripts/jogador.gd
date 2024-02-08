@@ -31,7 +31,6 @@ func _ready():
 	acoes["PassarBola"].fim.connect(fim_passar_bola)
 	acoes["ArremessarBola"].fim.connect(fim_arremessar_bola)
 	acoes["RoubarBola"].fim.connect(fim_roubar_bola)
-	acoes["EnterrarBola"].fim.connect(fim_enterrar_bola)
 	acoes["Descansar"].fim.connect(fim_descansar)
 	acoes["DefesaNoAr"].fim.connect(fim_defesa_no_ar)
 	acoes["Bloquear"].fim.connect(fim_bloquear)
@@ -65,23 +64,6 @@ func consegue_passar_ou_arremessar():
 
 func consegue_defender():
 	return (tem_acoes() and not com_bola)
-
-func consegue_enterrar():
-	if tem_acoes() and com_bola:
-		var tile = Global.quadra.cord_para_tile(self.global_position)
-		# Verifica esquerda:
-		var cords = Global.quadra.tile_para_cord(tile + Vector2i.LEFT)
-		var alvo = Global.controlador.verifica_ponto(cords)
-		if alvo is Cesta:
-			return true
-		# Verifica direita:
-		cords = Global.quadra.tile_para_cord(tile + Vector2i.RIGHT)
-		alvo = Global.controlador.verifica_ponto(cords)
-		if alvo is Cesta:
-			return true
-		return false
-	else:
-		return false
 
 func consegue_roubar():
 	if tem_acoes():
@@ -239,20 +221,6 @@ func fim_roubar_bola():
 	acao_atual = acoes["Parado"]
 	# Emite o sinal informando que a ação acabou.  
 	Global.acao_acabou.emit()
-
-# - EnterrarBola
-# Começa a ação de EnterrarBola.
-func comeca_enterrar_bola(bola : Bola, alvo : Cesta, dificuldade : int, forca : int):
-	acao_atual = acoes["EnterrarBola"]
-	acao_atual.faze_de_preparacao([bola, alvo, dificuldade, forca])
-
-# Finaliza a ação EnterrarBola.
-func fim_enterrar_bola():
-	com_bola = false
-	# Finaliza a acao_atual e muda ela para a ação "Parado".
-	acao_atual.finalizacao()
-	acao_atual = acoes["Parado"]
-	fez_acao()
 
 # - Descansar
 # Começa a ação de Descansar.

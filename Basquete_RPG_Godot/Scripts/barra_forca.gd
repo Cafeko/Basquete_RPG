@@ -80,7 +80,7 @@ func area_da_barra():
 		if distancia <= area_distancia:
 			return cor
 
-# Retorna a potencia de acordo com a área especificada.
+# Retorna a potencia de acordo com a distancia que a barra parou do centro.
 func get_potencia(distancia: float):
 	return 1.0 - (abs(distancia) / 100)
 

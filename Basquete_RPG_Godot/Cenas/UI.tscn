@@ -68,12 +68,6 @@ layout_mode = 2
 text = "Arremessar Bola"
 script = ExtResource("2_rougo")
 
-[node name="BotaoEnterrarBola" type="Button" parent="MenuAcoes/ColorRect/HBoxContainer/Botoes"]
-layout_direction = 1
-layout_mode = 2
-text = "Enterrada"
-script = ExtResource("2_rougo")
-
 [node name="BotaoRoubarBola" type="Button" parent="MenuAcoes/ColorRect/HBoxContainer/Botoes"]
 layout_direction = 1
 layout_mode = 2
@@ -457,9 +451,6 @@ text = "Parar"
 [connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoArremessarBola" to="." method="on_botao_arremessar_bola"]
 [connection signal="mouse_entered" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoArremessarBola" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoArremessarBola" method="on_mouse_entered"]
 [connection signal="mouse_exited" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoArremessarBola" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoArremessarBola" method="on_mouse_exited"]
-[connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoEnterrarBola" to="." method="on_botao_enterrar_bola"]
-[connection signal="mouse_entered" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoEnterrarBola" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoEnterrarBola" method="on_mouse_entered"]
-[connection signal="mouse_exited" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoEnterrarBola" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoEnterrarBola" method="on_mouse_exited"]
 [connection signal="button_up" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola" to="." method="on_botao_roubar_bola"]
 [connection signal="mouse_entered" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola" method="on_mouse_entered"]
 [connection signal="mouse_exited" from="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola" to="MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola" method="on_mouse_exited"]

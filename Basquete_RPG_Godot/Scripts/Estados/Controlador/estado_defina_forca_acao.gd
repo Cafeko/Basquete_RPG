@@ -47,6 +47,8 @@ func on_para_barra_forca():
 	var proximo_estado : String = lista[1]
 	# Define a força, baseado na potencia adquirida, e a adiciona na lista de informações.
 	var forca = round(forca_base * potencia)
+	if forca <= 0:
+		forca = 1
 	Global.controlador.add_info(forca)
 	Global.ui.set_valor_jogador(str(forca))
 	Global.ui.atualiza_valores(na_esq)
@@ -67,9 +69,6 @@ func forca_e_acao():
 	elif acao == "RoubaBola":
 		forca = jogador.status.get_ataque_forca()
 		estado = "FazRoubarBola"
-	elif acao == "EnterraBola":
-		forca = jogador.status.get_no_ar_forca()
-		estado = "FazEnterraBola"
 	elif acao == "Bloqueio":
 		forca = jogador.status.get_ataque_forca()
 		estado = "BloqueioFim"

@@ -18,7 +18,6 @@ extends CanvasLayer
 @onready var botao_mover = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoMover
 @onready var botao_passar_bola = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoPassarBola
 @onready var botao_arremessar_bola = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoArremessarBola
-@onready var botao_enterrar_bola = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoEnterrarBola
 @onready var botao_roubar_bola = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola
 @onready var botao_defesa = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDefesa
 @onready var botao_descanso = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDescanso
@@ -112,7 +111,6 @@ func desabilita_botoes():
 	botao_mover.disabled = true
 	botao_passar_bola.disabled = true
 	botao_arremessar_bola.disabled = true
-	botao_enterrar_bola.disabled = true
 	botao_roubar_bola.disabled = true
 	botao_defesa.disabled = true
 	botao_descanso.disabled = true
@@ -128,8 +126,6 @@ func verifica_botoes_disponiveis():
 	botao_passar_bola.disabled = !(jogador.consegue_passar_ou_arremessar())
 	# Botão Arremessar Bola:
 	botao_arremessar_bola.disabled = !(jogador.consegue_passar_ou_arremessar())
-	# Botão Enterrar Bola:
-	botao_enterrar_bola.disabled = !(jogador.consegue_enterrar())
 	# Botão Roubar Bola:
 	botao_roubar_bola.disabled = !(jogador.consegue_roubar())
 	# Botão defesa:
@@ -172,24 +168,6 @@ func mouse_entrou_botao_menu(botao : Button):
 			var energia_atual = jogador.status.get_energia()
 			if energia_atual != 0:
 				var perda_max = jogador.status.get_arremesso_forca()
-				var nova_energia = energia_atual - perda_max
-				if nova_energia < 0:
-					nova_energia = 0
-				set_cor_em("Energia", Color.RED)
-				set_valor_em("Energia", str(nova_energia) + " - " + str(energia_atual))
-			else:
-				set_cor_em("Energia", Color.RED)
-				set_valor_em("Energia", str(energia_atual))
-			# Ação perdida.
-			set_cor_em("Acoes", Color.RED)
-			set_valor_em("Acoes", jogador.get_acoes_disponiveis() - 1)
-		elif botao.name == "BotaoEnterrarBola":
-			# Status usado.
-			set_cor_em("NoAr", Color.DEEP_SKY_BLUE)
-			# Energia perdida.
-			var energia_atual = jogador.status.get_energia()
-			if energia_atual != 0:
-				var perda_max = jogador.status.get_no_ar_forca()
 				var nova_energia = energia_atual - perda_max
 				if nova_energia < 0:
 					nova_energia = 0
@@ -429,9 +407,6 @@ func on_botao_para_barra():
 
 func on_botao_roubar_bola():
 	Global.acao_escolhida.emit("RoubarBola")
-
-func on_botao_enterrar_bola():
-	Global.acao_escolhida.emit("Enterrar")
 
 func on_botao_descanso():
 	Global.acao_escolhida.emit("Descansar")
