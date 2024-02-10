@@ -124,7 +124,7 @@ func inicio_tempo(time1_esquerda : bool = true):
 func bola_entrou_em_cesta(time : TimeJogadores, pontos: int):
 	limpa_info()
 	add_info([time, pontos])
-	Global.acertou_cesta.emit()
+	Global.fez_ponto.emit()
 
 # Marca ponto para o time especificado.
 func marcar_pontos(time : TimeJogadores, pontos: int):
@@ -144,15 +144,9 @@ func posiciona_bola_pos_ponto(na_esquerda : bool = true):
 		Global.bola.global_position = Global.quadra.get_dir_centro_cord()
 
 # Faz o jogador que vai passar a bola para começãr o jogo novamente não poder se mover.
-func jogador_nao_move_pos_ponto(na_esquerda : bool = true):
-	var cord : Vector2
-	if na_esquerda:
-		cord = Global.quadra.get_esq_centro_cord()
-	else:
-		cord = Global.quadra.get_dir_centro_cord()
-	var jogador = self.verifica_ponto(cord)
-	if jogador != null:
-		jogador.set_pode_mover(false)
+func jogador_nao_move_pos_ponto(time):
+	var jogador : Jogador = time.get_jogador_arremesso_inicial()
+	jogador.set_pode_mover(false)
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #

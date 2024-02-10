@@ -5,6 +5,7 @@ extends Node2D
 class_name TimeJogadores
 
 var jogadores_lista = []
+var jogador_arremesso_inicial : Jogador
 
 func _ready():
 	prepara_jogadores_lista()
@@ -14,6 +15,7 @@ func prepara_jogadores_lista():
 	for j in get_children():
 		jogadores_lista.append(j)
 		j.set_time(self)
+	jogador_arremesso_inicial = jogadores_lista[-1]
 
 # Posiciona os jogadores na posição dos pontos que estão na lista de pontos recebida.
 func posicionar_jogadores(pontos_lista : Array):
@@ -43,3 +45,7 @@ func pegar_bola():
 		var jogador_tile = Global.quadra.cord_para_tile(jogador.global_position)
 		if jogador_tile == bola_tile:
 			jogador.comeca_pegar_bola(bola)
+
+# Retorna o jogador que vai estar com a bola após o time levar uma cesta.
+func get_jogador_arremesso_inicial():
+	return jogador_arremesso_inicial

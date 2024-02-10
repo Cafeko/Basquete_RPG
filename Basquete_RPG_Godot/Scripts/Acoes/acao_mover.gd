@@ -29,8 +29,8 @@ func faze_de_preparacao(info : Array):
 
 # Usado para fazer a ação acontecer (é chamado constantemente).
 func executando(delta):
-	if not caminho.is_empty():
-		if not pause:
+	if not pause:
+		if not caminho.is_empty():
 			# Se tiver chegado em um tile, vai pegar a cordenada global do proximo tile.
 			if deu_passo:
 				deu_passo = false
@@ -45,9 +45,9 @@ func executando(delta):
 					verifica_ao_redor()
 				deu_passo = true
 				caminho.pop_front()
-	# Quando não tiver mais nada no caminho emite o sinal "fim".
-	else:
-		fim.emit()
+		# Quando não tiver mais nada no caminho emite o sinal "fim".
+		else:
+			fim.emit()
 
 # Usado pra após o fim da ação para resetar as variaveis.
 func finalizacao():
@@ -64,12 +64,12 @@ func pausar():
 
 # Despausa o movimento do jogador.
 func continuar(jogador : Jogador):
-	if jogador == corpo:
+	if jogador == corpo and atual:
 		pause = false
 
 # Quando executada, finaliza a ação de movimento do jogador.
 func da_fim(jogador : Jogador):
-	if jogador == corpo:
+	if jogador == corpo and atual:
 		fim.emit()
 
 # Verifica os tiles ao redor do jogador, buscando por jogadores do time adversario que estão em modo 

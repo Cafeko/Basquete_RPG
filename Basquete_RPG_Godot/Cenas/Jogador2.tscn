@@ -11,9 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://k1ueu7i8ffqn" path="res://Assets/NES Asset Pack Basketball Files/Player A/Player A Pass receive (with ball)/Player_A_Pass_Receive_NorthWest_WITHBALL.png" id="7_8te05"]
 [ext_resource type="Texture2D" uid="uid://dqx5mjchplxur" path="res://Assets/NES Asset Pack Basketball Files/Player A/Player A Run (no ball)/Player_A_Run_East_NOBALL_strip4.png" id="8_w6eht"]
 [ext_resource type="Script" path="res://Scripts/status_jogador.gd" id="9_qex5t"]
-[ext_resource type="Script" path="res://Scripts/controlador_aparencia.gd" id="10_bthjk"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acoes.gd" id="10_exy3e"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acao.gd" id="11_evnvy"]
+[ext_resource type="Script" path="res://Scripts/ControladorAparencia/controlador_aparencia_cesta.gd" id="12_oerdf"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_mover.gd" id="12_sj1jm"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_pegar_bola.gd" id="13_phqq1"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_passar_bola.gd" id="14_iod0a"]
@@ -24,7 +24,7 @@
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_bloquear.gd" id="20_kp8nv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4ut5"]
-size = Vector2(16, 17)
+size = Vector2(16, 21)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8gog8"]
 shader = ExtResource("2_ucpj4")
@@ -247,17 +247,24 @@ animations = [{
 script = ExtResource("1_fk7ut")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4.5)
+position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_i4ut5")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Aparencia" type="Node2D" parent="." node_paths=PackedStringArray("pai", "sprite", "animacao")]
+script = ExtResource("12_oerdf")
+pai = NodePath("..")
+sprite = NodePath("Sprite2D")
+animacao = NodePath("AnimationPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="Aparencia"]
 material = SubResource("ShaderMaterial_8gog8")
 position = Vector2(0, -14)
 texture = ExtResource("3_2m7bu")
 hframes = 10
 vframes = 10
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Aparencia"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_x22tj")
 }
@@ -276,10 +283,6 @@ position = Vector2(6, -8)
 [node name="Status" type="Node" parent="."]
 script = ExtResource("9_qex5t")
 tipo_jogador = "Atacante"
-
-[node name="Aparencia" type="Node" parent="." node_paths=PackedStringArray("animacao")]
-script = ExtResource("10_bthjk")
-animacao = NodePath("../Sprite2D")
 
 [node name="Acoes" type="Node" parent="." node_paths=PackedStringArray("primeira_acao")]
 script = ExtResource("10_exy3e")

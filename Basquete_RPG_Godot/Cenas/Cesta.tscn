@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/cesta.gd" id="1_5x1p2"]
 [ext_resource type="Shader" path="res://Scripts/Shader/Cesta.gdshader" id="1_yxb5f"]
 [ext_resource type="Texture2D" uid="uid://dk8rs4jokottn" path="res://Assets/Cesta.png" id="2_gi4da"]
-[ext_resource type="Script" path="res://Scripts/controlador_aparencia.gd" id="3_ud7sa"]
+[ext_resource type="Script" path="res://Scripts/ControladorAparencia/controlador_aparencia_cesta.gd" id="4_pif7b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xsvl"]
 size = Vector2(16, 16)
@@ -19,7 +19,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("Aparencia/Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -34,7 +34,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("Aparencia/Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -46,11 +46,11 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_1u0wa"]
 resource_name = "BolaNaCesta"
-length = 0.5
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("Aparencia/Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -76,19 +76,27 @@ script = ExtResource("1_5x1p2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3xsvl")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Aparencia" type="Node2D" parent="." node_paths=PackedStringArray("pai", "sprite", "animacao")]
+script = ExtResource("4_pif7b")
+pai = NodePath("..")
+sprite = NodePath("Sprite2D")
+animacao = NodePath("AnimationPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="Aparencia"]
 material = SubResource("ShaderMaterial_3hpmj")
 texture = ExtResource("2_gi4da")
 vframes = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Aparencia"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_a37i2")
 }
 
 [node name="Centro" type="Marker2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(-5, -8)
 
-[node name="Aparencia" type="Node" parent="." node_paths=PackedStringArray("animacao")]
-script = ExtResource("3_ud7sa")
-animacao = NodePath("../Sprite2D")
+[node name="Saida" type="Marker2D" parent="."]
+position = Vector2(0, 6)
+
+[connection signal="animation_finished" from="Aparencia/AnimationPlayer" to="Aparencia" method="on_animation_finished"]

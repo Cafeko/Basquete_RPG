@@ -6,7 +6,7 @@ class_name Jogador
 
 @onready var ponto_bola = $PontoBola
 @onready var status = $Status
-@onready var aparencia = $Aparencia
+@onready var aparencia : Aparencia = $Aparencia
 
 var com_bola : bool = false
 var modo_defesa : bool = false
@@ -192,6 +192,7 @@ func fim_passar_bola():
 	# Finaliza a acao_atual e muda ela para a ação "Parado".
 	acao_atual.finalizacao()
 	acao_atual = acoes["Parado"]
+	set_pode_mover(true)
 	fez_acao()
 
 # - ArremessarBola
@@ -207,6 +208,7 @@ func fim_arremessar_bola():
 	# Finaliza a acao_atual e muda ela para a ação "Parado".
 	acao_atual.finalizacao()
 	acao_atual = acoes["Parado"]
+	set_pode_mover(true)
 	fez_acao()
 
 # - RoubarBola

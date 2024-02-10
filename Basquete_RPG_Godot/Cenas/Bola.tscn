@@ -1,13 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://coy7olt5nnj62"]
+[gd_scene load_steps=14 format=3 uid="uid://coy7olt5nnj62"]
 
 [ext_resource type="Script" path="res://Scripts/bola.gd" id="1_ymnmx"]
 [ext_resource type="Texture2D" uid="uid://b6oy7l35ahkgr" path="res://Assets/Bola.png" id="2_7g8l0"]
+[ext_resource type="Shader" path="res://Scripts/Shader/Cesta.gdshader" id="2_q6pjd"]
 [ext_resource type="Script" path="res://Scripts/Estados/maquina_estados.gd" id="3_meqhi"]
+[ext_resource type="Script" path="res://Scripts/ControladorAparencia/controlador_aparencia_bola.gd" id="3_qsep2"]
 [ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_parada.gd" id="4_u7nr7"]
 [ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_com_jogador.gd" id="5_oqfx1"]
 [ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_em_passe.gd" id="6_1ukt3"]
 [ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_em_arremesso.gd" id="7_1icqr"]
 [ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_em_rebateu.gd" id="8_2vdjw"]
+[ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_move_para.gd" id="9_eb20j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wnrf1"]
+shader = ExtResource("2_q6pjd")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.7
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_slpnv"]
 radius = 2.0
@@ -17,7 +25,13 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_ymnmx")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Aparencia" type="Node2D" parent="." node_paths=PackedStringArray("pai", "sprite")]
+script = ExtResource("3_qsep2")
+pai = NodePath("..")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Aparencia"]
+material = SubResource("ShaderMaterial_wnrf1")
 texture = ExtResource("2_7g8l0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -49,3 +63,8 @@ velocidade_arremesso = 1200.0
 script = ExtResource("8_2vdjw")
 bola = NodePath("../..")
 velocidade_rebate = 600.0
+
+[node name="MovePara" type="Node" parent="MaquinaEstados" node_paths=PackedStringArray("bola")]
+script = ExtResource("9_eb20j")
+bola = NodePath("../..")
+velocidade_movimento = 200.0

@@ -7,13 +7,13 @@ extends Estado
 # Executada quando os nós estiverem prontos.
 func tudo_pronto():
 	Global.acao_acabou.connect(on_acao_acabou)
-	Global.acertou_cesta.connect(on_acertou_cesta)
+	Global.fez_ponto.connect(on_fez_ponto)
 	Global.teve_interrupcao.connect(on_teve_interrupcao)
 
 func on_acao_acabou():
 	muda_estado.emit(self.name, "SelecionaJogador")
 
-func on_acertou_cesta():
+func on_fez_ponto():
 	muda_estado.emit(self.name, "FezPonto")
 
 func on_teve_interrupcao():

@@ -57,7 +57,7 @@ func executando(delta):
 			# Se alvo for cesta: Bola acertou a cesta.
 			elif alvo is Cesta:
 				muda_estado.emit(self.name, "Parada")
-				alvo.bola_na_cesta(pontos, bola.get_forca())
+				alvo.bola_na_cesta(bola, pontos, bola.get_forca())
 
 # Verifica os tiles ao redor da bola, buscando por jogadores do time adversario que estão em modo 
 # de defesa para fazer as interrupções durante o movimento da bola. 

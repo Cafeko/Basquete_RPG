@@ -7,11 +7,14 @@ class_name Cesta
 @export var e_cesta_esquerda : bool = false
 
 @onready var centro = $Centro
-@onready var aparencia = $Aparencia
+@onready var saida = $Saida
+@onready var aparencia : Aparencia = $Aparencia
 
 var tile_cesta : Vector2i
 var tile_base : Vector2i
 var time_ganha_ponto : TimeJogadores
+var pontos_ganho : int
+var bola : Bola
 var dificuldade : int = 0
 var tile_proximos : Array[Vector2i]
 
@@ -70,15 +73,30 @@ func define_dificuldade(tile_jogador : Vector2i):
 	dificuldade = (abs(distancia.x) + abs(distancia.y))*10
 	return dificuldade
 
-# Informa ao controlador qual time fez ponto e a quantidde de pontos.
-func bola_na_cesta(pontos_quantidade: int, forca : int):
+# Executada quando a bola chegar na cesta.
+func bola_na_cesta(bola_que_acertou : Bola, pontos_quantidade: int, forca : int):
 	# Bola erra cesta.
 	if  forca < dificuldade:
-		# Tile proximo que a bola vai cair é pego aleatoriamente.
+		# Define aleatoriamente o tile proximo que a bola vai cair.
 		Global.errou_cesta.emit(tile_proximos.pick_random())
 	# Bola acerta cesta.
 	else:
-		Global.controlador.bola_entrou_em_cesta(time_ganha_ponto, pontos_quantidade)
+		pontos_ganho = pontos_quantidade
+		bola = bola_que_acertou
+		bola.aparencia.set_visivel(false)
+		aparencia.toca_animacao("BolaNaCesta")
+
+# Executada após o fim da animação da bola entrar na cesta.
+func bola_entrou_na_cesta():
+	bola.global_position = saida.global_position
+	bola.aparencia.set_visivel(true)
+	if e_cesta_esquerda:
+		Global.acertou_cesta.emit(tile_base + Vector2i.RIGHT)
+	else:
+		Global.acertou_cesta.emit(tile_base + Vector2i.LEFT)
+	await get_tree().create_timer(3.0).timeout
+	# Informa ao controlador qual time fez ponto e a quantidde de pontos.
+	Global.controlador.bola_entrou_em_cesta(time_ganha_ponto, pontos_ganho)
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #

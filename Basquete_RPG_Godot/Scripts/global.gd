@@ -35,3 +35,4 @@ signal continua_movimento_bola
 signal para_bola_no_ar
 signal finaliza_movimento_jogador
 signal continua_movimento_jogador
+signal fez_ponto

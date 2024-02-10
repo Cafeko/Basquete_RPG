@@ -12,17 +12,17 @@ script = ExtResource("1_ylaes")
 
 [node name="Jogador2_3" parent="." instance=ExtResource("2_unavj")]
 
-[node name="Status" parent="Jogador2_3" index="3"]
+[node name="Status" parent="Jogador2_3" index="4"]
 tipo_jogador = "Meio"
 
 [node name="Jogador2_4" parent="." instance=ExtResource("2_unavj")]
 
-[node name="Status" parent="Jogador2_4" index="3"]
+[node name="Status" parent="Jogador2_4" index="4"]
 tipo_jogador = "Defesa"
 
 [node name="Jogador2_5" parent="." instance=ExtResource("2_unavj")]
 
-[node name="Status" parent="Jogador2_5" index="3"]
+[node name="Status" parent="Jogador2_5" index="4"]
 tipo_jogador = "Defesa"
 
 [editable path="Jogador2_1"]

@@ -24,12 +24,12 @@ func entrando():
 	Global.controlador.define_time_do_turno(time_tomou_cesta)
 	# Prepara quadra e bola.
 	Global.quadra.prepara_navegacao()
-	Global.controlador.posiciona_bola_pos_ponto(lado_esq)
+	#Global.controlador.posiciona_bola_pos_ponto(lado_esq)
 	# Posiciona e prepara jogadores.
 	Global.controlador.formacao_pos_ponto(time_fez_ponto, time_tomou_cesta)
 	Global.controlador.time_pega_bola(time_tomou_cesta)
+	Global.controlador.jogador_nao_move_pos_ponto(time_tomou_cesta)
 
 # Executando enquanto está no estado.
 func executando(_delta):
-	Global.controlador.jogador_nao_move_pos_ponto(lado_esq)
 	muda_estado.emit(self.name, "SelecionaJogador")

@@ -5,6 +5,7 @@ extends CharacterBody2D
 class_name Bola
 
 @onready var maquina_estados = $MaquinaEstados
+@onready var aparencia : Aparencia = $Aparencia
 
 var jogador_segurando : Jogador = null
 var tile_alvo : Vector2i
