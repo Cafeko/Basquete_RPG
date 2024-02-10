@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://mjyhv5fjm7fc"]
 
-[ext_resource type="Texture2D" uid="uid://ce3t0xsvi3001" path="res://Assets/Tilesheet/groundBeige_red.png" id="1_iwbsf"]
+[ext_resource type="Texture2D" uid="uid://ce3t0xsvi3001" path="res://Assets/Kenney Sports Pack/Tilesheet/groundBeige_red.png" id="1_iwbsf"]
 [ext_resource type="Script" path="res://Scripts/quadra.gd" id="1_u4eq5"]
-[ext_resource type="Texture2D" uid="uid://5pmmehjpw40w" path="res://Assets/Tilesheet/groundGrass.png" id="3_wvyc4"]
+[ext_resource type="Texture2D" uid="uid://5pmmehjpw40w" path="res://Assets/Kenney Sports Pack/Tilesheet/groundGrass.png" id="3_wvyc4"]
 [ext_resource type="Script" path="res://Scripts/formacao.gd" id="4_h1tgx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xr0pw"]

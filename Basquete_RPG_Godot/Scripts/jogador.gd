@@ -6,6 +6,7 @@ class_name Jogador
 
 @onready var ponto_bola = $PontoBola
 @onready var status = $Status
+@onready var aparencia = $Aparencia
 
 var com_bola : bool = false
 var modo_defesa : bool = false
@@ -256,3 +257,11 @@ func fim_bloquear():
 	acao_atual.finalizacao()
 	acao_atual = acoes["Parado"]
 # ------------------------------------------------------------------------------------------------ #
+
+# ------------------------------------------------------------------------------------------------ #
+# Aparencia
+func set_contorno(valor : bool, cor : Color = Color(1, 1, 1, 1)):
+	if valor:
+		aparencia.bota_contorno(cor)
+	else:
+		aparencia.tira_contorno()

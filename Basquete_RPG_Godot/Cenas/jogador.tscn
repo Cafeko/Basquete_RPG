@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://brudnwsbxiwbb"]
 
-[ext_resource type="Texture2D" uid="uid://kvxxsjm5j4jb" path="res://Assets/PNG/Blue/characterBlue (8).png" id="1_5q6r0"]
+[ext_resource type="Texture2D" uid="uid://kvxxsjm5j4jb" path="res://Assets/Kenney Sports Pack/PNG/Blue/characterBlue (8).png" id="1_5q6r0"]
 [ext_resource type="Script" path="res://Scripts/jogador.gd" id="1_8s316"]
 [ext_resource type="Script" path="res://Scripts/status_jogador.gd" id="2_hlyrr"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acoes.gd" id="3_b3cyp"]

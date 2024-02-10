@@ -1,7 +1,9 @@
-[gd_scene load_steps=45 format=3 uid="uid://c155ppdxcfocw"]
+[gd_scene load_steps=52 format=3 uid="uid://c155ppdxcfocw"]
 
 [ext_resource type="Script" path="res://Scripts/jogador.gd" id="1_fk7ut"]
 [ext_resource type="Texture2D" uid="uid://bvvujfd62emvy" path="res://Assets/NES Asset Pack Basketball Files/Player A/Player A Dribble/Player_A_Dribble_East_strip4.png" id="2_e25qt"]
+[ext_resource type="Shader" path="res://Scripts/Shader/Cesta.gdshader" id="2_ucpj4"]
+[ext_resource type="Texture2D" uid="uid://djxnw2r33h827" path="res://Assets/SpriteSheet_Player1.png" id="3_2m7bu"]
 [ext_resource type="Texture2D" uid="uid://c6r1ioov43s73" path="res://Assets/NES Asset Pack Basketball Files/Player A/Player A Idle (with ball)/Player_A_Idle_NorthEast_strip4.png" id="3_gsna1"]
 [ext_resource type="Texture2D" uid="uid://bf5ryv0nwnmb6" path="res://Assets/NES Asset Pack Basketball Files/Player A/Player A Idle (no ball)/Player_A_Idle_NorthEast_NOBALL_strip4.png" id="4_kk2wr"]
 [ext_resource type="Texture2D" uid="uid://tto4owiybc1g" path="res://Assets/NES Asset Pack Basketball Files/Player A/Player A Jump Shoot (with ball)/Player_A_J_Shoot_NorthEast_WITHBALL_strip3.png" id="5_vjucr"]
@@ -9,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://k1ueu7i8ffqn" path="res://Assets/NES Asset Pack Basketball Files/Player A/Player A Pass receive (with ball)/Player_A_Pass_Receive_NorthWest_WITHBALL.png" id="7_8te05"]
 [ext_resource type="Texture2D" uid="uid://dqx5mjchplxur" path="res://Assets/NES Asset Pack Basketball Files/Player A/Player A Run (no ball)/Player_A_Run_East_NOBALL_strip4.png" id="8_w6eht"]
 [ext_resource type="Script" path="res://Scripts/status_jogador.gd" id="9_qex5t"]
+[ext_resource type="Script" path="res://Scripts/controlador_aparencia.gd" id="10_bthjk"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acoes.gd" id="10_exy3e"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acao.gd" id="11_evnvy"]
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_mover.gd" id="12_sj1jm"]
@@ -21,7 +24,25 @@
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_bloquear.gd" id="20_kp8nv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4ut5"]
-size = Vector2(16, 16)
+size = Vector2(16, 17)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8gog8"]
+shader = ExtResource("2_ucpj4")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.7
+
+[sub_resource type="Animation" id="Animation_ln4wi"]
+resource_name = "Parado_Baixo"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x22tj"]
+_data = {
+"Parado_Baixo": SubResource("Animation_ln4wi")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xluwd"]
+shader = ExtResource("2_ucpj4")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.7
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_02bht"]
 atlas = ExtResource("2_e25qt")
@@ -226,14 +247,28 @@ animations = [{
 script = ExtResource("1_fk7ut")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_i4ut5")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_8gog8")
+position = Vector2(0, -14)
+texture = ExtResource("3_2m7bu")
+hframes = 10
+vframes = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x22tj")
+}
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_xluwd")
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_4n7j1")
 animation = &"IdleNoBall"
-frame = 2
-frame_progress = 0.840765
+frame_progress = 0.484438
 
 [node name="PontoBola" type="Marker2D" parent="."]
 position = Vector2(6, -8)
@@ -241,6 +276,10 @@ position = Vector2(6, -8)
 [node name="Status" type="Node" parent="."]
 script = ExtResource("9_qex5t")
 tipo_jogador = "Atacante"
+
+[node name="Aparencia" type="Node" parent="." node_paths=PackedStringArray("animacao")]
+script = ExtResource("10_bthjk")
+animacao = NodePath("../Sprite2D")
 
 [node name="Acoes" type="Node" parent="." node_paths=PackedStringArray("primeira_acao")]
 script = ExtResource("10_exy3e")
