@@ -15,6 +15,12 @@ func _ready():
 func set_visivel(valor : bool):
 	pai.visible = valor
 
+func set_contorno(valor : bool, cor : Color = Color(1, 1, 1, 1)):
+	if valor:
+		bota_contorno(cor)
+	else:
+		tira_contorno()
+
 func bota_contorno(cor : Color):
 	sprite.material.set("shader_parameter/line_color", cor)
 
@@ -23,3 +29,4 @@ func tira_contorno():
 
 func toca_animacao(animacao_nome : String):
 	animacao.play(animacao_nome)
+

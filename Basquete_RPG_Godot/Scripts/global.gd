@@ -12,6 +12,11 @@ var visual
 var controlador_estado_atual : String
 var barra_forca
 
+# Cores:
+var cor_pode_selecionar : Color = Color.WHITE
+var cor_selecionado : Color = Color.GREEN
+var cor_sem_acao : Color = Color.DIM_GRAY
+
 # Sinais:
 signal acao_escolhida
 signal acao_acabou

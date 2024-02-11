@@ -49,3 +49,13 @@ func pegar_bola():
 # Retorna o jogador que vai estar com a bola após o time levar uma cesta.
 func get_jogador_arremesso_inicial():
 	return jogador_arremesso_inicial
+
+# Set o contorno de todos os jogadores do time.
+func contorno_jogadores(valor : bool):
+	for i in range(len(jogadores_lista)):
+		var jogador = jogadores_lista[i]
+		var tem_acao = jogador.tem_acoes()
+		if tem_acao:
+			jogador.aparencia.set_contorno(valor, Global.cor_pode_selecionar)
+		else:
+			jogador.aparencia.set_contorno(valor, Global.cor_sem_acao)

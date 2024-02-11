@@ -18,16 +18,21 @@ func tudo_pronto():
 
 # Executado quando entra no estado.
 func entrando():
+	# Valores:
 	escolheu = false
 	jogador = Global.controlador.get_jogador_selecionado()
 	tile_jogador = Global.quadra.cord_para_tile(jogador.global_position)
-	tile_alvo = tile_jogador
-	alvo_escolhido = jogador
+	tile_alvo = Vector2i.ZERO
+	alvo_escolhido = null
+	# Area de alcance:
 	alcance_passe = jogador.status.get_passe_numero_tiles()
 	tiles_passe = Global.quadra.area_circular(tile_jogador, alcance_passe)
 	remove_tiles_invalidos()
-	tiles_passe.erase(tile_jogador)
 	Global.visual.desenha_area(tiles_passe)
+	# Visual (Jogadores): 
+	jogador.aparencia.set_contorno(true, Global.cor_selecionado)
+	destaca_jogadores_no_alcance()
+	# UI:
 	Global.ui.exibe_confirmacao()
 
 # Executando enquanto está no estado.
@@ -45,12 +50,18 @@ func executando(_delta):
 					if tile in tiles_passe:
 						# Se alvo_escolhido for nulo: jogador selecionado joga bola até um tile vazio;
 						# Se alvo_escolhido for um jogador: jogador selecionado passa a bola para ele.
-						tile_alvo = tile
 						alvo_escolhido = Global.controlador.verifica_ponto(posicao_mouse)
-						if alvo_escolhido == null or alvo_escolhido is Jogador:
-							if alvo_escolhido is Jogador:
-								Global.controlador.set_jogador_selecionado2(alvo_escolhido)
-							set_escolheu(true)
+						if alvo_escolhido is Jogador and alvo_escolhido != jogador:
+							tile_alvo = Global.quadra.cord_para_tile(alvo_escolhido.global_position)
+							Global.controlador.set_jogador_selecionado2(alvo_escolhido)
+							if Global.controlador.jogador_no_time_do_turno(alvo_escolhido):
+								set_escolheu(true)
+							else:
+								tile_alvo = Vector2i.ZERO
+								alvo_escolhido = null
+						else:
+							tile_alvo = Vector2i.ZERO
+							alvo_escolhido = null
 	else:
 		muda_estado.emit(self.name, "SelecionaJogador")
 
@@ -72,20 +83,36 @@ func set_escolheu(valor : bool):
 	escolheu = valor
 	if escolheu:
 		Global.visual.limpa_area()
-		var tile_escolhido : Array[Vector2i] = [tile_alvo]
-		Global.visual.desenha_area(tile_escolhido)
+		if alvo_escolhido is Jogador:
+			alvo_escolhido.aparencia.set_contorno(true, Global.cor_selecionado)
+		else:
+			var tile_escolhido : Array[Vector2i] = [tile_alvo]
+			Global.visual.desenha_area(tile_escolhido)
 	else:
+		if alvo_escolhido is Jogador:
+			alvo_escolhido.aparencia.set_contorno(true, Global.cor_pode_selecionar)
 		Global.visual.desenha_area(tiles_passe)
-		tile_alvo = tile_jogador
-		alvo_escolhido = jogador
+		tile_alvo = Vector2i.ZERO
+		alvo_escolhido = null
+
+func destaca_jogadores_no_alcance():
+	for tile in tiles_passe:
+		var cord = Global.quadra.tile_para_cord(tile)
+		var jogador_no_tile = Global.controlador.verifica_ponto(cord)
+		if jogador_no_tile != null and Global.controlador.jogador_no_time_do_turno(jogador_no_tile) and jogador_no_tile != jogador:
+			jogador_no_tile.aparencia.set_contorno(true, Global.cor_pode_selecionar)
 
 func on_confirmar_acao(estado_alvo : String):
 	if self.name == estado_alvo:
-		Global.controlador.limpa_info()
-		Global.controlador.limpa_interrupcao()
-		Global.controlador.add_info("Passe")
-		Global.controlador.add_info([Global.bola, alvo_escolhido, tile_alvo])
-		muda_estado.emit(self.name, "DefinaForcaAcao")
+		if alvo_escolhido != null:
+			Global.controlador.contorno_time_do_turno(false)
+			jogador.aparencia.set_contorno(true, Global.cor_selecionado)
+			alvo_escolhido.aparencia.set_contorno(true, Global.cor_selecionado)
+			Global.controlador.limpa_info()
+			Global.controlador.limpa_interrupcao()
+			Global.controlador.add_info("Passe")
+			Global.controlador.add_info([Global.bola, alvo_escolhido, tile_alvo])
+			muda_estado.emit(self.name, "DefinaForcaAcao")
 
 func on_cancelar_acao(estado_alvo : String):
 	if self.name == estado_alvo:

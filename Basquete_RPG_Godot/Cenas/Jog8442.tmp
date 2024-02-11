@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/jogador.gd" id="1_fk7ut"]
 [ext_resource type="Texture2D" uid="uid://bvvujfd62emvy" path="res://Assets/NES Asset Pack Basketball Files/Player A/Player A Dribble/Player_A_Dribble_East_strip4.png" id="2_e25qt"]
-[ext_resource type="Script" path="res://Scripts/ControladorAparencia/controlador_aparencia_jogador2.gd" id="2_eiy8h"]
 [ext_resource type="Shader" path="res://Scripts/Shader/Cesta.gdshader" id="2_ucpj4"]
+[ext_resource type="Script" path="res://Scripts/ControladorAparencia/controlador_aparencia_jogador2.gd" id="2_uf4w7"]
 [ext_resource type="Texture2D" uid="uid://djxnw2r33h827" path="res://Assets/SpriteSheet_Player1.png" id="3_2m7bu"]
 [ext_resource type="Texture2D" uid="uid://c6r1ioov43s73" path="res://Assets/NES Asset Pack Basketball Files/Player A/Player A Idle (with ball)/Player_A_Idle_NorthEast_strip4.png" id="3_gsna1"]
 [ext_resource type="Texture2D" uid="uid://bf5ryv0nwnmb6" path="res://Assets/NES Asset Pack Basketball Files/Player A/Player A Idle (no ball)/Player_A_Idle_NorthEast_NOBALL_strip4.png" id="4_kk2wr"]
@@ -27,7 +27,6 @@
 size = Vector2(16, 21)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8gog8"]
-resource_local_to_scene = true
 shader = ExtResource("2_ucpj4")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.7
@@ -252,7 +251,7 @@ position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_i4ut5")
 
 [node name="Aparencia" type="Node2D" parent="." node_paths=PackedStringArray("pai", "sprite", "animacao")]
-script = ExtResource("2_eiy8h")
+script = ExtResource("2_uf4w7")
 pai = NodePath("..")
 sprite = NodePath("Sprite2D")
 animacao = NodePath("AnimationPlayer")

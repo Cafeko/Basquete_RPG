@@ -236,8 +236,8 @@ func fim_descansar():
 	# Finaliza a acao_atual e muda ela para a ação "Parado".
 	acao_atual.finalizacao()
 	acao_atual = acoes["Parado"]
-	Global.acao_acabou.emit()
 	set_numero_acoes(0)
+	Global.acao_acabou.emit()
 
 # - DefesaNoAr
 func comeca_defesa_no_ar(alvo : Bola, dificuldade : int, forca : int):
@@ -259,11 +259,3 @@ func fim_bloquear():
 	acao_atual.finalizacao()
 	acao_atual = acoes["Parado"]
 # ------------------------------------------------------------------------------------------------ #
-
-# ------------------------------------------------------------------------------------------------ #
-# Aparencia
-func set_contorno(valor : bool, cor : Color = Color(1, 1, 1, 1)):
-	if valor:
-		aparencia.bota_contorno(cor)
-	else:
-		aparencia.tira_contorno()

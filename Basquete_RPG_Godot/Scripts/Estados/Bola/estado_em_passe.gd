@@ -28,13 +28,13 @@ func entrando():
 # Executando enquanto está no estado.
 func executando(delta):
 	if not pausar_movimento:
+		# Move a bola em direção ao alvo.
+		bola.global_position = bola.global_position.move_toward(cord_alvo, delta * velocidade_passe)
 		# Verifica os tiles ao redor durante o movimento.
 		var novo_tile = Global.quadra.cord_para_tile(bola.global_position)
 		if novo_tile != tile_atual:
 			tile_atual = novo_tile
 			verifica_ao_redor()
-		# Move a bola em direção ao alvo.
-		bola.global_position = bola.global_position.move_toward(cord_alvo, delta * velocidade_passe)
 		# Quando chegar no alvo:
 		if bola.global_position == cord_alvo:
 			# Se alvo for vazio: bola para no chão acabando a ação de passe e acabando o turno.
@@ -62,6 +62,7 @@ func verifica_ao_redor():
 			inimigos.append(inimigo)
 	# Se forem encontrados alvos: faz interrupção.
 	if len(inimigos) > 0:
+		on_para_movimento()
 		Global.controlador.interrupcao_tipo = Global.controlador.INTERRUPCAO.NO_AR
 		for i in inimigos:
 			Global.controlador.add_interrupcao(i)

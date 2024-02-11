@@ -59,6 +59,10 @@ func define_tile_proximos():
 # Defne qual time vai ganhar ponto quando a cesta for acertada.
 func set_time_ganha_ponto(time : TimeJogadores):
 	time_ganha_ponto = time
+
+# Retorna o time que ganhar ponto quando a cesta for acertada.
+func get_time_ganha_ponto():
+	return time_ganha_ponto
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #

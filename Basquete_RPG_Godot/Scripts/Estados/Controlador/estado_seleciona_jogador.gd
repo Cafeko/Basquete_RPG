@@ -9,8 +9,12 @@ func tudo_pronto():
 
 # Executado quando entra no estado.
 func entrando():
+	# Valores:
 	Global.controlador.set_jogador_selecionado(null)
 	Global.controlador.set_jogador_selecionado2(null)
+	# Visual (Time):
+	Global.controlador.contorno_time_do_turno(true)
+	# UI:
 	Global.ui.exibe_fim_turno()
 
 # Executando enquanto está no estado.

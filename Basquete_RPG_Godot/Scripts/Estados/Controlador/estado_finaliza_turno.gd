@@ -4,4 +4,3 @@ extends Estado
 func executando(_delta):
 	Global.controlador.fim_de_turno()
 	muda_estado.emit(self.name, "SelecionaJogador")
-	

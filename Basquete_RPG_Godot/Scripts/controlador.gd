@@ -107,6 +107,7 @@ func time_pega_bola(time : TimeJogadores):
 
 # - Fim de turno
 func fim_de_turno():
+	contorno_time_do_turno(false)
 	partida.troca_time_do_turno()
 	partida.entra_novo_turno(partida.time_do_turno)
 
@@ -147,6 +148,24 @@ func posiciona_bola_pos_ponto(na_esquerda : bool = true):
 func jogador_nao_move_pos_ponto(time):
 	var jogador : Jogador = time.get_jogador_arremesso_inicial()
 	jogador.set_pode_mover(false)
+# ------------------------------------------------------------------------------------------------ #
+
+# ------------------------------------------------------------------------------------------------ #
+# - Efeitos:
+func contorno_time_do_turno(valor : bool):
+	partida.contorno_time(partida.time_do_turno, valor)
+
+func set_contorno_times(valor : bool):
+	partida.contorno_time(time1, valor)
+	partida.contorno_time(time2, valor)
+
+func contorno_na_cesta_alvo():
+	var cesta = partida.get_cesta_alvo(partida.time_do_turno)
+	cesta.aparencia.set_contorno(true, Global.cor_pode_selecionar)
+
+func set_contorno_cestas(valor : bool):
+	cesta_esquerda.aparencia.set_contorno(valor, Global.cor_pode_selecionar)
+	cesta_direita.aparencia.set_contorno(valor, Global.cor_pode_selecionar)
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #

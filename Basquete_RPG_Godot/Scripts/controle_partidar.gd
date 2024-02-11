@@ -54,6 +54,12 @@ func set_cestas(esq : Cesta, dir : Cesta):
 	cesta_esq = esq
 	cesta_dir = dir
 
+func get_cesta_alvo(time : TimeJogadores):
+	if time == cesta_esq.get_time_ganha_ponto():
+		return cesta_esq
+	else:
+		return cesta_dir
+
 # Define o time que vai ganhar fazer o ponto ao acertar a boa na cesta.
 func define_time_cesta(time1_esquerda : bool = true):
 	if time1_esquerda:
@@ -75,6 +81,10 @@ func entra_novo_turno(time : TimeJogadores):
 	reset_acoes_time(time)
 	time_sai_modo_defesa(time)
 	time_pode_mover(time)
+
+# Set o contorno em um time especifico.
+func contorno_time(time : TimeJogadores, valor : bool):
+	time.contorno_jogadores(valor)
 
 # Faz o time resetar o numero de ações que os jogadores podem fazer.
 func reset_acoes_time(time : TimeJogadores):

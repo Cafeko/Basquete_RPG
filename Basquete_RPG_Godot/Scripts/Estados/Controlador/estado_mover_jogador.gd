@@ -17,13 +17,16 @@ func tudo_pronto():
 
 # Executado quando entra no estado.
 func entrando():
+	# Valores:
 	caminho = []
 	definir_caminho = false
 	jogador = Global.controlador.get_jogador_selecionado()
 	tile_jogador = Global.quadra.cord_para_tile(jogador.global_position)
 	caminho_tamanho = jogador.status.get_movimento_numero_tiles()
+	# UI:
 	Global.ui.exibe_confirmacao()
-	# Destaca o jogador selecionado.
+	# Visual (Tiles):
+	# Destaca tile do jogador selecionado.
 	var tile_escolhido : Array[Vector2i] = [tile_jogador]
 	Global.visual.desenha_area(tile_escolhido)
 
@@ -32,8 +35,8 @@ func executando(_delta):
 	# Verifica se pressionou no jogador selecionado para comesar a definir o caminho.
 	if Input.is_action_just_pressed("mouse_esq"):
 		var posicao_mouse = Global.controlador.get_global_mouse_position()
-		var alvo = Global.controlador.verifica_ponto(posicao_mouse)
-		if jogador == alvo:
+		var tile = Global.quadra.cord_para_tile(posicao_mouse)
+		if tile == tile_jogador:
 			caminho = []
 			Global.visual.limpar_linha()
 			definir_caminho = true

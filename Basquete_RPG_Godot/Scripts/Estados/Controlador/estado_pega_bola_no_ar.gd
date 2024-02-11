@@ -16,30 +16,31 @@ func tudo_pronto():
 
 # Executado quando entra no estado.
 func entrando():
-	# Prepara valores.
+	# Valores:
 	agente_interrupcao = Global.controlador.get_primeira_interrupcao()
 	bola = Global.bola
 	dificuldade = bola.forca
 	forca = agente_interrupcao.status.defesa_no_ar()
-	# Exibe Valores.
+	# Visual (Envolvido na interrupção):
+	agente_interrupcao.aparencia.set_contorno(true, Global.cor_selecionado)
+	bola.aparencia.set_contorno(true, Global.cor_selecionado)
+	# Exibe na tela:
 	Global.ui.exibe_valores()
 	Global.ui.set_valor_jogador(str(forca))
 	Global.ui.set_valor_adversario(str(dificuldade))
 	na_esq = Global.controlador.time_na_esquerda(agente_interrupcao.get_time())
 	Global.ui.atualiza_valores(na_esq)
-	# Executa.
-	Global.para_movimento_bola.emit()
-	var tile_alvo = Global.quadra.cord_para_tile(agente_interrupcao.global_position)
-	var desenha_tiles : Array[Vector2i] = [tile_alvo]
-	Global.visual.desenha_area(desenha_tiles)
+	# Executa:
+	#Global.para_movimento_bola.emit()
 	await get_tree().create_timer(2.0).timeout 
 	agente_interrupcao.comeca_defesa_no_ar(bola, dificuldade, forca)
 
 # Executado ao sair do estado
 func saindo():
-	Global.visual.limpa_area()
 	Global.ui.esconde_valores()
 	Global.ui.reset_valores()
+	agente_interrupcao.aparencia.set_contorno(false)
+	bola.aparencia.set_contorno(false)
 
 # Defesa deu certo: Jogador pega a bola no ar.
 func on_defesa_deu_certo(estado_alvo : String):

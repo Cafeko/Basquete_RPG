@@ -5,10 +5,7 @@
 extends Estado
 
 var jogador : Jogador
-var tile_jogador : Vector2i
-var numero_acoes : int
 var energia_recuperada : int
-var primeira : bool = true
 
 # Executada quando os nós estiverem prontos.
 func tudo_pronto():
@@ -17,29 +14,18 @@ func tudo_pronto():
 
 # Executado quando entra no estado.
 func entrando():
-	primeira = true
+	# Valores:
 	jogador = Global.controlador.get_jogador_selecionado()
-	tile_jogador = Global.quadra.cord_para_tile(jogador.global_position)
-	numero_acoes = jogador.get_acoes_disponiveis()
 	energia_recuperada = jogador.status.ganho_de_energia()
-
-# Executando enquanto está no estado.
-func executando(_delta):
-	if primeira:
-		# Verifica se tem ações
-		if numero_acoes > 0:
-			# Destaca o jogador selecionado.
-			var tile_escolhido : Array[Vector2i] = [tile_jogador]
-			Global.visual.desenha_area(tile_escolhido)
-			Global.ui.exibe_confirmacao()
-		else:
-			muda_estado.emit(self.name, "SelecionaJogador")
-		primeira = false
+	# Visual (Jogador): 
+	jogador.aparencia.set_contorno(true, Global.cor_selecionado)
+	#UI:
+	Global.ui.exibe_confirmacao()
 
 # Executado ao sair do estado
 func saindo():
-	Global.visual.limpa_area()
 	Global.ui.esconde_confirmacao()
+	Global.controlador.contorno_time_do_turno(false)
 
 func on_confirmar_acao(estado_alvo : String):
 	if self.name == estado_alvo:

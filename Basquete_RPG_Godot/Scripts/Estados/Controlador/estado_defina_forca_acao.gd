@@ -15,14 +15,15 @@ func tudo_pronto():
 
 # Executado quando entra no estado.
 func entrando():
+	# Valores:
 	informacoes = Global.controlador.get_info()
 	acao = informacoes[0]
 	jogador = Global.controlador.get_jogador_selecionado()
-	# Prepara, exibe e inicia a barra de força.
+	# Barra de força:
 	Global.barra_forca.reset_barra_forca()
 	Global.ui.exibe_barra_forca()
 	Global.barra_forca.comeca_mover()
-	# Exibe Valores.
+	# Exibe Valores:
 	Global.ui.exibe_valores()
 	na_esq = Global.controlador.time_na_esquerda(jogador.get_time())
 	Global.ui.set_valor_jogador("00")
@@ -34,6 +35,8 @@ func saindo():
 	Global.ui.esconde_barra_forca()
 	Global.ui.esconde_valores()
 	Global.ui.reset_valores()
+	Global.controlador.set_contorno_times(false)
+	Global.controlador.set_contorno_cestas(false)
 
 func on_para_barra_forca():
 	# Esconde o botão que para a barra de força.

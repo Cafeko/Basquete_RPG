@@ -14,8 +14,8 @@ func entrando():
 	Global.controlador.add_info([alvo, dificuldade])
 	# Exibe valor da dificuldade.
 	Global.ui.set_valor_adversario(str(dificuldade))
-	# Destaca jogador que interrompeu.
-	var tile_alvo = Global.quadra.cord_para_tile(agente_interrupcao.global_position)
-	var desenha_tiles : Array[Vector2i] = [tile_alvo]
-	Global.visual.desenha_area(desenha_tiles)
+	# Destaca envolvidos.
+	agente_interrupcao.aparencia.set_contorno(true, Global.cor_selecionado)
+	alvo.aparencia.set_contorno(true, Global.cor_selecionado)
+	# Definir força do jogador que tá se movendo.
 	muda_estado.emit(self.name, "DefinaForcaAcao")

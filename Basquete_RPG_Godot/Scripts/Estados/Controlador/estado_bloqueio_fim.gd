@@ -26,7 +26,6 @@ func entrando():
 
 # Executado ao sair do estado
 func saindo():
-	Global.visual.limpa_area()
 	Global.ui.esconde_valores()
 	Global.ui.reset_valores()
 

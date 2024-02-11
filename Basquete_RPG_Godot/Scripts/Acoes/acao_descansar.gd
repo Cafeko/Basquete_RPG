@@ -18,5 +18,5 @@ func faze_de_preparacao(info : Array):
 # Usado para fazer a ação acontecer (é chamado constantemente).
 func executando(_delta):
 	corpo.status.ganha_energia(valor * numero_descansos)
-	print(corpo.status.energia)
+	#print(corpo.status.energia)
 	fim.emit()

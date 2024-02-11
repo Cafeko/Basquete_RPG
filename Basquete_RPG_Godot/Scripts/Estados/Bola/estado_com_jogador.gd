@@ -22,7 +22,7 @@ func entrando():
 
 # Executando enquanto está no estado.
 func executando(_delta):
-	bola.global_position = jogador.ponto_bola.global_position
+	bola.global_position = jogador.global_position
 
 # Executado ao sair do estado
 func saindo():

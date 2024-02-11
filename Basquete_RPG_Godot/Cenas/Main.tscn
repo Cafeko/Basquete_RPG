@@ -17,11 +17,7 @@ time2 = NodePath("../Time Vermelho")
 cesta_esquerda = NodePath("../Cestas/CestaEsq")
 cesta_direita = NodePath("../Cestas/CestaDir")
 
-[node name="UI" parent="." instance=ExtResource("5_en28u")]
-
 [node name="Quadra2" parent="." instance=ExtResource("8_b8ccj")]
-
-[node name="Visual" parent="." instance=ExtResource("6_mo0vx")]
 
 [node name="Time Azul" parent="." instance=ExtResource("6_ib5f2")]
 
@@ -38,6 +34,10 @@ e_cesta_esquerda = true
 [node name="CestaDir" parent="Cestas" instance=ExtResource("7_wmy34")]
 position = Vector2(473, 120)
 scale = Vector2(-1, 1)
+
+[node name="UI" parent="." instance=ExtResource("5_en28u")]
+
+[node name="Visual" parent="." instance=ExtResource("6_mo0vx")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(272, 136)

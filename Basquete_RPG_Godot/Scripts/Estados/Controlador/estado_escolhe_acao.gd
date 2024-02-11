@@ -10,9 +10,13 @@ func tudo_pronto():
 
 # Executado quando entra no estado.
 func entrando():
-	# Define o lado doque o status vai aparecer.
+	# Valores:
 	var jogador = Global.controlador.get_jogador_selecionado()
+	# Define o lado que o status vai aparecer.
 	var na_esq = Global.controlador.time_na_esquerda(jogador.get_time())
+	# Visual (Jogador):
+	jogador.aparencia.set_contorno(true, Global.cor_selecionado)
+	# UI:
 	# Deixa os status do jogador selecionado visivel.
 	Global.ui.abre_status_jogador(na_esq)
 	# Deixa o menu de escolher ação visivel.
@@ -20,6 +24,7 @@ func entrando():
 
 # Executado ao sair do estado.
 func saindo():
+	Global.controlador.contorno_time_do_turno(false)
 	# Deixa o menu de escolher ação invisivel.
 	Global.ui.fecha_menu_acoes()
 	# Deixa os status do jogador selecionado invisivel.
