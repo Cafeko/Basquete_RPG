@@ -21,17 +21,18 @@ func tudo_pronto():
 
 # Executado quando entra no estado.
 func entrando():
+	bola.aparencia.set_visivel(true)
 	pausar_movimento = false
 	alvo = bola.get_alvo()
-	# Se alvo for Jogador ou tile vazio:
-	if alvo == null or alvo is Jogador:
-		tile_alvo = bola.get_tile_alvo()
-		cord_alvo = Global.quadra.tile_para_cord(tile_alvo)
-	# Pega a posição da cesta que a bola tem que ir e pega quantos pontos esse arremesso vai dar se
-	# a bola entrar na cesta.
+	tile_alvo = bola.get_tile_alvo()
+	# Pega cordenada do alvo dependeno do que ele é.
+	if alvo is Jogador:
+		cord_alvo = alvo.ponto_bola.global_position
 	elif alvo is Cesta:
 		cord_alvo = alvo.centro.global_position
 		pontos = bola.get_pontos()
+	else:
+		cord_alvo = Global.quadra.tile_para_cord(tile_alvo)
 
 # Executando enquanto está no estado.
 func executando(delta):

@@ -23,8 +23,10 @@ func executando(_delta):
 	# Se o corpo do jogador estiver no mesmo tile que a bola: marca que pegou a bola e emite um sinal
 	# que faz a bola mudar de estado de "Parada" para "ComJogador".
 	if corpo_tile == bola_tile:
-		corpo.com_bola = true
+		corpo.set_com_bola(true)
 		Global.pegou_bola.emit(corpo)
+		corpo.aparencia.toca_animacao("Pega")
+		await get_tree().create_timer(0.7).timeout
 	fim.emit()
 
 # Usado pra após o fim da ação para resetar as variaveis.

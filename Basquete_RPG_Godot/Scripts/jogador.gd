@@ -35,6 +35,8 @@ func _ready():
 	acoes["Descansar"].fim.connect(fim_descansar)
 	acoes["DefesaNoAr"].fim.connect(fim_defesa_no_ar)
 	acoes["Bloquear"].fim.connect(fim_bloquear)
+	# Prepara Ação atual.
+	acao_atual.faze_de_preparacao([])
 
 func _physics_process(delta):
 	# Fica executando constantemente a ação atual.
@@ -98,13 +100,17 @@ func get_pode_mover():
 
 func get_modo_defesa():
 	return modo_defesa
+
+func set_com_bola(valor : bool):
+	com_bola = valor
+	aparencia.tem_bola = valor
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #
 # Acontecimentos:
 # Executada quando o jogador tiver a bola roubada dele.
 func perdeu_bola():
-	com_bola = false
+	set_com_bola(false)
 
 func fica_atordoado():
 	set_numero_acoes(0)
@@ -140,6 +146,14 @@ func get_acoes_disponiveis():
 func tem_acoes():
 	return numero_acoes > 0
 
+# - Parado
+# Prepara a acao_atual para ser a ação de "PassarBola".
+func troca_para_parado():
+	# Finaliza a acao_atual e muda ela para a ação "Parado".
+	acao_atual.finalizacao()
+	acao_atual = acoes["Parado"]
+	acao_atual.faze_de_preparacao([])
+
 # - Mover
 # Começa a ação de Mover.
 func comeca_mover(caminho : Array[Vector2i]):
@@ -156,14 +170,12 @@ func fim_mover():
 	# Deixa o tile em que está no fim do movimento como não navegavel.
 	var tile = Global.quadra.cord_para_tile(self.global_position)
 	Global.quadra.set_tile_nao_navegavel(tile)
-	# Finaliza a acao_atual e muda ela para a ação "Parado".
-	acao_atual.finalizacao()
-	acao_atual = acoes["Parado"]
-	if Global.controlador.jogador_em_bola(self):
+	troca_para_parado()
+	fez_acao()
+	if Global.controlador.jogador_em_bola(self) and not com_bola:
 		self.comeca_pegar_bola(Global.bola)
 	else:
 		Global.acao_acabou.emit()
-	fez_acao()
 
 # - PegarBola
 # Começa a ação de PegarBola.
@@ -173,8 +185,7 @@ func comeca_pegar_bola(bola : Bola):
 
 # Dá um fim a ação de PegarBola.
 func fim_pegar_bola():
-	acao_atual.finalizacao()
-	acao_atual = acoes["Parado"]
+	troca_para_parado()
 	Global.acao_acabou.emit()
 	if not Global.controlador.jogador_no_time_do_turno(self):
 		Global.finalizar_turno.emit()
@@ -188,10 +199,8 @@ func comeca_passar_bola(bola : Bola, alvo, tile_alvo : Vector2i, forca : int):
 
 # Finaliza a ação PassarBola.
 func fim_passar_bola():
-	com_bola = false
-	# Finaliza a acao_atual e muda ela para a ação "Parado".
-	acao_atual.finalizacao()
-	acao_atual = acoes["Parado"]
+	set_com_bola(false)
+	troca_para_parado()
 	set_pode_mover(true)
 	fez_acao()
 
@@ -204,10 +213,8 @@ func comeca_arremessar_bola(bola : Bola, alvo, tile_alvo : Vector2i, forca : int
 
 # Finaliza a ação ArremessarBola.
 func fim_arremessar_bola():
-	com_bola = false
-	# Finaliza a acao_atual e muda ela para a ação "Parado".
-	acao_atual.finalizacao()
-	acao_atual = acoes["Parado"]
+	set_com_bola(false)
+	troca_para_parado()
 	set_pode_mover(true)
 	fez_acao()
 
@@ -219,9 +226,7 @@ func comeca_roubar_bola(bola : Bola, alvo : Jogador, aliado : bool, dificuldade 
 
 # Finaliza a ação RoubarBola.
 func fim_roubar_bola():
-	# Finaliza a acao_atual e muda ela para a ação "Parado".
-	acao_atual.finalizacao()
-	acao_atual = acoes["Parado"]
+	troca_para_parado()
 	# Emite o sinal informando que a ação acabou.  
 	Global.acao_acabou.emit()
 
@@ -233,9 +238,7 @@ func comeca_descansar(valor_descanso : int):
 
 # Finaliza a ação de Descansar.
 func fim_descansar():
-	# Finaliza a acao_atual e muda ela para a ação "Parado".
-	acao_atual.finalizacao()
-	acao_atual = acoes["Parado"]
+	troca_para_parado()
 	set_numero_acoes(0)
 	Global.acao_acabou.emit()
 
@@ -245,9 +248,7 @@ func comeca_defesa_no_ar(alvo : Bola, dificuldade : int, forca : int):
 	acao_atual.faze_de_preparacao([alvo, dificuldade, forca])
 
 func fim_defesa_no_ar():
-	# Finaliza a acao_atual e muda ela para a ação "Parado".
-	acao_atual.finalizacao()
-	acao_atual = acoes["Parado"]
+	troca_para_parado()
 
 # - Bloquear
 func comeca_bloquear(alvo : Jogador, dificuldade : int, forca : int):
@@ -255,7 +256,5 @@ func comeca_bloquear(alvo : Jogador, dificuldade : int, forca : int):
 	acao_atual.faze_de_preparacao([alvo, dificuldade, forca])
 
 func fim_bloquear():
-	# Finaliza a acao_atual e muda ela para a ação "Parado".
-	acao_atual.finalizacao()
-	acao_atual = acoes["Parado"]
+	troca_para_parado()
 # ------------------------------------------------------------------------------------------------ #

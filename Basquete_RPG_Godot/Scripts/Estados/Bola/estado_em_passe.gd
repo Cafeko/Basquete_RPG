@@ -20,10 +20,15 @@ func tudo_pronto():
 
 # Executado quando entra no estado.
 func entrando():
+	bola.aparencia.set_visivel(true)
 	pausar_movimento = false
 	tile_alvo = bola.get_tile_alvo()
-	cord_alvo = Global.quadra.tile_para_cord(tile_alvo)
 	alvo = bola.get_alvo()
+	# Pega cordenada do alvo dependeno do que ele é.
+	if alvo is Jogador:
+		cord_alvo = alvo.ponto_bola.global_position
+	else:
+		cord_alvo = Global.quadra.tile_para_cord(tile_alvo)
 
 # Executando enquanto está no estado.
 func executando(delta):

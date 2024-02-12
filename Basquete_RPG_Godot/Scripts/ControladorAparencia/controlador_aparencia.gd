@@ -30,3 +30,8 @@ func tira_contorno():
 func toca_animacao(animacao_nome : String):
 	animacao.play(animacao_nome)
 
+func continua_animacao():
+	animacao.play()
+
+func pausa_animacao():
+	animacao.pause()

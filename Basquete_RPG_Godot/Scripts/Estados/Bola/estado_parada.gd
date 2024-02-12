@@ -13,6 +13,7 @@ func tudo_pronto():
 
 # Executado quando entra no estado.
 func entrando():
+	bola.aparencia.set_visivel(true)
 	bola.set_jogador_segurando(null)
 
 func on_pegou_bola(jogador):

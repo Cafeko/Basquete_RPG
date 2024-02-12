@@ -13,6 +13,7 @@ var alvo
 
 # Executado quando entra no estado.
 func entrando():
+	bola.aparencia.set_visivel(true)
 	tile_alvo = bola.get_tile_alvo()
 	cord_alvo = Global.quadra.tile_para_cord(tile_alvo)
 	alvo = Global.controlador.verifica_ponto(cord_alvo)

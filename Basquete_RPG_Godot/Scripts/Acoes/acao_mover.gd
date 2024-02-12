@@ -40,6 +40,7 @@ func executando(delta):
 			corpo.global_position = corpo.global_position.move_toward(proxima_cord, delta * velocidade)
 			# Quando o corpo chegar na proxima cordenada remove o tile do caminho.
 			if corpo.global_position == proxima_cord:
+				animacao_mover()
 				# Verifica se tem jogadores em modo de defesa que vão tentar bloquear o movimento.
 				if corpo.com_bola:
 					verifica_ao_redor()
@@ -61,11 +62,13 @@ func finalizacao():
 func pausar():
 	if atual:
 		pause = true
+		corpo.aparencia.pausa_animacao()
 
 # Despausa o movimento do jogador.
 func continuar(jogador : Jogador):
 	if jogador == corpo and atual:
 		pause = false
+		corpo.aparencia.continua_animacao()
 
 # Quando executada, finaliza a ação de movimento do jogador.
 func da_fim(jogador : Jogador):
@@ -92,3 +95,17 @@ func verifica_ao_redor():
 		for i in inimigos:
 			Global.controlador.add_interrupcao(i)
 		Global.teve_interrupcao.emit()
+
+# Faz a animação de mover ser executada.
+func animacao_mover():
+	var direcao = Vector2i.ZERO
+	if len(caminho) > 1:
+		# Defina a direção do movimento.
+		var tile_atual = caminho.front()
+		var prox_tile = caminho[1]
+		direcao = prox_tile - tile_atual
+		# Atualiza a direção da animação.
+		corpo.aparencia.direcao.x = direcao.x
+		if direcao.y != 0:
+			corpo.aparencia.direcao.y = direcao.y
+	corpo.aparencia.toca_animacao("Movendo")
