@@ -150,9 +150,9 @@ func tem_acoes():
 # Prepara a acao_atual para ser a ação de "PassarBola".
 func troca_para_parado():
 	# Finaliza a acao_atual e muda ela para a ação "Parado".
-	acao_atual.finalizacao()
-	acao_atual = acoes["Parado"]
-	acao_atual.faze_de_preparacao([])
+	self.acao_atual.finalizacao()
+	self.acao_atual = acoes["Parado"]
+	self.acao_atual.faze_de_preparacao([])
 
 # - Mover
 # Começa a ação de Mover.

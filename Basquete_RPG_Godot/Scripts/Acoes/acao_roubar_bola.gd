@@ -29,7 +29,8 @@ func executando(_delta):
 		corpo.status.gasta_energia(round(corpo.status.get_ataque_forca()/2.0))
 		Global.roubou_bola.emit(corpo) # Sinal que faz a bola ir de um jogador para outro.
 		alvo.perdeu_bola()
-		corpo.com_bola = true
+		alvo.aparencia.toca_animacao("Parado")
+		corpo.set_com_bola(true)
 	# Alvo não é aliado: disputa pela bola, ganhando se a força for maior que a dificuldade, que é 
 	# baseada na defesa do adversario).
 	else:
@@ -42,5 +43,6 @@ func executando(_delta):
 		else:
 			Global.roubou_bola.emit(corpo) # Sinal que faz a bola ir de um jogador para outro.
 			alvo.perdeu_bola()
-			corpo.com_bola = true
+			alvo.aparencia.toca_animacao("Parado")
+			corpo.set_com_bola(true)
 	fim.emit()
