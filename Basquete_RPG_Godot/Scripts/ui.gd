@@ -13,6 +13,7 @@ extends CanvasLayer
 @onready var valor_dir = $Valores/HBoxContainer/Valor2
 @onready var status_jogador = $StatusJogador
 @onready var status_jogador_posicao = $StatusJogador/Control
+@onready var placar = $Placar/Placar
 
 # Botoes do menu de ações:
 @onready var botao_mover = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoMover
@@ -375,6 +376,20 @@ func atualiza_valores(jogador_na_esquerda : bool = true):
 	else:
 		valor_esq.text = valor_adversario
 		valor_dir.text = valor_jogador
+# ------------------------------------------------------------------------------------------------ #
+
+# ------------------------------------------------------------------------------------------------ #
+# - Placar
+func placar_atualiza_time_do_turno_cor(cor : Color = Color.BLACK):
+	placar.set_cor_time_do_turno(cor)
+
+func placar_set_pontos(pontos : Array):
+	placar.set_pontos_time1(pontos[0])
+	placar.set_pontos_time2(pontos[1])
+
+func placar_set_cores_times(cor_time1 : Color = Color.BLACK, Cor_time2 : Color = Color.BLACK):
+	placar.set_cor_time1(cor_time1)
+	placar.set_cor_time2(Cor_time2)
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #

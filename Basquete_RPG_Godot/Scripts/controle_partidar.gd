@@ -112,6 +112,10 @@ func Marcou_ponto(time : TimeJogadores, pontos : int):
 	elif time == time2:
 		pontuacao_time2 += pontos
 
+# Retorna os pontos dos times.
+func retorna_times_pontos():
+	return [pontuacao_time1, pontuacao_time2]
+
 func print_pontos():
 	print(time1.name + " - " + str(pontuacao_time1))
 	print(time2.name + " - " + str(pontuacao_time2))

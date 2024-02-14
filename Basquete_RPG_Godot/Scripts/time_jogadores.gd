@@ -4,6 +4,8 @@
 extends Node2D
 class_name TimeJogadores
 
+@export var cor : Color
+
 var jogadores_lista = []
 var jogador_arremesso_inicial : Jogador
 

@@ -92,6 +92,7 @@ func jogador_em_bola(jogador : Jogador):
 func define_time_do_turno(time : TimeJogadores):
 	partida.set_time_do_turno(time)
 	partida.entra_novo_turno(time)
+	Global.ui.placar_atualiza_time_do_turno_cor(time.cor)
 
 # Retorna se o time está no lado esquerdo ou não
 func time_na_esquerda(time : TimeJogadores):
@@ -105,11 +106,15 @@ func time_adversario(time : TimeJogadores):
 func time_pega_bola(time : TimeJogadores):
 	partida.time_pega_bola(time)
 
+func atualiza_valores_placar():
+	Global.ui.placar_set_pontos(partida.retorna_times_pontos())
+
 # - Fim de turno
 func fim_de_turno():
 	contorno_time_do_turno(false)
 	partida.troca_time_do_turno()
 	partida.entra_novo_turno(partida.time_do_turno)
+	Global.ui.placar_atualiza_time_do_turno_cor(partida.time_do_turno.cor)
 
 # - Inicio de tempo 
 func inicio_tempo(time1_esquerda : bool = true):
@@ -118,7 +123,10 @@ func inicio_tempo(time1_esquerda : bool = true):
 	partida.posiciona_jogadores(partida.time2, "FormacaoPadrao", !(time1_esquerda))
 	partida.define_time_cesta(time1_esquerda)
 	partida.reset_acoes_times()
+	Global.ui.placar_set_cores_times(time1.cor, time2.cor)
+	atualiza_valores_placar()
 	partida.time_do_turno = partida.time1 # (Remover depois)
+	Global.ui.placar_atualiza_time_do_turno_cor(partida.time1.cor) # (Remover depois)
 
 # - Fez cesta
 # Executado quando a bola entra na cesta.
@@ -130,7 +138,8 @@ func bola_entrou_em_cesta(time : TimeJogadores, pontos: int):
 # Marca ponto para o time especificado.
 func marcar_pontos(time : TimeJogadores, pontos: int):
 	partida.Marcou_ponto(time, pontos)
-	partida.print_pontos()
+	atualiza_valores_placar()
+	#partida.print_pontos()
 
 # Posiciona os jogadores após uma cesta ter sido feita.
 func formacao_pos_ponto(time_fez_ponto : TimeJogadores, outro_time : TimeJogadores):

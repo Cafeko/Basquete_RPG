@@ -98,7 +98,7 @@ func bola_entrou_na_cesta():
 		Global.acertou_cesta.emit(tile_base + Vector2i.RIGHT)
 	else:
 		Global.acertou_cesta.emit(tile_base + Vector2i.LEFT)
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(1.0).timeout
 	# Informa ao controlador qual time fez ponto e a quantidde de pontos.
 	Global.controlador.bola_entrou_em_cesta(time_ganha_ponto, pontos_ganho)
 # ------------------------------------------------------------------------------------------------ #

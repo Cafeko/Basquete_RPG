@@ -1,0 +1,102 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgmmvnku8r6cj"]
+
+[ext_resource type="Script" path="res://Scripts/placar.gd" id="1_shw0v"]
+[ext_resource type="Texture2D" uid="uid://bjode88viagjd" path="res://Assets/Placar.png" id="2_swv0g"]
+
+[node name="Placar" type="Node2D"]
+script = ExtResource("1_shw0v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 56)
+scale = Vector2(7, 7)
+texture = ExtResource("2_swv0g")
+
+[node name="Textos" type="Control" parent="."]
+custom_minimum_size = Vector2(224, 112)
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.0
+offset_right = 112.0
+offset_bottom = 112.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Textos"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 14.0
+offset_right = -7.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Textos/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 7
+
+[node name="NumeroTempo" type="Label" parent="Textos/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 25
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TempoMinutos" type="Label" parent="Textos/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 25
+text = "XX : XX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Textos/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Textos/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 7
+
+[node name="ColorRect" type="ColorRect" parent="Textos/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Textos/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 14
+
+[node name="PontosTime1" type="Label" parent="Textos/VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 25
+text = "XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PontosTime2" type="Label" parent="Textos/VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 25
+text = "XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="Textos/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
