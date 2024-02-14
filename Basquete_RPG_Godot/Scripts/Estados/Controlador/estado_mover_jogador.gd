@@ -28,7 +28,7 @@ func entrando():
 	# Visual (Tiles):
 	# Destaca tile do jogador selecionado.
 	var tile_escolhido : Array[Vector2i] = [tile_jogador]
-	Global.visual.desenha_area(tile_escolhido)
+	Global.visual.desenha_area(tile_escolhido, Color("00ff005a"))
 
 # Executando enquanto está no estado.
 func executando(_delta):

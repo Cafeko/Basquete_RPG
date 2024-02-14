@@ -143,10 +143,20 @@ func area_quadrada(centro : Vector2i, alcance_maximo : int):
 			tiles_list.append(tile)
 	return tiles_list
 
+func set_area_cor(cor : Color):
+	tilemap.set_layer_modulate(layers_id["Area"], cor)
+
 # Coloca um tile na layer "Area".
 func set_tile_area(tile : Vector2i):
 	tilemap.set_cell(layers_id["Area"], tile, 2, Vector2i(0, 0))
 
+func set_area_contorno(tiles : Array):
+	tilemap.set_cells_terrain_connect(layers_id["Contorno"], tiles, 0, 0)
+
 # Apaga todos os tiles da layer "Area".
 func limpa_area():
 	tilemap.clear_layer(layers_id["Area"])
+
+# Apaga todos os tiles da layer "Contorno".
+func limpa_contorno():
+	tilemap.clear_layer(layers_id["Contorno"])

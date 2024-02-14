@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2t2h6ifds8gj"
-path="res://.godot/imported/Verde.png-ff020d3568447b8bc994e6c29358b7cc.ctex"
+uid="uid://bgcv4eg2ieu3j"
+path="res://.godot/imported/Separacao.png-879509ba0e810755f9726c77209536f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Verde.png"
-dest_files=["res://.godot/imported/Verde.png-ff020d3568447b8bc994e6c29358b7cc.ctex"]
+source_file="res://Assets/Separacao.png"
+dest_files=["res://.godot/imported/Separacao.png-879509ba0e810755f9726c77209536f5.ctex"]
 
 [params]
 
