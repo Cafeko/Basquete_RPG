@@ -48,19 +48,19 @@ func executando(_delta):
 				else:
 					# Verifica o que tem onde o mouse estava no click.
 					var posicao_mouse = Global.controlador.get_global_mouse_position()
-					alvo_escolhido = Global.controlador.verifica_ponto(posicao_mouse)
-					var tile = Global.quadra.cord_para_tile(posicao_mouse)
-					if tile in tiles_arremesso and alvo_escolhido is Jogador and alvo_escolhido != jogador and Global.controlador.jogador_no_time_do_turno(alvo_escolhido):
-							tile_alvo = Global.quadra.cord_para_tile(alvo_escolhido.global_position)
-							Global.controlador.set_jogador_selecionado2(alvo_escolhido)
-							set_escolheu(true)
-					# Se o alvo for uma cesta e ela estiver no alcance:
-					elif alvo_escolhido is Cesta: # and cesta_no_alcance(alvo_escolhido):
-						tile_alvo = Vector2i.ZERO
-						set_escolheu(true)
-					else:
+					alvo_escolhido = Global.controlador.verifica_ponto(posicao_mouse, true)
+					if alvo_escolhido != null:
+						tile_alvo = Global.quadra.cord_para_tile(alvo_escolhido.global_position)
+						if tile_alvo in tiles_arremesso and alvo_escolhido is Jogador and alvo_escolhido != jogador and Global.controlador.jogador_no_time_do_turno(alvo_escolhido):
+								Global.controlador.set_jogador_selecionado2(alvo_escolhido)
+								set_escolheu(true)
+						# Se o alvo for uma cesta e ela estiver no alcance:
+						elif alvo_escolhido is Cesta: # and cesta_no_alcance(alvo_escolhido):
 							tile_alvo = Vector2i.ZERO
-							alvo_escolhido = null
+							set_escolheu(true)
+						else:
+								tile_alvo = Vector2i.ZERO
+								alvo_escolhido = null
 	else:
 		muda_estado.emit(self.name, "SelecionaJogador")
 

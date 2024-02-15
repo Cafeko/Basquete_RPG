@@ -12,6 +12,9 @@ class_name Aparencia
 func _ready():
 	tira_contorno()
 
+func _physics_process(_delta):
+	ordem_z()
+
 func set_visivel(valor : bool):
 	pai.visible = valor
 
@@ -35,3 +38,6 @@ func continua_animacao():
 
 func pausa_animacao():
 	animacao.pause()
+
+func ordem_z():
+	pai.z_index = pai.global_position.y

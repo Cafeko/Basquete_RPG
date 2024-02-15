@@ -24,7 +24,7 @@
 [ext_resource type="Script" path="res://Scripts/Acoes/acao_bloquear.gd" id="20_kp8nv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4ut5"]
-size = Vector2(16, 21)
+size = Vector2(16, 29)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8gog8"]
 resource_local_to_scene = true
@@ -1166,7 +1166,7 @@ animations = [{
 script = ExtResource("1_fk7ut")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2.5)
+position = Vector2(0, -6.5)
 shape = SubResource("RectangleShape2D_i4ut5")
 
 [node name="Aparencia" type="Node2D" parent="." node_paths=PackedStringArray("pai", "sprite", "animacao")]

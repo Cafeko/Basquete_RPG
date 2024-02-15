@@ -35,7 +35,7 @@ func entrando():
 		var cordenada = Global.quadra.tile_para_cord(tile)
 		var alvo_temporario = Global.controlador.verifica_ponto(cordenada)
 		# Se o jogador proximo estiver com a bola:
-		if alvo_temporario is Jogador and alvo_temporario.com_bola:
+		if alvo_temporario is Jogador and alvo_temporario != jogador and alvo_temporario.com_bola:
 			nada_pra_roubar = false
 			# Define o alvo que vai ter a bola roubada e destaca o tile em que ele está.
 			alvo = alvo_temporario

@@ -7,4 +7,4 @@ script = ExtResource("1_virsv")
 
 [node name="Linha" type="Line2D" parent="."]
 width = 3.0
-default_color = Color(0.290196, 0.34902, 1, 0.670588)
+default_color = Color(0, 0, 1, 0.352941)

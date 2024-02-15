@@ -40,6 +40,7 @@ scale = Vector2(-1, 1)
 [node name="UI" parent="." instance=ExtResource("5_en28u")]
 
 [node name="Visual" parent="." instance=ExtResource("6_mo0vx")]
+z_index = 1000
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(272, 136)

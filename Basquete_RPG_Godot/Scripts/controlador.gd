@@ -29,15 +29,33 @@ func _ready():
 
 # ------------------------------------------------------------------------------------------------ #
 # Verifica se em um ponto/cordenada especifica tem algum jogador, o retornando se sim.
-func verifica_ponto(ponto : Vector2):
+func verifica_ponto(ponto : Vector2, pela_colisao : bool = false):
 	var space = get_world_2d().direct_space_state
 	var ponto_fisico : PhysicsPointQueryParameters2D = PhysicsPointQueryParameters2D.new()
 	ponto_fisico.set_exclude([Global.bola])
 	ponto_fisico.position = ponto
 	ponto_fisico.set_collide_with_bodies(true)
-	var resultado = space.intersect_point(ponto_fisico, 1)
+	var resultado = space.intersect_point(ponto_fisico, 2)
 	if resultado != []:
-		return resultado[0]["collider"]
+		var index_jogador = -1
+		if pela_colisao:
+			var maior_y = -1
+			for i in len(resultado):
+				var jogador = resultado[i]["collider"]
+				if jogador.global_position.y > maior_y:
+					maior_y = jogador.global_position.y
+					index_jogador = i
+		else:
+			var tile = Global.quadra.cord_para_tile(ponto)
+			for i in len(resultado):
+				var jogador = resultado[i]["collider"]
+				var tile_jogador = Global.quadra.cord_para_tile(jogador.global_position)
+				if tile_jogador == tile:
+					index_jogador = i
+		if index_jogador != -1:
+			return resultado[index_jogador]["collider"]
+		else:
+			return null
 	else:
 		return null
 

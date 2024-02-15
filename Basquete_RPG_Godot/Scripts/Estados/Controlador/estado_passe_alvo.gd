@@ -46,13 +46,10 @@ func executando(_delta):
 				else:
 					# Verifica o que tem onde o mouse estava no click.
 					var posicao_mouse = Global.controlador.get_global_mouse_position()
-					var tile = Global.quadra.cord_para_tile(posicao_mouse)
-					if tile in tiles_passe:
-						# Se alvo_escolhido for nulo: jogador selecionado joga bola até um tile vazio;
-						# Se alvo_escolhido for um jogador: jogador selecionado passa a bola para ele.
-						alvo_escolhido = Global.controlador.verifica_ponto(posicao_mouse)
-						if alvo_escolhido is Jogador and alvo_escolhido != jogador:
-							tile_alvo = Global.quadra.cord_para_tile(alvo_escolhido.global_position)
+					alvo_escolhido = Global.controlador.verifica_ponto(posicao_mouse, true)
+					if alvo_escolhido != null:
+						tile_alvo = Global.quadra.cord_para_tile(alvo_escolhido.global_position)
+						if tile_alvo in tiles_passe and alvo_escolhido is Jogador and alvo_escolhido != jogador:
 							Global.controlador.set_jogador_selecionado2(alvo_escolhido)
 							if Global.controlador.jogador_no_time_do_turno(alvo_escolhido):
 								set_escolheu(true)

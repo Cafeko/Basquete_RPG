@@ -23,7 +23,7 @@ func executando(_delta):
 	# muda o estado para ESCOLHE_ACAO se sim.
 	if Input.is_action_just_pressed("mouse_esq"):
 		var posicao_mouse = Global.controlador.get_global_mouse_position()
-		var corpo = Global.controlador.verifica_ponto(posicao_mouse)
+		var corpo = Global.controlador.verifica_ponto(posicao_mouse, true)
 		if corpo is Jogador and Global.controlador.jogador_no_time_do_turno(corpo):
 			Global.controlador.set_jogador_selecionado(corpo)
 			muda_estado.emit(self.name, "EscolheAcao")
