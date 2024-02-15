@@ -6,6 +6,11 @@ extends Aparencia
 var direcao : Vector2i = Vector2i.DOWN
 var tem_bola : bool = false
 var porsentagem_diferenca = 0.25
+var animacao_atual : String
+
+func atualiza_animacao():
+	var partes = animacao_atual.split("_")
+	toca_animacao(partes[0])
 
 func toca_animacao(animacao_nome : String):
 	if animacao_nome == "Parado":
@@ -14,9 +19,9 @@ func toca_animacao(animacao_nome : String):
 		animacao_movendo("Movendo")
 	elif animacao_nome == "Receber":
 		animacao_receber("Receber")
-	elif animacao_nome == "Passar":
+	elif animacao_nome == "Passe":
 		animacao_jogar_bola("Passe")
-	elif animacao_nome == "Arremessar":
+	elif animacao_nome == "Arremesso":
 		animacao_jogar_bola("Arremesso")
 
 func animacao_parado(nome_animacao : String):
@@ -27,6 +32,7 @@ func animacao_parado(nome_animacao : String):
 		nome_animacao = nome_animacao + "_Baixo"
 	if tem_bola:
 		nome_animacao = nome_animacao + "_Bola"
+	animacao_atual = nome_animacao
 	animacao.play(nome_animacao)
 
 func animacao_movendo(nome_animacao : String):
@@ -39,16 +45,19 @@ func animacao_movendo(nome_animacao : String):
 		nome_animacao = nome_animacao + "_Baixo"
 	if tem_bola:
 		nome_animacao = nome_animacao + "_Bola"
+	animacao_atual = nome_animacao
 	animacao.play(nome_animacao)
 
 func animacao_receber(nome_animacao : String):
 	nome_animacao = direcao_dinamica(nome_animacao)
 	if tem_bola:
 		nome_animacao = nome_animacao + "_Bola"
+	animacao_atual = nome_animacao
 	animacao.play(nome_animacao)
 
 func animacao_jogar_bola(nome_animacao : String):
 	nome_animacao = direcao_dinamica(nome_animacao)
+	animacao_atual = nome_animacao
 	animacao.play(nome_animacao)
 
 func direcao_x():

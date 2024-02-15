@@ -109,6 +109,21 @@ func time_pega_bola(time : TimeJogadores):
 func atualiza_valores_placar():
 	Global.ui.placar_set_pontos(partida.retorna_times_pontos())
 
+func set_direcao_formacao_padrao(time : TimeJogadores):
+	var na_esq = partida.e_time_da_esquerda(time)
+	if na_esq:
+		time.set_direcao_do_time(1)
+	else:
+		time.set_direcao_do_time(-1)
+
+func set_direcao_formacao_na_cesta(time : TimeJogadores):
+	var na_esq = partida.e_time_da_esquerda(time)
+	if na_esq:
+		time.set_direcao_do_time(-1)
+		time.get_jogador_arremesso_inicial().aparencia.direcao.x = 1
+	else:
+		time.set_direcao_do_time(1)
+
 # - Fim de turno
 func fim_de_turno():
 	contorno_time_do_turno(false)
@@ -116,11 +131,13 @@ func fim_de_turno():
 	partida.entra_novo_turno(partida.time_do_turno)
 	Global.ui.placar_atualiza_time_do_turno_cor(partida.time_do_turno.cor)
 
-# - Inicio de tempo 
+# - Inicio de tempo
 func inicio_tempo(time1_esquerda : bool = true):
 	partida.set_time1_esq(time1_esquerda)
 	partida.posiciona_jogadores(partida.time1, "FormacaoPadrao", time1_esquerda)
+	set_direcao_formacao_padrao(partida.time1)
 	partida.posiciona_jogadores(partida.time2, "FormacaoPadrao", !(time1_esquerda))
+	set_direcao_formacao_padrao(partida.time2)
 	partida.define_time_cesta(time1_esquerda)
 	partida.reset_acoes_times()
 	Global.ui.placar_set_cores_times(time1.cor, time2.cor)
@@ -144,7 +161,9 @@ func marcar_pontos(time : TimeJogadores, pontos: int):
 # Posiciona os jogadores após uma cesta ter sido feita.
 func formacao_pos_ponto(time_fez_ponto : TimeJogadores, outro_time : TimeJogadores):
 	partida.posiciona_jogadores(time_fez_ponto, "FormacaoPadrao", partida.e_time_da_esquerda(time_fez_ponto))
+	set_direcao_formacao_padrao(time_fez_ponto)
 	partida.posiciona_jogadores(outro_time, "FormacaoNaCesta", partida.e_time_da_esquerda(outro_time))
+	set_direcao_formacao_na_cesta(outro_time)
 
 # Posiciona bola para o jogador do time que tomou a cesta pegar.
 func posiciona_bola_pos_ponto(na_esquerda : bool = true):
@@ -154,9 +173,15 @@ func posiciona_bola_pos_ponto(na_esquerda : bool = true):
 		Global.bola.global_position = Global.quadra.get_dir_centro_cord()
 
 # Faz o jogador que vai passar a bola para começãr o jogo novamente não poder se mover.
-func jogador_nao_move_pos_ponto(time):
+func jogador_arremessa_pos_ponto(time):
 	var jogador : Jogador = time.get_jogador_arremesso_inicial()
 	jogador.set_pode_mover(false)
+	var na_esq = partida.e_time_da_esquerda(jogador.time)
+	if na_esq:
+		jogador.aparencia.direcao.x = 1
+	else:
+		jogador.aparencia.direcao.x = -1
+	jogador.aparencia.atualiza_animacao()
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #

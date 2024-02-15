@@ -36,5 +36,5 @@ func executando(_delta):
 		# Posiciona e prepara jogadores.
 		Global.controlador.formacao_pos_ponto(time_fez_ponto, time_tomou_cesta)
 		Global.controlador.time_pega_bola(time_tomou_cesta)
-		Global.controlador.jogador_nao_move_pos_ponto(time_tomou_cesta)
+		Global.controlador.jogador_arremessa_pos_ponto(time_tomou_cesta)
 		muda_estado.emit(self.name, "SelecionaJogador")

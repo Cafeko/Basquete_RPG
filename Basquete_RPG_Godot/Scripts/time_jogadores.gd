@@ -61,3 +61,8 @@ func contorno_jogadores(valor : bool):
 			jogador.aparencia.set_contorno(valor, Global.cor_pode_selecionar)
 		else:
 			jogador.aparencia.set_contorno(valor, Global.cor_sem_acao)
+
+func set_direcao_do_time(x : int):
+	for i in range(len(jogadores_lista)):
+		jogadores_lista[i].aparencia.direcao.x = x
+		jogadores_lista[i].aparencia.atualiza_animacao()

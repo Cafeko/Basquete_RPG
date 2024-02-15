@@ -13,6 +13,7 @@ extends CanvasLayer
 @onready var valor_dir = $Valores/HBoxContainer/Valor2
 @onready var status_jogador = $StatusJogador
 @onready var status_jogador_posicao = $StatusJogador/Control
+@onready var placar_container = $Placar
 @onready var placar = $Placar/Placar
 
 # Botoes do menu de ações:
@@ -49,6 +50,7 @@ func _ready():
 	esconde_status_jogador()
 	reset_valores()
 	prepara_status()
+	exibe_placar()
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #
@@ -96,6 +98,12 @@ func exibe_status_jogador():
 
 func esconde_status_jogador():
 	status_jogador.visible = false
+
+func exibe_placar():
+	placar_container.visible = true
+
+func esconde_placar():
+	placar_container.visible = false
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #

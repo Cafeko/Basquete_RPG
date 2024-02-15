@@ -49,7 +49,7 @@ func animacao_passar():
 		direcao = tile_atual - tile_alvo
 		alvo.aparencia.direcao = direcao
 		alvo.aparencia.toca_animacao("Receber")
-	corpo.aparencia.toca_animacao("Passar")
+	corpo.aparencia.toca_animacao("Passe")
 
 func on_animacao_fim(corpo_esperado):
 	if corpo_esperado == corpo:

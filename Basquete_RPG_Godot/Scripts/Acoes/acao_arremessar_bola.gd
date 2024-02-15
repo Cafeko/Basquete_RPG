@@ -70,7 +70,7 @@ func animacao_arremessar():
 		direcao = tile_atual - tile_alvo
 		alvo.aparencia.direcao = direcao
 		alvo.aparencia.toca_animacao("Receber")
-	corpo.aparencia.toca_animacao("Arremessar")
+	corpo.aparencia.toca_animacao("Arremesso")
 
 func on_animacao_fim(corpo_esperado):
 	if corpo_esperado == corpo:
