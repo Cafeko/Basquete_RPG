@@ -3,10 +3,18 @@
 # ------------------------------------------------------------------------------------------------ #
 extends Aparencia
 
+@export var indicador_defesa : TextureRect
+@export var indicador_nao_anda : TextureRect
+@export var indicador_cansado : TextureRect
+
 var direcao : Vector2i = Vector2i.DOWN
 var tem_bola : bool = false
 var porsentagem_diferenca = 0.25
 var animacao_atual : String
+
+func _physics_process(_delta):
+	ordem_z()
+	atualiza_indicadores()
 
 func atualiza_animacao():
 	var partes = animacao_atual.split("_")
@@ -62,9 +70,9 @@ func animacao_jogar_bola(nome_animacao : String):
 
 func direcao_x():
 	if direcao.x > 0:
-		pai.scale.x = 1
+		sprite.scale.x = 1
 	elif direcao.x < 0:
-		pai.scale.x = -1
+		sprite.scale.x = -1
 
 func direcao_dinamica(nome_animacao : String):
 	direcao_x()
@@ -86,6 +94,11 @@ func direcao_dinamica(nome_animacao : String):
 		elif direcao.y > 0:
 			nome_animacao = nome_animacao + "_Baixo"
 	return nome_animacao
+
+func atualiza_indicadores():
+	indicador_defesa.visible = pai.modo_defesa
+	indicador_nao_anda.visible = !(pai.pode_mover)
+	indicador_cansado.visible = pai.status.cansado 
 
 func on_animation_finished(anim_name):
 	if "Passe" in anim_name:
