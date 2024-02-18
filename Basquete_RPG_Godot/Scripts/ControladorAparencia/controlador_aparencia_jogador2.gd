@@ -6,7 +6,10 @@ extends Aparencia
 @export var indicador_defesa : TextureRect
 @export var indicador_nao_anda : TextureRect
 @export var indicador_cansado : TextureRect
+@export var ponto_bola : Marker2D
 
+var ponto_bola_posicoes = {"Nada" : Vector2(0,0), "Cima" : Vector2(0,-18), "Baixo" : Vector2(0,-11),
+							"Lado" : Vector2(6,-14), "Lado_Cima" : Vector2(5,-16), "Lado_Baixo" : Vector2(3,-12)}
 var direcao : Vector2i = Vector2i.DOWN
 var tem_bola : bool = false
 var porsentagem_diferenca = 0.25
@@ -31,6 +34,7 @@ func toca_animacao(animacao_nome : String):
 		animacao_jogar_bola("Passe")
 	elif animacao_nome == "Arremesso":
 		animacao_jogar_bola("Arremesso")
+	ponto_bola_posicao(animacao_atual)
 
 func animacao_parado(nome_animacao : String):
 	direcao_x()
@@ -95,6 +99,28 @@ func direcao_dinamica(nome_animacao : String):
 			nome_animacao = nome_animacao + "_Baixo"
 	return nome_animacao
 
+func ponto_bola_posicao(animacao_nome : String):
+	var escala = 0
+	var posicao = Vector2.ZERO
+	if direcao.x > 0:
+		escala = 1
+	elif direcao.x < 0:
+		escala = -1
+	if "Lado" in animacao_nome and "Cima" in animacao_nome:
+		posicao = ponto_bola_posicoes["Lado_Cima"]
+	elif  "Lado" in animacao_nome and "Baixo" in animacao_nome:
+		posicao = ponto_bola_posicoes["Lado_Baixo"]
+	elif  "Lado" in animacao_nome:
+		posicao = ponto_bola_posicoes["Lado"]
+	elif  "Cima" in animacao_nome:
+		posicao = ponto_bola_posicoes["Cima"]
+	elif  "Baixo" in animacao_nome:
+		posicao = ponto_bola_posicoes["Baixo"]
+	else:
+		posicao = ponto_bola_posicoes["Nada"]
+	ponto_bola.position.x = posicao.x * escala
+	ponto_bola.position.y = posicao.y
+
 func atualiza_indicadores():
 	indicador_defesa.visible = pai.modo_defesa
 	indicador_nao_anda.visible = !(pai.pode_mover)
@@ -105,3 +131,5 @@ func on_animation_finished(anim_name):
 		Global.animacao_fim_passe.emit(pai)
 	elif "Arremesso" in anim_name:
 		Global.animacao_fim_arremesso.emit(pai)
+	elif "Receber" in anim_name:
+		Global.animacao_fim_receber.emit(pai)

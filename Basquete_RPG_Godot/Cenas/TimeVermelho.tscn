@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2bee3gthahqo"]
+[gd_scene load_steps=10 format=3 uid="uid://b2bee3gthahqo"]
 
 [ext_resource type="Script" path="res://Scripts/time_jogadores.gd" id="1_ugef2"]
 [ext_resource type="PackedScene" uid="uid://c155ppdxcfocw" path="res://Cenas/Jogador2.tscn" id="2_gsb7v"]
 [ext_resource type="Shader" path="res://Scripts/Shader/Cesta.gdshader" id="3_va477"]
+[ext_resource type="Texture2D" uid="uid://bdx7dl8l6un36" path="res://Assets/SpriteSheet_Player2.png" id="4_po15d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ug7cd"]
 resource_local_to_scene = true
@@ -36,21 +37,25 @@ shader_parameter/line_thickness = 0.7
 
 [node name="TimeVermelho" type="Node2D"]
 script = ExtResource("1_ugef2")
+cor = Color(0.886275, 0, 0, 1)
 
 [node name="Jogador2_1" parent="." instance=ExtResource("2_gsb7v")]
 
 [node name="Sprite2D" parent="Jogador2_1/Aparencia" index="0"]
 material = SubResource("ShaderMaterial_ug7cd")
+texture = ExtResource("4_po15d")
 
 [node name="Jogador2_2" parent="." instance=ExtResource("2_gsb7v")]
 
 [node name="Sprite2D" parent="Jogador2_2/Aparencia" index="0"]
 material = SubResource("ShaderMaterial_hejj3")
+texture = ExtResource("4_po15d")
 
 [node name="Jogador2_3" parent="." instance=ExtResource("2_gsb7v")]
 
 [node name="Sprite2D" parent="Jogador2_3/Aparencia" index="0"]
 material = SubResource("ShaderMaterial_18be0")
+texture = ExtResource("4_po15d")
 
 [node name="Status" parent="Jogador2_3" index="3"]
 tipo_jogador = "Meio"
@@ -59,6 +64,7 @@ tipo_jogador = "Meio"
 
 [node name="Sprite2D" parent="Jogador2_4/Aparencia" index="0"]
 material = SubResource("ShaderMaterial_6wb06")
+texture = ExtResource("4_po15d")
 
 [node name="Status" parent="Jogador2_4" index="3"]
 tipo_jogador = "Defesa"
@@ -67,6 +73,7 @@ tipo_jogador = "Defesa"
 
 [node name="Sprite2D" parent="Jogador2_5/Aparencia" index="0"]
 material = SubResource("ShaderMaterial_s5o7s")
+texture = ExtResource("4_po15d")
 
 [node name="Status" parent="Jogador2_5" index="3"]
 tipo_jogador = "Defesa"

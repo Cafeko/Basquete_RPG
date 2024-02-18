@@ -21,6 +21,7 @@ var jogador_selecionado2 = null
 var guarda_info : Array = []
 
 func _ready():
+	randomize()
 	Global.controlador = self
 	partida.set_times(time1, time2)
 	partida.set_cestas(cesta_esquerda, cesta_direita)
@@ -116,6 +117,9 @@ func define_time_do_turno(time : TimeJogadores):
 func time_na_esquerda(time : TimeJogadores):
 	return partida.e_time_da_esquerda(time)
 
+func time_do_turno():
+	return partida.time_do_turno
+
 # Retorna o time adversario ao time especificado.
 func time_adversario(time : TimeJogadores):
 	return partida.get_time_adversario(time)
@@ -142,6 +146,9 @@ func set_direcao_formacao_na_cesta(time : TimeJogadores):
 	else:
 		time.set_direcao_do_time(1)
 
+func minutos_de_jogo():
+	return 10
+
 # - Fim de turno
 func fim_de_turno():
 	contorno_time_do_turno(false)
@@ -151,17 +158,59 @@ func fim_de_turno():
 
 # - Inicio de tempo
 func inicio_tempo(time1_esquerda : bool = true):
+	partida.time_do_turno = time_adversario(partida.comecou_turno_com_bola)
+	partida.comecou_turno_com_bola = partida.time_do_turno
+	Global.ui.placar_atualiza_time_do_turno_cor(partida.time_do_turno.cor)
 	partida.set_time1_esq(time1_esquerda)
-	partida.posiciona_jogadores(partida.time1, "FormacaoPadrao", time1_esquerda)
+	var formacao = "FormacaoPadrao"
+	if partida.time_do_turno == partida.time1:
+		formacao = "FormacaoInicioTempo"
+	partida.posiciona_jogadores(partida.time1, formacao, time1_esquerda)
 	set_direcao_formacao_padrao(partida.time1)
-	partida.posiciona_jogadores(partida.time2, "FormacaoPadrao", !(time1_esquerda))
+	formacao = "FormacaoPadrao"
+	if partida.time_do_turno == partida.time2:
+		formacao = "FormacaoInicioTempo"
+	partida.posiciona_jogadores(partida.time2, formacao, !(time1_esquerda))
 	set_direcao_formacao_padrao(partida.time2)
 	partida.define_time_cesta(time1_esquerda)
-	partida.reset_acoes_times()
+	partida.times_entra_novo_turno()
 	Global.ui.placar_set_cores_times(time1.cor, time2.cor)
 	atualiza_valores_placar()
-	partida.time_do_turno = partida.time1 # (Remover depois)
-	Global.ui.placar_atualiza_time_do_turno_cor(partida.time1.cor) # (Remover depois)
+	Global.controlador.posiciona_bola_inicio_tempo()
+	Global.controlador.jogador_inicial_centro_inicio_tempo(partida.time_do_turno)
+	Global.controlador.time_pega_bola(partida.time_do_turno)
+	partida.time_sem_bola(time_adversario(partida.time_do_turno))
+
+func primeiro_inicio_tempo(time1_esquerda : bool = true):
+	partida.set_time1_esq(time1_esquerda)
+	partida.posiciona_jogadores(partida.time1, "FormacaoInicioTempo", time1_esquerda)
+	set_direcao_formacao_padrao(partida.time1)
+	partida.posiciona_jogadores(partida.time2, "FormacaoInicioTempo", !(time1_esquerda))
+	set_direcao_formacao_padrao(partida.time2)
+	partida.define_time_cesta(time1_esquerda)
+	partida.times_entra_novo_turno()
+	Global.ui.placar_set_cores_times(time1.cor, time2.cor)
+	atualiza_valores_placar()
+
+func sorteia_time_do_turno():
+	var times = [time1, time2]
+	partida.time_do_turno = times.pick_random()
+	partida.comecou_turno_com_bola = partida.time_do_turno
+	Global.ui.placar_atualiza_time_do_turno_cor(partida.time_do_turno.cor)
+	return partida.time_do_turno
+
+func posiciona_bola_inicio_tempo():
+		Global.bola.global_position = partida.time_do_turno.get_jogador_inicial_centro().global_position
+
+func jogador_inicial_centro_inicio_tempo(time : TimeJogadores):
+	var jogador : Jogador = time.get_jogador_inicial_centro()
+	jogador.set_pode_mover(false)
+	var na_esq = partida.e_time_da_esquerda(jogador.time)
+	if na_esq:
+		jogador.aparencia.direcao.x = -1
+	else:
+		jogador.aparencia.direcao.x = 1
+	jogador.aparencia.atualiza_animacao()
 
 # - Fez cesta
 # Executado quando a bola entra na cesta.

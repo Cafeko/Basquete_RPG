@@ -13,9 +13,14 @@ var formacoes_dict : Dictionary = {}
 var tile_centro : Vector2i = Vector2i(16,9)
 var tile_esq_centro : Vector2i = Vector2i(4, 9)
 var tile_dir_centro : Vector2i = Vector2i(29, 9)
+var centro_real : Vector2 = Vector2(264 + 8, 152)
+var ponto_alto : Vector2
+var ponto_baixo : Vector2 
 #var astar_grid : AStarGrid2D
 
 func _ready():
+	ponto_alto = $PontoAlto.global_position
+	ponto_baixo = $PontoBaixo.global_position
 	Global.quadra = self
 	set_layers_id_dict()
 	#cria_astar_grid()
@@ -109,7 +114,7 @@ func tile_em_garrafao(tile : Vector2i):
 	return tile_data != null
 
 func get_centro_cord():
-	return tile_para_cord(tile_centro)
+	return centro_real
 
 func get_esq_centro_cord():
 	return tile_para_cord(tile_esq_centro)

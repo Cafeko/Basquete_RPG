@@ -12,6 +12,7 @@ var cesta_esq : Cesta
 var cesta_dir : Cesta
 
 var time_do_turno : TimeJogadores = null
+var comecou_turno_com_bola : TimeJogadores = null
 
 var pontuacao_time1 : int = 0
 var pontuacao_time2 : int = 0
@@ -77,6 +78,14 @@ func posiciona_jogadores(time : TimeJogadores, formacao_nome : String, na_esquer
 	else:
 		time.posicionar_jogadores(formacao.lado_direito())
 
+func times_entra_novo_turno():
+	reset_acoes_time(time1)
+	time_sai_modo_defesa(time1)
+	time_pode_mover(time1)
+	reset_acoes_time(time2)
+	time_sai_modo_defesa(time2)
+	time_pode_mover(time2)
+
 func entra_novo_turno(time : TimeJogadores):
 	reset_acoes_time(time)
 	time_sai_modo_defesa(time)
@@ -104,6 +113,9 @@ func time_pode_mover(time : TimeJogadores):
 
 func time_pega_bola(time : TimeJogadores):
 	time.pegar_bola()
+
+func time_sem_bola(time : TimeJogadores):
+	time.sem_bola()
 
 # Da pontos para o time que marcou os pontos.
 func Marcou_ponto(time : TimeJogadores, pontos : int):

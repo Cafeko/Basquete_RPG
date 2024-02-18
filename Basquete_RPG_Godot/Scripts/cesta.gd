@@ -19,6 +19,7 @@ var dificuldade : int = 0
 var tile_proximos : Array[Vector2i]
 
 func _ready():
+	randomize()
 	tile_cesta = Global.quadra.cord_para_tile(self.global_position)
 	define_tile_base()
 	define_tile_proximos()

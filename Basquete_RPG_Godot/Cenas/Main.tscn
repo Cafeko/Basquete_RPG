@@ -20,10 +20,8 @@ cesta_direita = NodePath("../Cestas/CestaDir")
 [node name="Quadra2" parent="." instance=ExtResource("8_b8ccj")]
 
 [node name="Time Azul" parent="." instance=ExtResource("6_ib5f2")]
-cor = Color(0, 0.643137, 1, 1)
 
 [node name="Time Vermelho" parent="." instance=ExtResource("7_nydxq")]
-cor = Color(0.886275, 0, 0, 1)
 
 [node name="Bola" parent="." instance=ExtResource("5_sxtxk")]
 

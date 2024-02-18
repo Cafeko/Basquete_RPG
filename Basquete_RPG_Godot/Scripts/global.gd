@@ -43,3 +43,5 @@ signal continua_movimento_jogador
 signal fez_ponto
 signal animacao_fim_passe
 signal animacao_fim_arremesso
+signal animacao_fim_receber
+signal bola_move_para

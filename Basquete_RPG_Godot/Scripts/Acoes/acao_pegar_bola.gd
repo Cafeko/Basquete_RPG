@@ -13,6 +13,9 @@ var bola_tile : Vector2i
 var corpo_tile : Vector2i
 var primeira : bool
 
+func _ready():
+	Global.animacao_fim_receber.connect(on_animacao_fim)
+
 # Usado para preparar a ação antes de começar a executar ela.
 func faze_de_preparacao(info : Array):
 	primeira = true
@@ -28,11 +31,13 @@ func executando(_delta):
 		corpo.set_com_bola(true)
 		Global.pegou_bola.emit(corpo)
 		corpo.aparencia.toca_animacao("Receber")
-	await get_tree().create_timer(0.7).timeout
-	fim.emit()
 
 # Usado pra após o fim da ação para resetar as variaveis.
 func finalizacao():
 	bola = null
 	bola_tile = Vector2i.ZERO
 	corpo_tile = Vector2i.ZERO
+
+func on_animacao_fim(corpo_esperado):
+	if corpo_esperado == corpo and corpo.acao_atual == self:
+		fim.emit()

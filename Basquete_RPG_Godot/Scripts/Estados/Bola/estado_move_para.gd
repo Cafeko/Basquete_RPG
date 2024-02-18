@@ -12,8 +12,11 @@ var cord_alvo : Vector2
 # Executado quando entra no estado.
 func entrando():
 	bola.aparencia.set_visivel(true)
-	tile_alvo = bola.get_tile_alvo()
-	cord_alvo = Global.quadra.tile_para_cord(tile_alvo)
+	if bola.move_para_em_tile:
+		tile_alvo = bola.get_tile_alvo()
+		cord_alvo = Global.quadra.tile_para_cord(tile_alvo)
+	else:
+		cord_alvo = bola.get_tile_alvo()
 
 # Executando enquanto está no estado.
 func executando(delta):
@@ -22,3 +25,7 @@ func executando(delta):
 	# Quando chegar no alvo:
 	if bola.global_position == cord_alvo:
 		muda_estado.emit(self.name, "Parada")
+
+# Executado ao sair do estado
+func saindo():
+	bola.move_para_em_tile = true

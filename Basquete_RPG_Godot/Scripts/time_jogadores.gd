@@ -8,6 +8,7 @@ class_name TimeJogadores
 
 var jogadores_lista = []
 var jogador_arremesso_inicial : Jogador
+var jogador_inicial_centro : Jogador
 
 func _ready():
 	prepara_jogadores_lista()
@@ -17,6 +18,7 @@ func prepara_jogadores_lista():
 	for j in get_children():
 		jogadores_lista.append(j)
 		j.set_time(self)
+	jogador_inicial_centro = jogadores_lista[0]
 	jogador_arremesso_inicial = jogadores_lista[-1]
 
 # Posiciona os jogadores na posição dos pontos que estão na lista de pontos recebida.
@@ -52,6 +54,9 @@ func pegar_bola():
 func get_jogador_arremesso_inicial():
 	return jogador_arremesso_inicial
 
+func get_jogador_inicial_centro():
+	return jogador_inicial_centro
+
 # Set o contorno de todos os jogadores do time.
 func contorno_jogadores(valor : bool):
 	for i in range(len(jogadores_lista)):
@@ -65,4 +70,9 @@ func contorno_jogadores(valor : bool):
 func set_direcao_do_time(x : int):
 	for i in range(len(jogadores_lista)):
 		jogadores_lista[i].aparencia.direcao.x = x
+		jogadores_lista[i].aparencia.atualiza_animacao()
+
+func sem_bola():
+	for i in range(len(jogadores_lista)):
+		jogadores_lista[i].set_com_bola(false)
 		jogadores_lista[i].aparencia.atualiza_animacao()

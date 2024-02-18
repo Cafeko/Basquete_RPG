@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bfymvsxinjbns"]
+[gd_scene load_steps=26 format=3 uid="uid://bfymvsxinjbns"]
 
 [ext_resource type="Script" path="res://Scripts/controlador.gd" id="1_0xusn"]
 [ext_resource type="Script" path="res://Scripts/Estados/maquina_estados.gd" id="2_1oy8w"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_seleciona_jogador.gd" id="3_3via0"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_inicio_tempo.gd" id="3_aian1"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_escolhe_acao.gd" id="4_if6ki"]
+[ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_primeiro_inicio_tempo.gd" id="4_v6duo"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_mover_jogador.gd" id="5_8stp1"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_fazendo_acao.gd" id="6_g1mc7"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_descansar_jogador.gd" id="8_oavso"]
@@ -22,6 +23,7 @@
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_interrupcao.gd" id="22_3442d"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_pega_bola_no_ar.gd" id="23_00cqb"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_bloqueio_inicio.gd" id="24_hn6wk"]
+[ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_fim_tempo.gd" id="25_2j127"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_bloqueio_fim.gd" id="25_7onm2"]
 
 [node name="Controlador" type="Node2D"]
@@ -32,7 +34,10 @@ script = ExtResource("2_ajki4")
 
 [node name="MaquinaEstados" type="Node" parent="." node_paths=PackedStringArray("primeiro_estado")]
 script = ExtResource("2_1oy8w")
-primeiro_estado = NodePath("InicioTempo")
+primeiro_estado = NodePath("PrimeiroInicioTempo")
+
+[node name="PrimeiroInicioTempo" type="Node" parent="MaquinaEstados"]
+script = ExtResource("4_v6duo")
 
 [node name="InicioTempo" type="Node" parent="MaquinaEstados"]
 script = ExtResource("3_aian1")
@@ -93,3 +98,6 @@ script = ExtResource("24_hn6wk")
 
 [node name="BloqueioFim" type="Node" parent="MaquinaEstados"]
 script = ExtResource("25_7onm2")
+
+[node name="FimTempo" type="Node" parent="MaquinaEstados"]
+script = ExtResource("25_2j127")

@@ -998,3 +998,28 @@ position = Vector2(40, 25)
 
 [node name="5" type="Marker2D" parent="Formacoes/FormacaoNaCesta"]
 position = Vector2(-8, 40)
+
+[node name="FormacaoInicioTempo" type="Node2D" parent="Formacoes"]
+visible = false
+script = ExtResource("3_m086w")
+
+[node name="1" type="Marker2D" parent="Formacoes/FormacaoInicioTempo"]
+position = Vector2(184, 40)
+
+[node name="2" type="Marker2D" parent="Formacoes/FormacaoInicioTempo"]
+position = Vector2(136, 72)
+
+[node name="3" type="Marker2D" parent="Formacoes/FormacaoInicioTempo"]
+position = Vector2(135, 25)
+
+[node name="4" type="Marker2D" parent="Formacoes/FormacaoInicioTempo"]
+position = Vector2(71, 23)
+
+[node name="5" type="Marker2D" parent="Formacoes/FormacaoInicioTempo"]
+position = Vector2(71, 72)
+
+[node name="PontoAlto" type="Marker2D" parent="."]
+position = Vector2(272, 82)
+
+[node name="PontoBaixo" type="Marker2D" parent="."]
+position = Vector2(272, 136)

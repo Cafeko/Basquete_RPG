@@ -12,6 +12,7 @@ var tile_alvo : Vector2i
 var alvo
 var pontos : int
 var forca : int
+var move_para_em_tile : bool = true
 
 func _ready():
 	Global.bola = self

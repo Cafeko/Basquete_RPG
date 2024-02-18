@@ -4,8 +4,8 @@
 extends Estado
 
 # Executando enquanto está no estado.
-func executando(_delta):
+func entrando():
 	Global.quadra.prepara_navegacao()
 	Global.controlador.inicio_tempo()
-	Global.bola.global_position = Global.quadra.get_centro_cord()
+	#Global.bola.global_position = Global.quadra.get_centro_cord()
 	muda_estado.emit(self.name, "SelecionaJogador")
