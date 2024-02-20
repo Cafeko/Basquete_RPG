@@ -7,6 +7,8 @@ extends Node2D
 @export var time2 : TimeJogadores
 @export var cesta_esquerda : Cesta
 @export var cesta_direita : Cesta
+@export var periodos : int
+@export var turnos : int 
 
 @onready var maquina_estados = $MaquinaEstados
 @onready var partida = $ControlePartidar
@@ -25,6 +27,8 @@ func _ready():
 	Global.controlador = self
 	partida.set_times(time1, time2)
 	partida.set_cestas(cesta_esquerda, cesta_direita)
+	partida.set_periodo_minutos(turnos)
+	partida.set_numero_periodos(periodos)
 	maquina_estados.executar_tudo_pronto()
 # ------------------------------------------------------------------------------------------------ #
 
@@ -130,6 +134,8 @@ func time_pega_bola(time : TimeJogadores):
 
 func atualiza_valores_placar():
 	Global.ui.placar_set_pontos(partida.retorna_times_pontos())
+	Global.ui.placar_set_periodo(partida.get_periodo())
+	Global.ui.placar_set_minutos(partida.get_minutos())
 
 func set_direcao_formacao_padrao(time : TimeJogadores):
 	var na_esq = partida.e_time_da_esquerda(time)
@@ -147,13 +153,15 @@ func set_direcao_formacao_na_cesta(time : TimeJogadores):
 		time.set_direcao_do_time(1)
 
 func minutos_de_jogo():
-	return 10
+	return partida.get_minutos()
 
 # - Fim de turno
 func fim_de_turno():
 	contorno_time_do_turno(false)
 	partida.troca_time_do_turno()
 	partida.entra_novo_turno(partida.time_do_turno)
+	partida.passa_minuto()
+	atualiza_valores_placar()
 	Global.ui.placar_atualiza_time_do_turno_cor(partida.time_do_turno.cor)
 
 # - Inicio de tempo
@@ -174,6 +182,8 @@ func inicio_tempo(time1_esquerda : bool = true):
 	set_direcao_formacao_padrao(partida.time2)
 	partida.define_time_cesta(time1_esquerda)
 	partida.times_entra_novo_turno()
+	partida.reset_minutos()
+	partida.novo_periodo()
 	Global.ui.placar_set_cores_times(time1.cor, time2.cor)
 	atualiza_valores_placar()
 	Global.controlador.posiciona_bola_inicio_tempo()
@@ -189,6 +199,8 @@ func primeiro_inicio_tempo(time1_esquerda : bool = true):
 	set_direcao_formacao_padrao(partida.time2)
 	partida.define_time_cesta(time1_esquerda)
 	partida.times_entra_novo_turno()
+	partida.reset_minutos()
+	partida.set_periodo_atual(1)
 	Global.ui.placar_set_cores_times(time1.cor, time2.cor)
 	atualiza_valores_placar()
 
@@ -249,6 +261,10 @@ func jogador_arremessa_pos_ponto(time):
 	else:
 		jogador.aparencia.direcao.x = -1
 	jogador.aparencia.atualiza_animacao()
+
+# - Fim jogo
+func jogo_acabou():
+	return partida.get_periodo() >= partida.get_periodo_maximo()
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #

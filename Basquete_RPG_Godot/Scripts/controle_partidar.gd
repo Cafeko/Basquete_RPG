@@ -17,6 +17,11 @@ var comecou_turno_com_bola : TimeJogadores = null
 var pontuacao_time1 : int = 0
 var pontuacao_time2 : int = 0
 
+var periodo_minutos : int
+var minutos_atual : int
+var numero_periodos : int
+var periodo_atual : int
+
 func set_times(um : TimeJogadores, dois : TimeJogadores):
 	time1 = um
 	time2 = dois
@@ -60,6 +65,33 @@ func get_cesta_alvo(time : TimeJogadores):
 		return cesta_esq
 	else:
 		return cesta_dir
+
+func set_periodo_minutos(valor : int):
+	periodo_minutos = valor
+
+func passa_minuto():
+	minutos_atual -= 1
+
+func reset_minutos():
+	minutos_atual = periodo_minutos
+
+func get_minutos():
+	return minutos_atual
+
+func set_numero_periodos(valor : int):
+	numero_periodos = valor
+
+func set_periodo_atual(valor : int):
+	periodo_atual = valor
+
+func get_periodo():
+	return periodo_atual
+
+func get_periodo_maximo():
+	return numero_periodos
+
+func novo_periodo():
+	periodo_atual += 1
 
 # Define o time que vai ganhar fazer o ponto ao acertar a boa na cesta.
 func define_time_cesta(time1_esquerda : bool = true):

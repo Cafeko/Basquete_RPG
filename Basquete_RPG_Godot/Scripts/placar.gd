@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var numero_tempo = $Textos/VBoxContainer/HBoxContainer/NumeroTempo
-@onready var tenpo_minutos = $Textos/VBoxContainer/HBoxContainer/TempoMinutos
+@onready var numero_periodo = $Textos/VBoxContainer/HBoxContainer/NumeroPeriodo
+@onready var minutos = $Textos/VBoxContainer/HBoxContainer/Minutos
 @onready var time_turno_cor = $Textos/VBoxContainer/HBoxContainer/ColorRect
 @onready var time1_cor = $Textos/VBoxContainer/HBoxContainer2/ColorRect
 @onready var time1_pontos = $Textos/VBoxContainer/HBoxContainer2/HBoxContainer/PontosTime1
@@ -22,3 +22,12 @@ func set_pontos_time1(valor : int):
 
 func set_pontos_time2(valor : int):
 	time2_pontos.text = str(valor)
+
+func set_periodo(valor : int):
+	numero_periodo.text = str(valor)
+
+func set_minutos(valor : int):
+	if valor < 10 and valor > -10:
+		minutos.text = "0" + str(valor) + " : 00"
+	else:
+		minutos.text = str(valor) + " : 00"

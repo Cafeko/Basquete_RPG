@@ -40,7 +40,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 7
 
-[node name="NumeroTempo" type="Label" parent="Textos/VBoxContainer/HBoxContainer"]
+[node name="NumeroPeriodo" type="Label" parent="Textos/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 size_flags_vertical = 1
@@ -49,7 +49,7 @@ text = "X"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TempoMinutos" type="Label" parent="Textos/VBoxContainer/HBoxContainer"]
+[node name="Minutos" type="Label" parent="Textos/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1

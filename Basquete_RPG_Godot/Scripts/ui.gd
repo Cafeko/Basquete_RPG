@@ -398,6 +398,12 @@ func placar_set_pontos(pontos : Array):
 func placar_set_cores_times(cor_time1 : Color = Color.BLACK, Cor_time2 : Color = Color.BLACK):
 	placar.set_cor_time1(cor_time1)
 	placar.set_cor_time2(Cor_time2)
+
+func placar_set_minutos(valor : int):
+	placar.set_minutos(valor)
+
+func placar_set_periodo(valor : int):
+	placar.set_periodo(valor)
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #
