@@ -111,6 +111,7 @@ func set_com_bola(valor : bool):
 # Executada quando o jogador tiver a bola roubada dele.
 func perdeu_bola():
 	set_com_bola(false)
+	set_pode_mover(true)
 
 func fica_atordoado():
 	set_numero_acoes(0)
@@ -186,6 +187,7 @@ func comeca_pegar_bola(bola : Bola):
 # Dá um fim a ação de PegarBola.
 func fim_pegar_bola():
 	troca_para_parado()
+	self.modo_defesa = false
 	Global.acao_acabou.emit()
 	if not Global.controlador.jogador_no_time_do_turno(self):
 		Global.finalizar_turno.emit()
@@ -239,6 +241,7 @@ func comeca_descansar(valor_descanso : int):
 # Finaliza a ação de Descansar.
 func fim_descansar():
 	troca_para_parado()
+	set_pode_mover(true)
 	set_numero_acoes(0)
 	Global.acao_acabou.emit()
 

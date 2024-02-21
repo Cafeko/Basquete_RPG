@@ -18,8 +18,7 @@ extends CanvasLayer
 
 # Botoes do menu de ações:
 @onready var botao_mover = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoMover
-@onready var botao_passar_bola = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoPassarBola
-@onready var botao_arremessar_bola = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoArremessarBola
+@onready var botao_joga_bola = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoJogaBola
 @onready var botao_roubar_bola = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoRoubarBola
 @onready var botao_defesa = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDefesa
 @onready var botao_descanso = $MenuAcoes/ColorRect/HBoxContainer/Botoes/BotaoDescanso
@@ -118,8 +117,7 @@ func fecha_menu_acoes():
 
 func desabilita_botoes():
 	botao_mover.disabled = true
-	botao_passar_bola.disabled = true
-	botao_arremessar_bola.disabled = true
+	botao_joga_bola.disabled = true
 	botao_roubar_bola.disabled = true
 	botao_defesa.disabled = true
 	botao_descanso.disabled = true
@@ -131,10 +129,8 @@ func verifica_botoes_disponiveis():
 		return
 	# Botão Mover:
 	botao_mover.disabled = !(jogador.consegue_mover())
-	# Botão Passar Bola:
-	botao_passar_bola.disabled = !(jogador.consegue_passar_ou_arremessar())
-	# Botão Arremessar Bola:
-	botao_arremessar_bola.disabled = !(jogador.consegue_passar_ou_arremessar())
+	# Botão Joga Bola:
+	botao_joga_bola.disabled = !(jogador.consegue_passar_ou_arremessar())
 	# Botão Roubar Bola:
 	botao_roubar_bola.disabled = !(jogador.consegue_roubar())
 	# Botão defesa:
@@ -152,38 +148,37 @@ func mouse_entrou_botao_menu(botao : Button):
 			# Ação perdida.
 			set_cor_em("Acoes", Color.RED)
 			set_valor_em("Acoes", jogador.get_acoes_disponiveis() - 1)
-		elif botao.name == "BotaoPassarBola":
+		elif botao.name == "BotaoJogaBola":
+			# - Passe:
 			# Status usado.
 			set_cor_em("Passe", Color.DEEP_SKY_BLUE)
-			# Energia perdida.
-			var energia_atual = jogador.status.get_energia()
-			if energia_atual != 0:
-				var perda_max = jogador.status.get_passe_forca()
-				var nova_energia = energia_atual - perda_max
-				if nova_energia < 0:
-					nova_energia = 0
-				set_cor_em("Energia", Color.RED)
-				set_valor_em("Energia", str(nova_energia) + " - " + str(energia_atual))
-			else:
-				set_cor_em("Energia", Color.RED)
-				set_valor_em("Energia", str(energia_atual))
-			# Ação perdida.
-			set_cor_em("Acoes", Color.RED)
-			set_valor_em("Acoes", jogador.get_acoes_disponiveis() - 1)
-		elif botao.name == "BotaoArremessarBola":
+			## Energia perdida.
+			#set_cor_em("Energia", Color.RED)
+			#var energia_atual = jogador.status.get_energia()
+			#if energia_atual != 0:
+				#var perda_max = jogador.status.get_passe_forca()
+				#var nova_energia = energia_atual - perda_max
+				#if nova_energia < 0:
+					#nova_energia = 0
+				#set_valor_em("Energia", str(nova_energia) + " - " + str(energia_atual))
+			#else:
+				#set_valor_em("Energia", str(energia_atual))
+			## Ação perdida.
+			#set_cor_em("Acoes", Color.RED)
+			#set_valor_em("Acoes", jogador.get_acoes_disponiveis() - 1)
+			# - Arremesso:
 			# Status usado.
 			set_cor_em("Arremesso", Color.DEEP_SKY_BLUE)
 			# Energia perdida.
+			set_cor_em("Energia", Color.RED)
 			var energia_atual = jogador.status.get_energia()
 			if energia_atual != 0:
 				var perda_max = jogador.status.get_arremesso_forca()
 				var nova_energia = energia_atual - perda_max
 				if nova_energia < 0:
 					nova_energia = 0
-				set_cor_em("Energia", Color.RED)
 				set_valor_em("Energia", str(nova_energia) + " - " + str(energia_atual))
 			else:
-				set_cor_em("Energia", Color.RED)
 				set_valor_em("Energia", str(energia_atual))
 			# Ação perdida.
 			set_cor_em("Acoes", Color.RED)
@@ -416,12 +411,6 @@ func mouse_saiu():
 func on_botao_mover():
 	Global.acao_escolhida.emit("Mover")
 
-func on_botao_passar_bola():
-	Global.acao_escolhida.emit("PassarBola")
-
-func on_botao_arremessar_bola():
-	Global.acao_escolhida.emit("ArremessarBola")
-
 func on_botao_confirmar():
 	Global.confirmar_acao.emit(Global.controlador_estado_atual)
 
@@ -445,3 +434,6 @@ func on_botao_fechar():
 
 func on_botao_defesa():
 	Global.acao_escolhida.emit("Defender")
+
+func on_botao_joga_bola():
+	Global.acao_escolhida.emit("JogaBola")

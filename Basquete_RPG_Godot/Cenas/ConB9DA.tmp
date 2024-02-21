@@ -54,14 +54,14 @@ script = ExtResource("4_if6ki")
 [node name="MoverJogador" type="Node" parent="MaquinaEstados"]
 script = ExtResource("5_8stp1")
 
-[node name="JogarBolaAlvo" type="Node" parent="MaquinaEstados"]
-script = ExtResource("12_85dg2")
-
 [node name="DefenderJogador" type="Node" parent="MaquinaEstados"]
 script = ExtResource("8_pyao4")
 
 [node name="DescansarJogador" type="Node" parent="MaquinaEstados"]
 script = ExtResource("8_oavso")
+
+[node name="JogarBolaAlvo" type="Node" parent="MaquinaEstados"]
+script = ExtResource("12_85dg2")
 
 [node name="RoubarBolaAlvo" type="Node" parent="MaquinaEstados"]
 script = ExtResource("10_mu8jk")

@@ -35,10 +35,8 @@ func on_acao_escolhida(acao : String):
 	var novo_estado : String
 	if acao == "Mover":
 		novo_estado = "MoverJogador"
-	elif acao == "PassarBola":
-		novo_estado = "PasseAlvo"
-	elif acao == "ArremessarBola":
-		novo_estado = "ArremessoAlvo"
+	elif acao == "JogaBola":
+		novo_estado = "JogarBolaAlvo"
 	elif acao == "RoubarBola":
 		novo_estado = "RoubarBolaAlvo"
 	elif acao == "Descansar":

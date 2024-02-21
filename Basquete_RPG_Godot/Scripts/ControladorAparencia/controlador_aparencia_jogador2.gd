@@ -106,18 +106,21 @@ func ponto_bola_posicao(animacao_nome : String):
 		escala = 1
 	elif direcao.x < 0:
 		escala = -1
-	if "Lado" in animacao_nome and "Cima" in animacao_nome:
-		posicao = ponto_bola_posicoes["Lado_Cima"]
-	elif  "Lado" in animacao_nome and "Baixo" in animacao_nome:
-		posicao = ponto_bola_posicoes["Lado_Baixo"]
-	elif  "Lado" in animacao_nome:
-		posicao = ponto_bola_posicoes["Lado"]
-	elif  "Cima" in animacao_nome:
-		posicao = ponto_bola_posicoes["Cima"]
-	elif  "Baixo" in animacao_nome:
-		posicao = ponto_bola_posicoes["Baixo"]
-	else:
+	if "Parado" in animacao_nome:
 		posicao = ponto_bola_posicoes["Nada"]
+	else:
+		if "Lado" in animacao_nome and "Cima" in animacao_nome:
+			posicao = ponto_bola_posicoes["Lado_Cima"]
+		elif  "Lado" in animacao_nome and "Baixo" in animacao_nome:
+			posicao = ponto_bola_posicoes["Lado_Baixo"]
+		elif  "Lado" in animacao_nome:
+			posicao = ponto_bola_posicoes["Lado"]
+		elif  "Cima" in animacao_nome:
+			posicao = ponto_bola_posicoes["Cima"]
+		elif  "Baixo" in animacao_nome:
+			posicao = ponto_bola_posicoes["Baixo"]
+		else:
+			posicao = ponto_bola_posicoes["Nada"]
 	ponto_bola.position.x = posicao.x * escala
 	ponto_bola.position.y = posicao.y
 

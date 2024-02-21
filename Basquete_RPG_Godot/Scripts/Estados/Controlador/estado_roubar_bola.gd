@@ -11,11 +11,6 @@ var alvo_e_aliado : bool
 var tiles_proximos : Array
 var nada_pra_roubar : bool = true
 
-# Executada quando os nós estiverem prontos.
-func tudo_pronto():
-	Global.confirmar_acao.connect(on_confirmar_acao)
-	Global.cancelar_acao.connect(on_cancelar_acao)
-
 # Executado quando entra no estado.
 func entrando():
 	# Valores:
@@ -42,19 +37,12 @@ func entrando():
 			alvo.aparencia.set_contorno(true, Global.cor_selecionado)
 			# Define se o alvo é um jogador do mesmo time ou não.
 			alvo_e_aliado = Global.controlador.jogador_no_time_do_turno(alvo)
-			Global.ui.exibe_confirmacao()
 			break
 	# Se não tiver nenhum jogador com bola dentro do alcance de roubo:
 	if nada_pra_roubar:
 		muda_estado.emit(self.name, "SelecionaJogador")
-
-# Executado ao sair do estado
-func saindo():
-	Global.visual.limpa_area()
-	Global.ui.esconde_confirmacao()
-
-func on_confirmar_acao(estado_alvo : String):
-	if self.name == estado_alvo:
+	# Se tiver algum jogador com bola no alcance:
+	else:
 		Global.controlador.limpa_info()
 		Global.controlador.add_info("RoubaBola")
 		if alvo_e_aliado:
@@ -66,6 +54,6 @@ func on_confirmar_acao(estado_alvo : String):
 			Global.controlador.add_info([Global.bola, alvo, alvo_e_aliado, dificuldade]) # bola, alvo, aliado, dificuldade
 			muda_estado.emit(self.name, "DefinaForcaAcao")
 
-func on_cancelar_acao(estado_alvo : String):
-	if self.name == estado_alvo:
-		muda_estado.emit(self.name, "SelecionaJogador")
+# Executado ao sair do estado
+func saindo():
+	Global.visual.limpa_area()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bfymvsxinjbns"]
+[gd_scene load_steps=27 format=3 uid="uid://bfymvsxinjbns"]
 
 [ext_resource type="Script" path="res://Scripts/controlador.gd" id="1_0xusn"]
 [ext_resource type="Script" path="res://Scripts/Estados/maquina_estados.gd" id="2_1oy8w"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_fazendo_acao.gd" id="6_g1mc7"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_descansar_jogador.gd" id="8_oavso"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_defender_jogador.gd" id="8_pyao4"]
+[ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_passe_alvo.gd" id="9_2fpj2"]
+[ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_arremesso_alvo.gd" id="10_58hiv"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_roubar_bola.gd" id="10_mu8jk"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_defina_forca_acao.gd" id="11_evh47"]
 [ext_resource type="Script" path="res://Scripts/Estados/Controlador/estado_jogar_bola_alvo.gd" id="12_85dg2"]
@@ -54,14 +56,20 @@ script = ExtResource("4_if6ki")
 [node name="MoverJogador" type="Node" parent="MaquinaEstados"]
 script = ExtResource("5_8stp1")
 
-[node name="JogarBolaAlvo" type="Node" parent="MaquinaEstados"]
-script = ExtResource("12_85dg2")
-
 [node name="DefenderJogador" type="Node" parent="MaquinaEstados"]
 script = ExtResource("8_pyao4")
 
 [node name="DescansarJogador" type="Node" parent="MaquinaEstados"]
 script = ExtResource("8_oavso")
+
+[node name="PasseAlvo" type="Node" parent="MaquinaEstados"]
+script = ExtResource("9_2fpj2")
+
+[node name="ArremessoAlvo" type="Node" parent="MaquinaEstados"]
+script = ExtResource("10_58hiv")
+
+[node name="JogarBolaAlvo" type="Node" parent="MaquinaEstados"]
+script = ExtResource("12_85dg2")
 
 [node name="RoubarBolaAlvo" type="Node" parent="MaquinaEstados"]
 script = ExtResource("10_mu8jk")
