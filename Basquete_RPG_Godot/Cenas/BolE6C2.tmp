@@ -1,0 +1,69 @@
+[gd_scene load_steps=14 format=3 uid="uid://coy7olt5nnj62"]
+
+[ext_resource type="Script" path="res://Scripts/bola.gd" id="1_ymnmx"]
+[ext_resource type="Texture2D" uid="uid://b6oy7l35ahkgr" path="res://Assets/Bola.png" id="2_7g8l0"]
+[ext_resource type="Shader" path="res://Scripts/Shader/Cesta.gdshader" id="2_q6pjd"]
+[ext_resource type="Script" path="res://Scripts/Estados/maquina_estados.gd" id="3_meqhi"]
+[ext_resource type="Script" path="res://Scripts/ControladorAparencia/controlador_aparencia_bola.gd" id="3_qsep2"]
+[ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_parada.gd" id="4_u7nr7"]
+[ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_com_jogador.gd" id="5_oqfx1"]
+[ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_em_passe.gd" id="6_1ukt3"]
+[ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_em_arremesso.gd" id="7_1icqr"]
+[ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_em_rebateu.gd" id="8_2vdjw"]
+[ext_resource type="Script" path="res://Scripts/Estados/Bola/estado_move_para.gd" id="9_eb20j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wnrf1"]
+resource_local_to_scene = true
+shader = ExtResource("2_q6pjd")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.7
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_slpnv"]
+radius = 4.0
+
+[node name="Bola" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_ymnmx")
+
+[node name="Aparencia" type="Node2D" parent="."]
+script = ExtResource("3_qsep2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Aparencia"]
+material = SubResource("ShaderMaterial_wnrf1")
+texture = ExtResource("2_7g8l0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_slpnv")
+
+[node name="MaquinaEstados" type="Node" parent="." node_paths=PackedStringArray("primeiro_estado")]
+script = ExtResource("3_meqhi")
+primeiro_estado = NodePath("Parada")
+
+[node name="Parada" type="Node" parent="MaquinaEstados" node_paths=PackedStringArray("bola")]
+script = ExtResource("4_u7nr7")
+bola = NodePath("../..")
+
+[node name="ComJogador" type="Node" parent="MaquinaEstados" node_paths=PackedStringArray("bola")]
+script = ExtResource("5_oqfx1")
+bola = NodePath("../..")
+
+[node name="EmPasse" type="Node" parent="MaquinaEstados" node_paths=PackedStringArray("bola")]
+script = ExtResource("6_1ukt3")
+bola = NodePath("../..")
+velocidade_passe = 400.0
+
+[node name="EmArremesso" type="Node" parent="MaquinaEstados" node_paths=PackedStringArray("bola")]
+script = ExtResource("7_1icqr")
+bola = NodePath("../..")
+velocidade_arremesso = 700.0
+
+[node name="EmRebateu" type="Node" parent="MaquinaEstados" node_paths=PackedStringArray("bola")]
+script = ExtResource("8_2vdjw")
+bola = NodePath("../..")
+velocidade_rebate = 500.0
+
+[node name="MovePara" type="Node" parent="MaquinaEstados" node_paths=PackedStringArray("bola")]
+script = ExtResource("9_eb20j")
+bola = NodePath("../..")
+velocidade_movimento = 200.0
