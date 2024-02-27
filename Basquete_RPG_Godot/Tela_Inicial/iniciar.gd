@@ -11,7 +11,3 @@ func _ready():
 		(root_scene.size.y - size.y) / 1.2
 	)
 	position = button_position
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

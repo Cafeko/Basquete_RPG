@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://di8bb0tl4e0mq"]
 
-[ext_resource type="Script" path="res://Tela_Inicial/Control.gd" id="1_7ei8j"]
-[ext_resource type="Texture2D" uid="uid://7mrac0okmoax" path="res://Assets/titulo_placeholder.jpg" id="2_76cu1"]
-[ext_resource type="Script" path="res://Tela_Inicial/titulo.gd" id="3_plj2l"]
-[ext_resource type="Script" path="res://Tela_Inicial/iniciar.gd" id="4_dfxnp"]
-[ext_resource type="Texture2D" uid="uid://5b5xjw3p54wm" path="res://Assets/NES Asset Pack Basketball Files/NES_Basketball_Court_BG.png" id="5_5dx76"]
+[ext_resource type="Script" path="res://Tela_Inicial/Control.gd" id="1_sjko0"]
+[ext_resource type="Texture2D" uid="uid://7mrac0okmoax" path="res://Assets/titulo_placeholder.jpg" id="2_q0bip"]
+[ext_resource type="Script" path="res://Tela_Inicial/titulo.gd" id="3_gimmr"]
+[ext_resource type="Script" path="res://Tela_Inicial/iniciar.gd" id="4_7n81l"]
+[ext_resource type="Texture2D" uid="uid://5b5xjw3p54wm" path="res://Assets/NES Asset Pack Basketball Files/NES_Basketball_Court_BG.png" id="5_fwjrd"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -13,14 +13,14 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_7ei8j")
+script = ExtResource("1_sjko0")
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("2_76cu1")
-script = ExtResource("3_plj2l")
+texture = ExtResource("2_q0bip")
+script = ExtResource("3_gimmr")
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 0
@@ -31,7 +31,7 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "Iniciar"
 icon_alignment = 1
-script = ExtResource("4_dfxnp")
+script = ExtResource("4_7n81l")
 
 [node name="TextureRect2" type="TextureRect" parent="Control"]
 z_index = -1
@@ -40,6 +40,6 @@ offset_left = -67.0
 offset_right = 1221.0
 offset_bottom = 648.0
 mouse_filter = 2
-texture = ExtResource("5_5dx76")
+texture = ExtResource("5_fwjrd")
 
 [connection signal="pressed" from="Control/Button" to="Control" method="_on_button_pressed"]

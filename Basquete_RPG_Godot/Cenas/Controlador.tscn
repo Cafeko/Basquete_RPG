@@ -31,10 +31,6 @@ script = ExtResource("1_0xusn")
 [node name="ControlePartidar" type="Node" parent="."]
 script = ExtResource("2_ajki4")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
 [node name="MaquinaEstados" type="Node" parent="." node_paths=PackedStringArray("primeiro_estado")]
 script = ExtResource("2_1oy8w")
 primeiro_estado = NodePath("PrimeiroInicioTempo")
@@ -102,4 +98,8 @@ script = ExtResource("25_7onm2")
 [node name="FimTempo" type="Node" parent="MaquinaEstados"]
 script = ExtResource("25_2j127")
 
-[connection signal="timeout" from="Timer" to="MaquinaEstados/FimTempo" method="on_timeout"]
+[node name="Timer" type="Timer" parent="MaquinaEstados/FimTempo"]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="MaquinaEstados/FimTempo/Timer" to="MaquinaEstados/FimTempo" method="on_timeout"]

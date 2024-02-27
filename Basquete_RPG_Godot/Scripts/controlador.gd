@@ -12,7 +12,6 @@ extends Node2D
 
 @onready var maquina_estados = $MaquinaEstados
 @onready var partida = $ControlePartidar
-@onready var timer = $Timer
 
 enum INTERRUPCAO{NADA, NO_AR, BLOQUEIO}
 var interrupcao_lista : Array = []
