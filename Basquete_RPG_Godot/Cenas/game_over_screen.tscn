@@ -23,8 +23,9 @@ default_font_size = 24
 default_font = ExtResource("1_byuae")
 default_font_size = 24
 
-[node name="GameOverScreen" type="CanvasLayer"]
+[node name="GameOverScreen" type="CanvasLayer" node_paths=PackedStringArray("texto")]
 script = ExtResource("1_qjt5u")
+texto = NodePath("Panel/MarginContainer/VBoxContainer/Title")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 15

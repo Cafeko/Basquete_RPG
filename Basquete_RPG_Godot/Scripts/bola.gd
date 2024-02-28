@@ -59,3 +59,9 @@ func set_forca(valor : int):
 # Retorna o valor da força que a bola tem no passe/arremesso.
 func get_forca():
 	return forca
+
+func bola_vai_pro_chao():
+	if jogador_segurando != null:
+		jogador_segurando.set_com_bola(false)
+		jogador_segurando.aparencia.atualiza_animacao()
+		Global.bola_para.emit()

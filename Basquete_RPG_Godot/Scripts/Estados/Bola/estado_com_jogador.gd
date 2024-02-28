@@ -14,6 +14,7 @@ func tudo_pronto():
 	Global.passou_bola.connect(on_passou_bola)
 	Global.arremessou_bola.connect(on_arremessou_bola)
 	Global.roubou_bola.connect(on_roubou_bola)
+	Global.bola_para.connect(on_bola_para)
 
 # Executado quando entra no estado.
 func entrando():
@@ -41,3 +42,6 @@ func on_roubou_bola(jogador_que_roubou):
 		roubada = true
 		bola.set_jogador_segurando(jogador_que_roubou)
 		muda_estado.emit(self.name, "ComJogador")
+
+func on_bola_para():
+	muda_estado.emit(self.name, "Parada")

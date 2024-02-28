@@ -212,7 +212,10 @@ func sorteia_time_do_turno():
 	return partida.time_do_turno
 
 func posiciona_bola_inicio_tempo():
-		Global.bola.global_position = partida.time_do_turno.get_jogador_inicial_centro().global_position
+	Global.bola.bola_vai_pro_chao()
+	var jogador = partida.time_do_turno.get_jogador_inicial_centro()
+	Global.bola.global_position = jogador.global_position
+	jogador.comeca_pegar_bola(Global.bola)
 
 func jogador_inicial_centro_inicio_tempo(time : TimeJogadores):
 	var jogador : Jogador = time.get_jogador_inicial_centro()
@@ -265,6 +268,9 @@ func jogador_arremessa_pos_ponto(time):
 # - Fim jogo
 func jogo_acabou():
 	return partida.get_periodo() >= partida.get_periodo_maximo()
+
+func time_que_ganhou():
+	return partida.get_time_ganhando()
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #

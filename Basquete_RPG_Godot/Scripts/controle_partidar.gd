@@ -56,6 +56,14 @@ func get_time_adversario(time : TimeJogadores):
 	else:
 		return time1
 
+func get_time_ganhando():
+	if pontuacao_time1 > pontuacao_time2:
+		return time1
+	elif pontuacao_time1 < pontuacao_time2:
+		return time2
+	else:
+		return null
+
 func set_cestas(esq : Cesta, dir : Cesta):
 	cesta_esq = esq
 	cesta_dir = dir

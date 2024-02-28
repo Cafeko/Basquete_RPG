@@ -8,6 +8,10 @@ func entrando():
 
 func on_timeout():
 	if Global.controlador.jogo_acabou():
-		get_tree().change_scene_to_file("res://Cenas/game_over_screen.tscn");
+		Global.time_ganhou = Global.controlador.time_que_ganhou()
+		var nova_cena = preload("res://Cenas/game_over_screen.tscn").instantiate()
+		get_tree().root.add_child(nova_cena)
+		var main = get_tree().root.get_node("/root/Main")
+		get_tree().root.remove_child(main)
 	else:
 		muda_estado.emit(self.name, "InicioTempo")
