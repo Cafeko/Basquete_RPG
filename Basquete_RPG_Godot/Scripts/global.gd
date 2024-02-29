@@ -12,6 +12,7 @@ var visual
 var controlador_estado_atual : String
 var barra_forca
 var time_ganhou : TimeJogadores
+var controle_cena
 
 # Cores:
 var cor_pode_selecionar : Color = Color.WHITE
@@ -47,3 +48,4 @@ signal animacao_fim_arremesso
 signal animacao_fim_receber
 signal bola_move_para
 signal bola_para
+signal muda_cena

@@ -56,7 +56,7 @@ func on_para_barra_forca():
 	Global.ui.set_valor_jogador(str(forca))
 	Global.ui.atualiza_valores(na_esq)
 	Global.ui.set_cor_do_valor(Global.barra_forca.get_cor_area_atual(), na_esq)
-	# Espera 1 segundo pra ir para o proximo estado.
+	# Espera 1.2 segundo pra ir para o proximo estado.
 	await get_tree().create_timer(1.2).timeout
 	muda_estado.emit(self.name, proximo_estado)
 

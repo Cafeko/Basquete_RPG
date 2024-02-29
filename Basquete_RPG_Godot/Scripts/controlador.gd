@@ -232,6 +232,8 @@ func jogador_inicial_centro_inicio_tempo(time : TimeJogadores):
 func bola_entrou_em_cesta(time : TimeJogadores, pontos: int):
 	limpa_info()
 	add_info([time, pontos])
+	partida.passa_minuto()
+	atualiza_valores_placar()
 	Global.fez_ponto.emit()
 
 # Marca ponto para o time especificado.

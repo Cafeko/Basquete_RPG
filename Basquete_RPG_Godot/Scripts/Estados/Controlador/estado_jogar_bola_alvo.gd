@@ -10,10 +10,12 @@ var tiles_passe : Array[Vector2i]
 var escolheu : bool = false
 var alvo_escolhido
 var tile_alvo : Vector2i
+var vai_jogar : bool
 
 # Executado quando entra no estado.
 func entrando():
 	# Valores:
+	vai_jogar = false
 	escolheu = false
 	jogador = Global.controlador.get_jogador_selecionado()
 	tile_jogador = Global.quadra.cord_para_tile(jogador.global_position)
@@ -57,6 +59,9 @@ func executando(_delta):
 
 # Executado ao sair do estado.
 func saindo():
+	if not vai_jogar:
+		Global.controlador.contorno_time_do_turno(false)
+		Global.controlador.set_contorno_cestas(false)
 	Global.visual.limpa_area()
 
 # Remove os tiles fora da quadra dos tiles_passe.
@@ -76,6 +81,7 @@ func destaca_jogadores_no_alcance():
 
 func selecionou_alvo():
 	if alvo_escolhido != null:
+		vai_jogar = true
 		Global.controlador.contorno_time_do_turno(false)
 		Global.controlador.set_contorno_cestas(false)
 		jogador.aparencia.set_contorno(true, Global.cor_selecionado)

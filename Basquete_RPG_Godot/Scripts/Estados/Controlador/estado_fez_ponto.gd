@@ -28,13 +28,16 @@ func executando(_delta):
 	await get_tree().create_timer(2.0).timeout
 	if primeira:
 		primeira = false
-		# Passa turno para time que tomou a cesta.
-		Global.controlador.define_time_do_turno(time_tomou_cesta)
-		# Prepara quadra e bola.
-		Global.quadra.prepara_navegacao()
-		#Global.controlador.posiciona_bola_pos_ponto(lado_esq)
-		# Posiciona e prepara jogadores.
-		Global.controlador.formacao_pos_ponto(time_fez_ponto, time_tomou_cesta)
-		Global.controlador.time_pega_bola(time_tomou_cesta)
-		Global.controlador.jogador_arremessa_pos_ponto(time_tomou_cesta)
-		muda_estado.emit(self.name, "SelecionaJogador")
+		if Global.controlador.minutos_de_jogo() == 0:
+			muda_estado.emit(self.name, "FimTempo")
+		else:
+			# Passa turno para time que tomou a cesta.
+			Global.controlador.define_time_do_turno(time_tomou_cesta)
+			# Prepara quadra e bola.
+			Global.quadra.prepara_navegacao()
+			#Global.controlador.posiciona_bola_pos_ponto(lado_esq)
+			# Posiciona e prepara jogadores.
+			Global.controlador.formacao_pos_ponto(time_fez_ponto, time_tomou_cesta)
+			Global.controlador.time_pega_bola(time_tomou_cesta)
+			Global.controlador.jogador_arremessa_pos_ponto(time_tomou_cesta)
+			muda_estado.emit(self.name, "SelecionaJogador")

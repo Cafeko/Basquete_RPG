@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://800loao5b0j0"]
+
+[ext_resource type="Script" path="res://Scripts/controle_cena.gd" id="1_dnrsc"]
+[ext_resource type="PackedScene" uid="uid://di8bb0tl4e0mq" path="res://Tela_Inicial/Cena_Tela_Inicial.tscn" id="2_274ne"]
+
+[node name="ControleCena" type="Node"]
+script = ExtResource("1_dnrsc")
+
+[node name="Node2D" parent="." instance=ExtResource("2_274ne")]
