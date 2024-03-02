@@ -16,4 +16,4 @@ func _on_quit_button_pressed():
 	Global.muda_cena.emit("res://Tela_Inicial/Cena_Tela_Inicial.tscn")
 
 func _on_restart_button_pressed():
-	Global.muda_cena.emit("res://Cenas/Main.tscn")
+	Global.muda_cena.emit("res://Cenas/Jogo.tscn")

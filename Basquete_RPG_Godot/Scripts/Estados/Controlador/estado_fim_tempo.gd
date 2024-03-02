@@ -5,6 +5,7 @@ extends Estado
 # Executado quando entra no estado.
 func entrando():
 	timer.start(1.5)
+	Global.sons.toca_som("FimTempo")
 
 func on_timeout():
 	if Global.controlador.jogo_acabou():

@@ -53,6 +53,8 @@ func animacao_passar():
 
 func on_animacao_fim(corpo_esperado):
 	if corpo_esperado == corpo:
+		# Som passa bola.
+		Global.sons.toca_som("Passe")
 		# Emite um sinal que faz a bola mudar seu estado de "ComJogador" para "EmPasse".
 		Global.passou_bola.emit()
 		fim.emit()

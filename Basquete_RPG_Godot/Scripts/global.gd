@@ -13,6 +13,7 @@ var controlador_estado_atual : String
 var barra_forca
 var time_ganhou : TimeJogadores
 var controle_cena
+var sons
 
 # Cores:
 var cor_pode_selecionar : Color = Color.WHITE

@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://dovcj2aiyhwuk"]
+
+[ext_resource type="PackedScene" uid="uid://bfymvsxinjbns" path="res://Cenas/Controlador.tscn" id="1_cfjpw"]
+[ext_resource type="PackedScene" uid="uid://bkpcjg0cbn6ps" path="res://Cenas/Quadra2.tscn" id="2_fvm20"]
+[ext_resource type="PackedScene" uid="uid://cp7jj0443w6mw" path="res://Cenas/TimeAzul.tscn" id="3_i6ae5"]
+[ext_resource type="PackedScene" uid="uid://b2bee3gthahqo" path="res://Cenas/TimeVermelho.tscn" id="4_lvwv5"]
+[ext_resource type="PackedScene" uid="uid://coy7olt5nnj62" path="res://Cenas/Bola.tscn" id="5_w4q2v"]
+[ext_resource type="PackedScene" uid="uid://ddgih3b1t7v7x" path="res://Cenas/Cesta.tscn" id="6_k0wmb"]
+[ext_resource type="PackedScene" uid="uid://cwfuoqq5vmp0g" path="res://Cenas/UI.tscn" id="7_n4aie"]
+[ext_resource type="PackedScene" uid="uid://cmlxjygdfm1k6" path="res://Cenas/Visual.tscn" id="8_c4ipj"]
+
+[node name="Jogo" type="Node"]
+
+[node name="Controlador" parent="." node_paths=PackedStringArray("time1", "time2", "cesta_esquerda", "cesta_direita") instance=ExtResource("1_cfjpw")]
+time1 = NodePath("../Time Azul")
+time2 = NodePath("../Time Vermelho")
+cesta_esquerda = NodePath("../Cestas/CestaEsq")
+cesta_direita = NodePath("../Cestas/CestaDir")
+periodos = 2
+turnos = 10
+
+[node name="Quadra2" parent="." instance=ExtResource("2_fvm20")]
+
+[node name="Time Azul" parent="." instance=ExtResource("3_i6ae5")]
+
+[node name="Time Vermelho" parent="." instance=ExtResource("4_lvwv5")]
+
+[node name="Bola" parent="." instance=ExtResource("5_w4q2v")]
+
+[node name="Cestas" type="Node2D" parent="."]
+
+[node name="CestaEsq" parent="Cestas" instance=ExtResource("6_k0wmb")]
+position = Vector2(71, 120)
+e_cesta_esquerda = true
+
+[node name="CestaDir" parent="Cestas" instance=ExtResource("6_k0wmb")]
+position = Vector2(473, 120)
+scale = Vector2(-1, 1)
+
+[node name="UI" parent="." instance=ExtResource("7_n4aie")]
+
+[node name="Visual" parent="." instance=ExtResource("8_c4ipj")]
+z_index = 1000
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(272, 136)
+zoom = Vector2(2.12, 2.38)
