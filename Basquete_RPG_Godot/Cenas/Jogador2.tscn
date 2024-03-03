@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/jogador.gd" id="1_fk7ut"]
 [ext_resource type="Script" path="res://Scripts/ControladorAparencia/controlador_aparencia_jogador2.gd" id="2_eiy8h"]
 [ext_resource type="Shader" path="res://Scripts/Shader/Cesta.gdshader" id="2_ucpj4"]
-[ext_resource type="Texture2D" uid="uid://djxnw2r33h827" path="res://Assets/SpriteSheet_Player1.png" id="3_2m7bu"]
+[ext_resource type="Texture2D" uid="uid://b1o002o7fv72g" path="res://Assets/SpriteSheet_Player1_1.png" id="4_h4uka"]
 [ext_resource type="Texture2D" uid="uid://bllpx3n2aqkbv" path="res://Assets/Escudo.png" id="5_emhmc"]
 [ext_resource type="Texture2D" uid="uid://f1osuyweannu" path="res://Assets/Cadeado.png" id="6_ucrd2"]
 [ext_resource type="Texture2D" uid="uid://d2c3ehl10jbjk" path="res://Assets/Energia.png" id="7_apj4q"]
@@ -602,7 +602,7 @@ animacao = NodePath("AnimationPlayer")
 [node name="Sprite2D" type="Sprite2D" parent="Aparencia"]
 material = SubResource("ShaderMaterial_8gog8")
 position = Vector2(0, -14)
-texture = ExtResource("3_2m7bu")
+texture = ExtResource("4_h4uka")
 hframes = 10
 vframes = 15
 frame = 10

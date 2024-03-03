@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cp7jj0443w6mw"]
+[gd_scene load_steps=11 format=3 uid="uid://cp7jj0443w6mw"]
 
 [ext_resource type="Script" path="res://Scripts/time_jogadores.gd" id="1_ylaes"]
 [ext_resource type="PackedScene" uid="uid://c155ppdxcfocw" path="res://Cenas/Jogador2.tscn" id="2_unavj"]
 [ext_resource type="Shader" path="res://Scripts/Shader/Cesta.gdshader" id="3_jkgdc"]
+[ext_resource type="Texture2D" uid="uid://hs8ifqfgtfuh" path="res://Assets/SpriteSheet_Player1_2.png" id="5_387d0"]
+[ext_resource type="Texture2D" uid="uid://ced8csfqq5o7c" path="res://Assets/SpriteSheet_Player1_3.png" id="5_etl0k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w4auj"]
 resource_local_to_scene = true
@@ -42,6 +44,7 @@ cor = Color(0.364706, 0.701961, 1, 1)
 
 [node name="Sprite2D" parent="Jogador2_1/Aparencia" index="0"]
 material = SubResource("ShaderMaterial_w4auj")
+texture = ExtResource("5_387d0")
 
 [node name="Jogador2_2" parent="." instance=ExtResource("2_unavj")]
 
@@ -52,6 +55,7 @@ material = SubResource("ShaderMaterial_eqnas")
 
 [node name="Sprite2D" parent="Jogador2_3/Aparencia" index="0"]
 material = SubResource("ShaderMaterial_48egn")
+texture = ExtResource("5_387d0")
 
 [node name="Status" parent="Jogador2_3" index="3"]
 tipo_jogador = "Meio"
@@ -68,6 +72,7 @@ tipo_jogador = "Defesa"
 
 [node name="Sprite2D" parent="Jogador2_5/Aparencia" index="0"]
 material = SubResource("ShaderMaterial_1rqw1")
+texture = ExtResource("5_etl0k")
 
 [node name="Status" parent="Jogador2_5" index="3"]
 tipo_jogador = "Defesa"

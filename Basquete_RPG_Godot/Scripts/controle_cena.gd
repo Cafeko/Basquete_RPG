@@ -3,6 +3,7 @@ extends Node
 func _ready():
 	Global.controle_cena = self
 	Global.muda_cena.connect(muda_cena)
+	Global.sons.toca_som("Musica")
 
 func muda_cena(cena : String):
 	var cena_atual = get_children()[0]

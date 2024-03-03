@@ -6,7 +6,7 @@ extends Estado
 func entrando():
 	timer.start(1.5)
 	Global.sons.toca_som("FimTempo")
-	if Global.controlador.jogo_acabou():
+	if Global.controlador.jogo_acabou() and Global.controlador.time_que_ganhou() != null:
 		# Som celebracao.
 		Global.sons.toca_som("Celebrar")
 

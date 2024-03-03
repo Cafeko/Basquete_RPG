@@ -1,12 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgxijgwhfcpan"]
+[gd_scene load_steps=8 format=3 uid="uid://bgxijgwhfcpan"]
 
+[ext_resource type="Script" path="res://Scripts/sons.gd" id="1_bw738"]
 [ext_resource type="AudioStream" uid="uid://cfuc5etld2pxr" path="res://Assets/Sons/arremesso.mp3" id="1_rs0rh"]
 [ext_resource type="AudioStream" uid="uid://dh8f7mye8exp0" path="res://Assets/Sons/passe.mp3" id="2_5g35t"]
 [ext_resource type="AudioStream" uid="uid://ky1nk82rv4pd" path="res://Assets/Sons/fim_tempo.mp3" id="3_eh2yb"]
 [ext_resource type="AudioStream" uid="uid://cyll4qdmxstva" path="res://Assets/Sons/pega_bola.mp3" id="4_rir5l"]
 [ext_resource type="AudioStream" uid="uid://d0iiyyx53o5ab" path="res://Assets/Sons/Celebracao2.mp3" id="5_hew0w"]
+[ext_resource type="AudioStream" uid="uid://uo6jd5ehnc60" path="res://Assets/Sons/Basquete_RPG_Tema.mp3" id="6_kt6rf"]
 
 [node name="Sons" type="Node"]
+script = ExtResource("1_bw738")
 
 [node name="SomArremesso" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_rs0rh")
@@ -18,7 +21,7 @@ pitch_scale = 2.0
 
 [node name="SomFimTempo" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_eh2yb")
-volume_db = -2.0
+volume_db = -4.0
 pitch_scale = 1.5
 
 [node name="SomPegaBola" type="AudioStreamPlayer2D" parent="."]
@@ -27,4 +30,9 @@ pitch_scale = 2.0
 
 [node name="SomCelebracao" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_hew0w")
-volume_db = -8.0
+volume_db = -12.0
+
+[node name="SomMusica" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_kt6rf")
+
+[connection signal="finished" from="SomMusica" to="." method="on_musica_finished"]

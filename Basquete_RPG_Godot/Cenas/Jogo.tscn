@@ -24,7 +24,6 @@ turnos = 10
 [node name="Time Azul" parent="." instance=ExtResource("3_i6ae5")]
 
 [node name="Time Vermelho" parent="." instance=ExtResource("4_lvwv5")]
-cor = Color(0.886275, 0, 0, 1)
 
 [node name="Bola" parent="." instance=ExtResource("5_w4q2v")]
 

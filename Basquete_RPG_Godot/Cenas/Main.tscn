@@ -1,12 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1f8g12fxy4nd"]
+[gd_scene load_steps=3 format=3 uid="uid://d1f8g12fxy4nd"]
 
 [ext_resource type="PackedScene" uid="uid://bgxijgwhfcpan" path="res://Cenas/sons.tscn" id="1_22dm8"]
 [ext_resource type="PackedScene" uid="uid://800loao5b0j0" path="res://Cenas/ControleCena.tscn" id="2_0nnjc"]
-[ext_resource type="Script" path="res://Scripts/sons.gd" id="2_sab1k"]
 
 [node name="Main" type="Node"]
 
 [node name="Sons" parent="." instance=ExtResource("1_22dm8")]
-script = ExtResource("2_sab1k")
 
 [node name="ControleCena" parent="." instance=ExtResource("2_0nnjc")]
