@@ -93,6 +93,8 @@ func bola_na_cesta(bola_que_acertou : Bola, pontos_quantidade: int, forca : int)
 
 # Executada após o fim da animação da bola entrar na cesta.
 func bola_entrou_na_cesta():
+	# Som celebracao.
+	Global.sons.toca_som("Celebrar")
 	bola.global_position = saida.global_position
 	bola.aparencia.set_visivel(true)
 	if e_cesta_esquerda:

@@ -6,6 +6,9 @@ extends Estado
 func entrando():
 	timer.start(1.5)
 	Global.sons.toca_som("FimTempo")
+	if Global.controlador.jogo_acabou():
+		# Som celebracao.
+		Global.sons.toca_som("Celebrar")
 
 func on_timeout():
 	if Global.controlador.jogo_acabou():

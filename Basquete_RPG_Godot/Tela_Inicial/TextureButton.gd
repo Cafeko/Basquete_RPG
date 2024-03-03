@@ -1,6 +1,5 @@
 extends TextureButton
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	size = Vector2(250, 75)
@@ -10,8 +9,3 @@ func _ready():
 		(root_scene.size.y - size.y) / 1.135
 	)
 	position = button_position
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

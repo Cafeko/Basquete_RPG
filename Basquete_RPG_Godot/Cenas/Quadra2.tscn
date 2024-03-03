@@ -1,15 +1,15 @@
 [gd_scene load_steps=12 format=3 uid="uid://bkpcjg0cbn6ps"]
 
 [ext_resource type="Script" path="res://Scripts/quadra.gd" id="1_1r6wy"]
-[ext_resource type="Texture2D" uid="uid://chk0ynevnt8rl" path="res://Assets/NES Asset Pack Basketball Files/Basketball Court Tile Sets/NES_Basketball_Court_BG.png" id="1_w2fqu"]
 [ext_resource type="Texture2D" uid="uid://b86smgftxxvt5" path="res://Assets/Quadrado.png" id="2_esl3c"]
+[ext_resource type="Texture2D" uid="uid://5b5xjw3p54wm" path="res://Assets/NES Asset Pack Basketball Files/NES_Basketball_Court_BG.png" id="2_g0b7n"]
 [ext_resource type="Script" path="res://Scripts/formacao.gd" id="3_m086w"]
 [ext_resource type="Texture2D" uid="uid://co5pcsyros236" path="res://Assets/Contorno.png" id="4_38glm"]
 [ext_resource type="Texture2D" uid="uid://bgcv4eg2ieu3j" path="res://Assets/Separacao.png" id="5_jodwf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j25tj"]
 resource_name = "quadra_tiles"
-texture = ExtResource("1_w2fqu")
+texture = ExtResource("2_g0b7n")
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0

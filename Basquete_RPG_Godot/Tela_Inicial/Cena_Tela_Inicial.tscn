@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Tela_Inicial/Control.gd" id="1_sjko0"]
 [ext_resource type="Texture2D" uid="uid://dp40bwaltk7rn" path="res://Assets/Tela_Inicial/NES_Basketball_TitleScreen.png" id="2_1utsl"]
 [ext_resource type="Script" path="res://Tela_Inicial/titulo.gd" id="3_gimmr"]
-[ext_resource type="Texture2D" uid="uid://bd6napqruabci" path="res://Assets/Tela_Inicial/NES_Basketball_Court_BG-dark.png" id="5_jnqs4"]
+[ext_resource type="Texture2D" uid="uid://5b5xjw3p54wm" path="res://Assets/NES Asset Pack Basketball Files/NES_Basketball_Court_BG.png" id="4_6s572"]
 [ext_resource type="Texture2D" uid="uid://3y44yaee1lus" path="res://Assets/Tela_Inicial/iniciar.png" id="6_pys54"]
 [ext_resource type="Texture2D" uid="uid://dproocilrev64" path="res://Assets/Tela_Inicial/iniciar_hover.png" id="7_yqwqh"]
 [ext_resource type="Script" path="res://Tela_Inicial/TextureButton.gd" id="8_o2q7e"]
@@ -32,7 +32,7 @@ offset_left = -67.0
 offset_right = 1221.0
 offset_bottom = 648.0
 mouse_filter = 2
-texture = ExtResource("5_jnqs4")
+texture = ExtResource("4_6s572")
 
 [node name="TextureButton" type="TextureButton" parent="Control"]
 layout_mode = 0
