@@ -6,6 +6,6 @@ func _ready():
 	var root_scene = get_tree().get_root()
 	var title_position = Vector2(
 		(root_scene.size.x - size.x) / 2,
-		(root_scene.size.y - size.y) / 8
+		(root_scene.size.y - size.y)
 	)
 	position = title_position
