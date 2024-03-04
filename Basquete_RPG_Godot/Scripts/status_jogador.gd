@@ -14,15 +14,15 @@ var no_ar_forca : int = 1
 var energia_forca : int = 1
 
 # passe, arremesso, ataque, defesa, bloqueio, no_ar, energia
-var tipo_status : Dictionary = {"Atacante" : [40,100,40,30,10,20,60],
-								"Meio" :     [60,40,40,40,40,40,40],
-								"Defesa" :   [40,30,50,40,60,50,30]}
+var tipo_status : Dictionary = {"Atacante" : [40,120,40,30,10,20,40],
+								"Meio" :     [70,40,50,50,30,30,30],
+								"Defesa" :   [50,30,40,40,60,60,20]}
 
 var energia : int = 1
 var energia_max : int = 1
 var cansado : bool = false
 
-var movimento_alcance : int = 4
+var movimento_alcance : int = 5
 var passe_alcance : int = 8
 var arremesso_alcance : int = 9
 var roubo_bola_alcance : int = 1
