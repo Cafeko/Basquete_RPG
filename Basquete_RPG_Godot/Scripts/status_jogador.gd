@@ -23,7 +23,7 @@ var energia_max : int = 1
 var cansado : bool = false
 
 var movimento_alcance : int = 4
-var passe_alcance : int = 9
+var passe_alcance : int = 8
 var arremesso_alcance : int = 9
 var roubo_bola_alcance : int = 1
 

@@ -64,7 +64,7 @@ func executando(delta):
 # de defesa para fazer as interrupções durante o movimento da bola. 
 func verifica_ao_redor():
 	# Define área verificada.
-	var area = Global.quadra.area_quadrada(tile_atual, 1)
+	var area = Global.quadra.area_quadrada(tile_atual + Vector2i.DOWN, 1)
 	area.erase(tile_atual)
 	# Verifica se tem algum jogador posicionado nos tiles proximos e se eles vão tentar pegar a bola. 
 	var inimigos = []

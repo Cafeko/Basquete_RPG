@@ -50,12 +50,13 @@ texture = ExtResource("5_387d0")
 
 [node name="Sprite2D" parent="Jogador2_2/Aparencia" index="0"]
 material = SubResource("ShaderMaterial_eqnas")
+texture = ExtResource("5_387d0")
 
 [node name="Jogador2_3" parent="." instance=ExtResource("2_unavj")]
 
 [node name="Sprite2D" parent="Jogador2_3/Aparencia" index="0"]
 material = SubResource("ShaderMaterial_48egn")
-texture = ExtResource("5_387d0")
+texture = ExtResource("5_etl0k")
 
 [node name="Status" parent="Jogador2_3" index="3"]
 tipo_jogador = "Meio"
@@ -72,7 +73,6 @@ tipo_jogador = "Defesa"
 
 [node name="Sprite2D" parent="Jogador2_5/Aparencia" index="0"]
 material = SubResource("ShaderMaterial_1rqw1")
-texture = ExtResource("5_etl0k")
 
 [node name="Status" parent="Jogador2_5" index="3"]
 tipo_jogador = "Defesa"

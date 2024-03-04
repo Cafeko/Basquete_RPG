@@ -16,7 +16,7 @@ time1 = NodePath("../Time Azul")
 time2 = NodePath("../Time Vermelho")
 cesta_esquerda = NodePath("../Cestas/CestaEsq")
 cesta_direita = NodePath("../Cestas/CestaDir")
-periodos = 2
+periodos = 3
 turnos = 10
 
 [node name="Quadra2" parent="." instance=ExtResource("2_fvm20")]

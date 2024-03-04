@@ -45,7 +45,7 @@ cor = Color(0.886275, 0, 0, 1)
 
 [node name="Sprite2D" parent="Jogador2_1/Aparencia" index="0"]
 material = SubResource("ShaderMaterial_ug7cd")
-texture = ExtResource("4_qa4xw")
+texture = ExtResource("5_yms7n")
 
 [node name="Jogador2_2" parent="." instance=ExtResource("2_gsb7v")]
 
@@ -66,7 +66,7 @@ tipo_jogador = "Meio"
 
 [node name="Sprite2D" parent="Jogador2_4/Aparencia" index="0"]
 material = SubResource("ShaderMaterial_6wb06")
-texture = ExtResource("5_yms7n")
+texture = ExtResource("4_qa4xw")
 
 [node name="Status" parent="Jogador2_4" index="3"]
 tipo_jogador = "Defesa"
@@ -75,7 +75,7 @@ tipo_jogador = "Defesa"
 
 [node name="Sprite2D" parent="Jogador2_5/Aparencia" index="0"]
 material = SubResource("ShaderMaterial_s5o7s")
-texture = ExtResource("6_yvk7b")
+texture = ExtResource("4_qa4xw")
 
 [node name="Status" parent="Jogador2_5" index="3"]
 tipo_jogador = "Defesa"
