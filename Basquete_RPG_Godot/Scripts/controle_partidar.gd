@@ -129,11 +129,19 @@ func times_entra_novo_turno():
 func entra_novo_turno(time : TimeJogadores):
 	reset_acoes_time(time)
 	time_sai_modo_defesa(time)
+	time_pode_roubar(time)
 	time_pode_mover(time)
 
 # Set o contorno em um time especifico.
 func contorno_time(time : TimeJogadores, valor : bool):
 	time.contorno_jogadores(valor)
+
+func reset_animacao_times():
+	reset_animacao_time(time1)
+	reset_animacao_time(time2)
+
+func reset_animacao_time(time : TimeJogadores):
+	time.reset_animacao()
 
 # Faz o time resetar o numero de ações que os jogadores podem fazer.
 func reset_acoes_time(time : TimeJogadores):
@@ -147,6 +155,9 @@ func reset_acoes_times():
 # Muda o modo de defesa do time.
 func time_sai_modo_defesa(time : TimeJogadores):
 	time.sai_modo_defesa()
+
+func time_pode_roubar(time : TimeJogadores):
+	time.pode_roubar()
 
 func time_pode_mover(time : TimeJogadores):
 	time.set_pode_mover(true)

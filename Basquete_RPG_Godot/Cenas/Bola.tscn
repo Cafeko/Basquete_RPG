@@ -53,17 +53,17 @@ bola = NodePath("../..")
 [node name="EmPasse" type="Node" parent="MaquinaEstados" node_paths=PackedStringArray("bola")]
 script = ExtResource("6_1ukt3")
 bola = NodePath("../..")
-velocidade_passe = 400.0
+velocidade_passe = 300.0
 
 [node name="EmArremesso" type="Node" parent="MaquinaEstados" node_paths=PackedStringArray("bola")]
 script = ExtResource("7_1icqr")
 bola = NodePath("../..")
-velocidade_arremesso = 700.0
+velocidade_arremesso = 500.0
 
 [node name="EmRebateu" type="Node" parent="MaquinaEstados" node_paths=PackedStringArray("bola")]
 script = ExtResource("8_2vdjw")
 bola = NodePath("../..")
-velocidade_rebate = 500.0
+velocidade_rebate = 300.0
 
 [node name="MovePara" type="Node" parent="MaquinaEstados" node_paths=PackedStringArray("bola")]
 script = ExtResource("9_eb20j")

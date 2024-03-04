@@ -76,3 +76,11 @@ func sem_bola():
 	for i in range(len(jogadores_lista)):
 		jogadores_lista[i].set_com_bola(false)
 		jogadores_lista[i].aparencia.atualiza_animacao()
+
+func reset_animacao():
+	for i in range(len(jogadores_lista)):
+		jogadores_lista[i].aparencia.toca_animacao("Parado")
+
+func pode_roubar():
+	for i in range(len(jogadores_lista)):
+		jogadores_lista[i].set_pode_roubar(true)

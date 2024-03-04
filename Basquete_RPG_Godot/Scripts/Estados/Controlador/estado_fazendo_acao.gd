@@ -11,6 +11,7 @@ func tudo_pronto():
 	Global.teve_interrupcao.connect(on_teve_interrupcao)
 
 func on_acao_acabou():
+	Global.controlador.partida.reset_animacao_times()
 	muda_estado.emit(self.name, "SelecionaJogador")
 
 func on_fez_ponto():

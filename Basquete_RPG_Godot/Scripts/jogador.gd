@@ -10,6 +10,8 @@ class_name Jogador
 
 var com_bola : bool = false
 var modo_defesa : bool = false
+var pode_defender : bool = true
+var pode_roubar : bool = true
 var pode_mover : bool = true
 var time : TimeJogadores = null
 
@@ -17,7 +19,7 @@ var time : TimeJogadores = null
 var acoes : Dictionary
 var acao_atual : Acao = null
 var numero_acoes : int
-var numero_acoes_maximo : int = 3
+var numero_acoes_maximo : int = 2
 
 signal acao_fim
 
@@ -66,20 +68,32 @@ func consegue_passar_ou_arremessar():
 	return (tem_acoes() and com_bola)
 
 func consegue_defender():
-	return (tem_acoes() and not com_bola)
+	return (not com_bola and pode_defender)
 
 func consegue_roubar():
-	if tem_acoes():
-		var tile = Global.quadra.cord_para_tile(self.global_position)
-		var tiles_ao_redor = Global.quadra.area_quadrada(tile, 1)
-		tiles_ao_redor.erase(tile)
-		for t in tiles_ao_redor:
-			var cordenada = Global.quadra.tile_para_cord(t)
-			var alvo = Global.controlador.verifica_ponto(cordenada)
-			# Se o jogador proximo estiver com a bola:
-			if alvo is Jogador and alvo.com_bola:
-				return true
-		return false
+	if pode_roubar:
+		if tem_acoes():
+			var tile = Global.quadra.cord_para_tile(self.global_position)
+			var tiles_ao_redor = Global.quadra.area_quadrada(tile, 1)
+			tiles_ao_redor.erase(tile)
+			for t in tiles_ao_redor:
+				var cordenada = Global.quadra.tile_para_cord(t)
+				var alvo = Global.controlador.verifica_ponto(cordenada)
+				# Se o jogador proximo estiver com a bola:
+				if alvo is Jogador and alvo.com_bola:
+					return true
+			return false
+		else:
+			var tile = Global.quadra.cord_para_tile(self.global_position)
+			var tiles_ao_redor = Global.quadra.area_quadrada(tile, 1)
+			tiles_ao_redor.erase(tile)
+			for t in tiles_ao_redor:
+				var cordenada = Global.quadra.tile_para_cord(t)
+				var alvo = Global.controlador.verifica_ponto(cordenada)
+				# Se o jogador proximo estiver com a bola:
+				if alvo is Jogador and alvo.com_bola and not Global.controlador.jogador_no_time_do_turno(alvo):
+					return true
+			return false
 	else:
 		return false
 # ------------------------------------------------------------------------------------------------ #
@@ -104,6 +118,12 @@ func get_modo_defesa():
 func set_com_bola(valor : bool):
 	com_bola = valor
 	aparencia.tem_bola = valor
+
+func set_pode_defender(valor : bool):
+	pode_defender = valor
+
+func set_pode_roubar(valor : bool):
+	pode_roubar = valor
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #
@@ -114,6 +134,7 @@ func perdeu_bola():
 	set_pode_mover(true)
 
 func fica_atordoado():
+	self.pode_defender = false
 	set_numero_acoes(0)
 
 func foi_bloqueado():
@@ -121,13 +142,17 @@ func foi_bloqueado():
 
 func entra_modo_defesa():
 	self.modo_defesa = true
+	self.pode_defender = false
+	self.pode_roubar = false
 	set_numero_acoes(0)
 
 func sai_modo_defesa():
 	self.modo_defesa = false
+	self.pode_defender = true
 
 func perdeu_na_defesa():
 	self.modo_defesa = false
+	self.pode_defender = false
 # ------------------------------------------------------------------------------------------------ #
 
 # ------------------------------------------------------------------------------------------------ #
@@ -174,6 +199,7 @@ func fim_mover():
 	troca_para_parado()
 	fez_acao()
 	if Global.controlador.jogador_em_bola(self) and not com_bola:
+		set_numero_acoes(get_acoes_disponiveis() + 1)
 		self.comeca_pegar_bola(Global.bola)
 	else:
 		Global.acao_acabou.emit()

@@ -27,12 +27,17 @@ func faze_de_preparacao(info : Array):
 func executando(_delta):
 	if primeira:
 		primeira = false
-		# Som pega bola.
-		Global.sons.toca_som("PegaBola")
-		# Marca que pegou a bola e emite um sinal que faz a bola mudar de estado de "Parada" para "ComJogador".
-		corpo.set_com_bola(true)
-		Global.pegou_bola.emit(corpo)
-		corpo.aparencia.toca_animacao("Receber")
+		if bola.get_jogador_segurando() == null:
+			# Som pega bola.
+			Global.sons.toca_som("PegaBola")
+			# Marca que pegou a bola e emite um sinal que faz a bola mudar de estado de "Parada" para "ComJogador".
+			corpo.set_com_bola(true)
+			Global.pegou_bola.emit(corpo)
+			corpo.aparencia.toca_animacao("Receber")
+		else:
+			corpo.set_com_bola(false)
+			corpo.aparencia.toca_animacao("Parado")
+			fim.emit()
 
 # Usado pra após o fim da ação para resetar as variaveis.
 func finalizacao():

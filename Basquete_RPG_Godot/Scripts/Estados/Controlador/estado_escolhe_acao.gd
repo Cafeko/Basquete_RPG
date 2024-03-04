@@ -22,6 +22,11 @@ func entrando():
 	# Deixa o menu de escolher ação visivel.
 	Global.ui.abre_menu_acoes()
 
+# Executando enquanto está no estado.
+func executando(_delta):
+	if Input.is_action_just_pressed("mouse_esq") and not Global.controlador.mouse_em_botao:
+		muda_estado.emit(self.name, "SelecionaJogador")
+
 # Executado ao sair do estado.
 func saindo():
 	Global.controlador.contorno_time_do_turno(false)

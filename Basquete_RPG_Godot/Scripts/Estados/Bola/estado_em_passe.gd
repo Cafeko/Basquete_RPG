@@ -40,17 +40,18 @@ func executando(delta):
 		if novo_tile != tile_atual:
 			tile_atual = novo_tile
 			verifica_ao_redor()
-		# Quando chegar no alvo:
-		if bola.global_position == cord_alvo:
-			# Se alvo for vazio: bola para no chão acabando a ação de passe e acabando o turno.
-			if alvo == null:
-				Global.acao_acabou.emit()
-				Global.finalizar_turno.emit()
-				muda_estado.emit(self.name, "Parada")
-			# Se alvo for um jogador: jogador pega a bola.
-			elif alvo is Jogador:
-				alvo.comeca_pegar_bola(bola)
-				muda_estado.emit(self.name, "Parada")
+		if not pausar_movimento:
+			# Quando chegar no alvo:
+			if bola.global_position == cord_alvo:
+				# Se alvo for vazio: bola para no chão acabando a ação de passe e acabando o turno.
+				if alvo == null:
+					Global.acao_acabou.emit()
+					Global.finalizar_turno.emit()
+					muda_estado.emit(self.name, "Parada")
+				# Se alvo for um jogador: jogador pega a bola.
+				elif alvo is Jogador:
+					alvo.comeca_pegar_bola(bola)
+					muda_estado.emit(self.name, "Parada")
 
 # Verifica os tiles ao redor da bola, buscando por jogadores do time adversario que estão em modo 
 # de defesa para fazer as interrupções durante o movimento da bola. 

@@ -18,7 +18,7 @@ func faze_de_preparacao(info : Array):
 # Usado para fazer a ação acontecer (é chamado constantemente).
 func executando(_delta):
 	# Gasta energia.
-	corpo.status.gasta_energia(round(forca/2.0))
+	corpo.status.gasta_energia(forca)
 	alvo.status.gasta_energia(dificuldade)
 	# Defesa deu errado:
 	if forca < dificuldade:
