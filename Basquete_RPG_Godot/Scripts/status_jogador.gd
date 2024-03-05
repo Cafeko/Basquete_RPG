@@ -13,8 +13,8 @@ var bloqueio_forca : int = 1
 var no_ar_forca : int = 1
 var energia_forca : int = 1
 
-# passe, arremesso, ataque, defesa, bloqueio, no_ar, energia
-var tipo_status : Dictionary = {"Atacante" : [40,120,40,30,10,20,40],
+# Max = 300; passe, arremesso, ataque, defesa, bloqueio, no_ar, energia
+var tipo_status : Dictionary = {"Atacante" : [40,110,40,40,10,20,40],
 								"Meio" :     [70,40,50,50,30,30,30],
 								"Defesa" :   [50,30,40,40,60,60,20]}
 
