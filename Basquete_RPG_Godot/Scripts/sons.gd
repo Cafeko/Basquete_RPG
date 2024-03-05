@@ -9,6 +9,7 @@ extends Node
 
 func _ready():
 	Global.sons = self
+	muda_volume(20)
 
 func toca_som(som_nome : String):
 	if som_nome == "Arremesso":
@@ -23,6 +24,15 @@ func toca_som(som_nome : String):
 		som_celebracao.play()
 	elif som_nome == "Musica":
 		som_musica.play()
+
+func muda_volume(valor):
+	som_arremesso.volume_db += valor
+	som_passe.volume_db += valor
+	som_fim_tempo.volume_db += valor
+	som_pega_bola.volume_db += valor
+	som_celebracao.volume_db += valor
+	som_musica.volume_db += valor
+	
 
 func on_musica_finished():
 	som_musica.play()

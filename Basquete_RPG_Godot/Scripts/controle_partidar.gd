@@ -119,12 +119,8 @@ func posiciona_jogadores(time : TimeJogadores, formacao_nome : String, na_esquer
 		time.posicionar_jogadores(formacao.lado_direito())
 
 func times_entra_novo_turno():
-	reset_acoes_time(time1)
-	time_sai_modo_defesa(time1)
-	time_pode_mover(time1)
-	reset_acoes_time(time2)
-	time_sai_modo_defesa(time2)
-	time_pode_mover(time2)
+	entra_novo_turno(time1)
+	entra_novo_turno(time2)
 
 func entra_novo_turno(time : TimeJogadores):
 	reset_acoes_time(time)
