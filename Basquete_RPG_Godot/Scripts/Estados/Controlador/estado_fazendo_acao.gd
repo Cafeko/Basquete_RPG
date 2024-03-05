@@ -11,7 +11,10 @@ func tudo_pronto():
 	Global.teve_interrupcao.connect(on_teve_interrupcao)
 
 func on_acao_acabou():
+	# Evitar bugs visuais:
 	Global.controlador.partida.reset_animacao_times()
+	Global.visual.limpar_linha()
+	Global.visual.limpa_area()
 	muda_estado.emit(self.name, "SelecionaJogador")
 
 func on_fez_ponto():
